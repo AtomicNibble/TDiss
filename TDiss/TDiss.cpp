@@ -129,7 +129,7 @@ namespace TDiss
 			// now need to decode the instruction. 
 			Instruction& curInst = pDecodeInst[currentInstOut];
 
-			InstrDecodeResult::Enum res = decodeInst(&ps, &curInst);
+			InstrDecodeResult::Enum res = decodeInst(ps, &curInst);
 
 			curInst.add = (instVAStart & addMask_);
 

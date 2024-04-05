@@ -39,10 +39,10 @@ namespace TDiss
 		const InstInfo* instGetInfo(InstNode in, int32_t index) const;
 		CodeType::Enum GetEffectiveOperandSize(uint32_t prefixes, uint32_t instructionFlags, uint32_t rex) const;
 		CodeType::Enum GetEffectiveAddressSize(uint32_t prefixes) const;
-		const InstInfo* instLookup(PrefixState* ps);
-		const InstInfo* instLookupPreFixed(PrefixState* ps, InstNode in) const;
+		const InstInfo* instLookup(PrefixState& ps);
+		const InstInfo* instLookupPreFixed(PrefixState& ps, InstNode in) const;
 		const InstInfo* instLookup3DNow(void);
-		InstrDecodeResult::Enum decodeInst(PrefixState* ps, Instruction* pInst);
+		InstrDecodeResult::Enum decodeInst(PrefixState& ps, Instruction* pInst);
 
 	private:
 		IDissLogger* pLogger_;

@@ -22,7 +22,7 @@ namespace TDiss
 	// quite a lot of params, but we need a fair bit of info about current context in order to correctly work out the operand.
 	// and these params come from all diffrent places..
 
-	OperandDecodeResult::Enum ExtractOperand(CodeStream* info, Instruction* pInst, PrefixState* ps, uint32_t instructionFlag, uint32_t modRm,
+	OperandDecodeResult::Enum ExtractOperand(CodeStream* info, Instruction* pInst, PrefixState& ps, uint32_t instructionFlag, uint32_t modRm,
 		OperandType::Enum opType, OperandIdx::Enum opIdx, CodeType::Enum effOp, CodeType::Enum effAdd);
 
 

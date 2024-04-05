@@ -98,9 +98,9 @@ namespace TDiss
 		return strm_.codeType();
 	}
 
-	const InstInfo* Diss::instLookupPreFixed(PrefixState* ps, InstNode in) const
+	const InstInfo* Diss::instLookupPreFixed(PrefixState& ps, InstNode in) const
 	{
-		const uint32_t pre = ps->decodedPrefixFlags & (InstructionFlag::PRE_OP_SIZE |
+		const uint32_t pre = ps.decodedPrefixFlags & (InstructionFlag::PRE_OP_SIZE |
 			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ);
 
 		int32_t index = 0;
@@ -113,33 +113,33 @@ namespace TDiss
 		else if (pre == InstructionFlag::PRE_OP_SIZE)
 		{
 			index = 1;
-			ps->removeDecodedPrefix(InstructionFlag::PRE_OP_SIZE);
+			ps.removeDecodedPrefix(InstructionFlag::PRE_OP_SIZE);
 		}
 		else if (pre == InstructionFlag::PRE_REP)
 		{
 			index = 2;
-			ps->removeDecodedPrefix(InstructionFlag::PRE_REP);
+			ps.removeDecodedPrefix(InstructionFlag::PRE_REP);
 		}
 		else if (pre == InstructionFlag::PRE_REPNZ)
 		{
 			index = 3;
-			ps->removeDecodedPrefix(InstructionFlag::PRE_REPNZ);
+			ps.removeDecodedPrefix(InstructionFlag::PRE_REPNZ);
 		}
 		else
 		{
-			bool preRep = bitUtil::IsFlagSet(ps->decodedPrefixFlags, InstructionFlag::PRE_REP);
-			bool preRepNz = bitUtil::IsFlagSet(ps->decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
+			bool preRep = bitUtil::IsFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REP);
+			bool preRepNz = bitUtil::IsFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
 
 			if (preRep && preRepNz) {
 				return nullptr;
 			}
 			if (preRepNz) {
 				index = 3;
-				ps->removeDecodedPrefix(InstructionFlag::PRE_REPNZ);
+				ps.removeDecodedPrefix(InstructionFlag::PRE_REPNZ);
 			}
 			else if (preRep) {
 				index = 2;
-				ps->removeDecodedPrefix(InstructionFlag::PRE_REP);
+				ps.removeDecodedPrefix(InstructionFlag::PRE_REP);
 			}
 			checkOpSize = true;
 		}
@@ -183,7 +183,7 @@ namespace TDiss
 	}
 
 
-	const InstInfo* Diss::instLookup(PrefixState* ps)
+	const InstInfo* Diss::instLookup(PrefixState& ps)
 	{
 		if (strm_.isEof()) {
 			TDISS_WARN("Failed to lookup instruction, end of code stream.");
@@ -211,11 +211,11 @@ namespace TDiss
 
 			case 0x90: //check if it's nop instead of XCHG
 
-				if (bitUtil::IsFlagSet(ps->vrex, RexPrefixMask::W)) {
-					ps->addUsedPrefix(InstructionFlag::PRE_REX);
+				if (bitUtil::IsFlagSet(ps.vrex, RexPrefixMask::W)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				}
 
-				if (strm_.codeType() != CodeType::CODE_64BIT || !bitUtil::IsFlagSet(ps->vrex, RexPrefixMask::B)) {
+				if (strm_.codeType() != CodeType::CODE_64BIT || !bitUtil::IsFlagSet(ps.vrex, RexPrefixMask::B)) {
 					return &II_NOP;
 				}
 
@@ -394,7 +394,7 @@ namespace TDiss
 		return nullptr;
 	}
 
-	Diss::InstrDecodeResult::Enum Diss::decodeInst(PrefixState* ps, Instruction* pInst)
+	Diss::InstrDecodeResult::Enum Diss::decodeInst(PrefixState& ps, Instruction* pInst)
 	{
 		strm_.setMarker();
 
@@ -483,8 +483,8 @@ namespace TDiss
 			modRm = 0;
 		}
 
-		CodeType::Enum effOp = GetEffectiveOperandSize(ps->decodedPrefixFlags, flags, ps->vrex);
-		CodeType::Enum effAdd = GetEffectiveAddressSize(ps->decodedPrefixFlags);
+		CodeType::Enum effOp = GetEffectiveOperandSize(ps.decodedPrefixFlags, flags, ps.vrex);
+		CodeType::Enum effAdd = GetEffectiveAddressSize(ps.decodedPrefixFlags);
 
 		// decode operands
 		if (sharedInfo.d != OperandType::NONE)
@@ -595,7 +595,7 @@ namespace TDiss
 
 		if (ExMnem && preAddSize)
 		{
-			ps->addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
+			ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
 
 			if (effAdd == CodeType::CODE_16BIT) {
 				pInst->opcode = static_cast<const InstInfoEx*>(pInstInfo)->opcodeId;
@@ -616,7 +616,7 @@ namespace TDiss
 		{
 			if (ExMnem)
 			{
-				ps->addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
 				if (bitUtil::IsFlagSet(flags, InstructionFlag::EX_MNEMONIC_MODRM_BASED)) {
 					if (modRm < 0xc0) {
@@ -639,9 +639,9 @@ namespace TDiss
 					return InstrDecodeResult::INVALID;
 				}
 
-				if (ExMnem2 && bitUtil::IsFlagSet(ps->vrex, RexPrefixMask::W))
+				if (ExMnem2 && bitUtil::IsFlagSet(ps.vrex, RexPrefixMask::W))
 				{
-					ps->addUsedPrefix(InstructionFlag::PRE_REX);
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
 					pInst->opcode = static_cast<const InstInfoEx*>(pInstInfo)->opcodeId3;
 				}
