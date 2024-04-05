@@ -319,7 +319,7 @@ static void BM_decode(benchmark::State& state)
 
 static void BM_decode_random(benchmark::State& state)
 {
-	auto size = state.range(0);
+	auto size = safe_static_cast<size_t>(state.range(0));
 
 	size_t instructionCount = 0;
 	std::vector<TDiss::Instruction> instructions;
