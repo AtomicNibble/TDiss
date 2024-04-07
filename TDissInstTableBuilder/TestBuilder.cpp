@@ -1225,8 +1225,13 @@ namespace TDiss
 			ret.operands = " " + op2.operand;
 		}
 
+		X_DISABLE_WARNING(4373)
+
+		// Slice
 		ret.operandResults[0] = static_cast<const OperandResult&>(op1);
 		ret.operandResults[1] = static_cast<const OperandResult&>(op2);
+
+		X_ENABLE_WARNING(4373)
 
 		if (op1.instInfo) {
 			ret.instInfo = *op1.instInfo;
