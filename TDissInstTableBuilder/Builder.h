@@ -202,9 +202,9 @@ namespace TDiss
 		typedef std::vector<OperandData> OperandDataArr;
 
 	public:
-		OperandBuilder();
+		OperandBuilder(CodeType::Enum type);
 
-		void BuildTables(CodeType::Enum codeType, bool full);
+		void BuildTables(bool full);
 
 		MergedOperandsArr GetOperands(const SourceInstruction& inst);
 		OperandDataArr GetOperand(const SourceInstruction& inst, size_t opIdx);
@@ -212,15 +212,15 @@ namespace TDiss
 	private:
 		void AddSegs(OperandDataArr& arr, OperandType::Enum opType, const SourceInstruction& inst);
 
-		void Add_CREG(OperandDataArr& arr);
-		void Add_DREG(OperandDataArr& arr);
-		void Add_SREG(OperandDataArr& arr);
-		void Add_8BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false);
-		void Add_16BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false);
-		void Add_32BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false);
-		void Add_64BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false);
+		void Add_CREG(OperandDataArr& arr) const;
+		void Add_DREG(OperandDataArr& arr) const;
+		void Add_SREG(OperandDataArr& arr) const;
+		void Add_8BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false) const;
+		void Add_16BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false) const;
+		void Add_32BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false) const;
+		void Add_64BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume = false) const;
 
-		void DereferenceOperands(OperandDataArr& arr, int32_t prefixSize = -1);
+		void DereferenceOperands(OperandDataArr& arr, int32_t prefixSize = -1) const;
 
 		MergedOperandsArr::value_type CombineOperands(const OperandData& op1, 
 			const OperandData& op2);
@@ -228,7 +228,7 @@ namespace TDiss
 	private:
 		bool full_;
 		bool _pad[3];
-		CodeType::Enum codeType_;
+		const CodeType::Enum codeType_;
 		OperandDataArr operandTable_[OperandType::NUM_ENUM];
 	};
 

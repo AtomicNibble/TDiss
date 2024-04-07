@@ -259,18 +259,18 @@ namespace TDiss
 	// ----------------------------------------
 
 
-	OperandBuilder::OperandBuilder() :
-		full_(false)
+	OperandBuilder::OperandBuilder(CodeType::Enum type) :
+		full_(false),
+		codeType_(type)
 	{
 
 	}
 
-	void OperandBuilder::BuildTables(CodeType::Enum codeType, bool full)
+	void OperandBuilder::BuildTables(bool full)
 	{
 		typedef std::vector<RegIndex::Enum> RegIndexVec;
 
 		full_ = full;
-		codeType_ = codeType;
 
 		RegIndexVec bases;
 		RegIndexVec indices;
@@ -297,7 +297,7 @@ namespace TDiss
 
 		const size_t numBases = bases.size();
 		const size_t numIndices = indices.size();
-		const size_t defaultOperandBits = CodeTypeBitCount(codeType);
+		const size_t defaultOperandBits = CodeTypeBitCount(codeType_);
 
 		X_UNUSED(numBases);
 		X_UNUSED(numIndices);
@@ -353,13 +353,13 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::ACC_FULL];
 
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 				arr.emplace_back("AX", OperandTypeAbs::REG, 16, RegIndex::AX);
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 				arr.emplace_back("EAX", OperandTypeAbs::REG, 32, RegIndex::EAX);
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				arr.emplace_back("RAX", OperandTypeAbs::REG, 64, RegIndex::RAX);
 			}
 		}
@@ -407,17 +407,17 @@ namespace TDiss
 			//	arr.push_back(OperandData("[0x48484848]", OperandTypeAbs::DISP, defaultOperandBits, 0,
 			//		OperandInstructionInfo(0x48484848, 32, RegIndex::DS, RegIndex::NONE, 0)));
 
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 				Add_16BitGPR(arr, false, false);
 
 				DereferenceOperands(arr);
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 				Add_32BitGPR(arr, false, false);
 
 				DereferenceOperands(arr);
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				Add_64BitGPR(arr, false, false);
 
 				DereferenceOperands(arr);
@@ -449,7 +449,7 @@ namespace TDiss
 
 			Add_32BitGPR(arr, false);
 
-			if (codeType == CodeType::CODE_64BIT) {
+			if (codeType_ == CodeType::CODE_64BIT) {
 				Add_64BitGPR(arr, false);
 			}
 		}
@@ -459,13 +459,13 @@ namespace TDiss
 			OperandDataArr& arr = operandTable_[OperandType::REG_FULL];
 
 			// supports: 16,32,64 registers and rex prefixes in 32 and 64 bit effective operand sizes.
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 				Add_16BitGPR(arr, false, true);
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 				Add_32BitGPR(arr, false, true);
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				Add_64BitGPR(arr, false, true);
 			}
 		}
@@ -474,14 +474,14 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::REG_FULL_M16];
 
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 				Add_16BitGPR(arr, false, true);
 
 				DereferenceOperands(arr);
 
 				Add_16BitGPR(arr, false, true);
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 				Add_32BitGPR(arr, false, true);
 
 				DereferenceOperands(arr, 16);
@@ -489,7 +489,7 @@ namespace TDiss
 				Add_16BitGPR(arr, false, true);
 				Add_32BitGPR(arr, false, true);
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				Add_64BitGPR(arr, false, true);
 
 				DereferenceOperands(arr, 16);
@@ -643,13 +643,13 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::BLOCK_R_FULL];
 
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 				Add_16BitGPR(arr, false, true);
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 				Add_32BitGPR(arr, false, true);
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				Add_64BitGPR(arr, false, true);
 			}
 		}
@@ -659,15 +659,15 @@ namespace TDiss
 			OperandDataArr& arr = operandTable_[OperandType::MEM];
 
 			// points to memory
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 
 				arr.push_back(OperandData("[edx*4]", OperandTypeAbs::MEM, 0, RegIndex::EDX,
 					OperandInstructionInfo(0, 0, RegIndex::DS, RegIndex::NONE, 4)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 
 				arr.push_back(OperandData("[rdx*4]", OperandTypeAbs::MEM, 0, RegIndex::RDX,
 					OperandInstructionInfo(0, 0, RegIndex::NONE, RegIndex::NONE, 4)));
@@ -679,11 +679,11 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::MEM_32];
 
-			if (codeType == CodeType::CODE_32BIT) {
+			if (codeType_ == CodeType::CODE_32BIT) {
 				arr.push_back(OperandData("[edx*4+0x12345678]", OperandTypeAbs::MEM, 32, RegIndex::EDX,
 					OperandInstructionInfo(0x12345678, 0, RegIndex::DS, RegIndex::NONE, 4)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				arr.push_back(OperandData("[rdx*4+0x12345678]", OperandTypeAbs::MEM, 32, RegIndex::EDX,
 					OperandInstructionInfo(0x12345678, 0, RegIndex::NONE, RegIndex::NONE, 4)));
 			}
@@ -693,11 +693,11 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::MEM_32_64];
 
-			if (codeType == CodeType::CODE_32BIT) {
+			if (codeType_ == CodeType::CODE_32BIT) {
 				arr.push_back(OperandData("[edx*4+0x12345678]", OperandTypeAbs::MEM, 32, RegIndex::EDX,
 					OperandInstructionInfo(0x12345678, 0, RegIndex::DS, RegIndex::NONE, 4)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				arr.push_back(OperandData("[edx*4+0x12345678]", OperandTypeAbs::MEM, 32, RegIndex::EDX,
 					OperandInstructionInfo(0x12345678, 0, RegIndex::NONE, RegIndex::NONE, 4)));
 				// can be rex prefixed.
@@ -711,11 +711,11 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::MEM_64];
 
-			if (codeType == CodeType::CODE_32BIT) {
+			if (codeType_ == CodeType::CODE_32BIT) {
 				arr.push_back(OperandData("[edx*4+0x12345678]", OperandTypeAbs::MEM, 64, RegIndex::EDX,
 					OperandInstructionInfo(0x12345678, 32, RegIndex::DS, RegIndex::NONE, 4)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				arr.push_back(OperandData("[rdx*4+0x12345678]", OperandTypeAbs::MEM, 64, RegIndex::RDX,
 					OperandInstructionInfo(0x12345678, 32, RegIndex::NONE, RegIndex::NONE, 4)));
 			}
@@ -725,11 +725,11 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::MEM_128];
 
-			if (codeType == CodeType::CODE_32BIT) {
+			if (codeType_ == CodeType::CODE_32BIT) {
 				arr.push_back(OperandData("[edx*4+0x12345678]", OperandTypeAbs::MEM, 128, RegIndex::EDX,
 					OperandInstructionInfo(0x12345678, 0, RegIndex::DS, RegIndex::NONE, 4)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				arr.push_back(OperandData("[rdx*4+0x12345678]", OperandTypeAbs::MEM, 128, RegIndex::RDX,
 					OperandInstructionInfo(0x12345678, 0, RegIndex::NONE, RegIndex::NONE, 4)));
 			}
@@ -740,15 +740,15 @@ namespace TDiss
 			OperandDataArr& arr = operandTable_[OperandType::MEM_OPT];
 
 			// points to memory
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 
 				arr.push_back(OperandData("[edx*4]", OperandTypeAbs::MEM, 32, RegIndex::EDX,
 					OperandInstructionInfo(0, 0, RegIndex::DS, RegIndex::NONE, 4)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 
 				arr.push_back(OperandData("[rdx*4]", OperandTypeAbs::MEM, 64, RegIndex::RDX,
 					OperandInstructionInfo(0, 0, RegIndex::NONE, RegIndex::NONE, 4)));
@@ -764,14 +764,14 @@ namespace TDiss
 			OperandDataArr& arr = operandTable_[OperandType::MEM_FULL_M16];
 
 			// points to memory
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 				arr.push_back(OperandData("[0x12345678]", OperandTypeAbs::DISP, 32, 0,
 					OperandInstructionInfo(0x12345678, 32, RegIndex::DS, RegIndex::NONE, 0)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 				arr.push_back(OperandData("[0x12345678]", OperandTypeAbs::DISP, 16, 0,
 					OperandInstructionInfo(0x12345678, 32, RegIndex::NONE, RegIndex::NONE, 0)));
 			}
@@ -783,17 +783,17 @@ namespace TDiss
 			OperandDataArr& arr = operandTable_[OperandType::PTR16_FULL];
 
 			// points to memory
-			if (codeType == CodeType::CODE_16BIT) {
+			if (codeType_ == CodeType::CODE_16BIT) {
 
 			}
-			else if (codeType == CodeType::CODE_32BIT) {
+			else if (codeType_ == CodeType::CODE_32BIT) {
 				ImmVal imm;
 				imm.ptr.seg = 0xffff;
 				imm.ptr.off = 0x12345678;
 				arr.push_back(OperandData("0xffff:0x12345678", OperandTypeAbs::PTR, 32, RegIndex::NONE,
 					OperandInstructionInfo(imm, ImmType::PTR)));
 			}
-			else if (codeType == CodeType::CODE_64BIT) {
+			else if (codeType_ == CodeType::CODE_64BIT) {
 
 			}
 
@@ -992,7 +992,7 @@ namespace TDiss
 
 	}
 
-	void OperandBuilder::Add_CREG(OperandDataArr& arr)
+	void OperandBuilder::Add_CREG(OperandDataArr& arr) const
 	{
 		arr.emplace_back("CR0", OperandTypeAbs::REG, 32, RegIndex::CR0);
 		arr.emplace_back("CR1", OperandTypeAbs::REG, 32, RegIndex::CR1);
@@ -1003,7 +1003,7 @@ namespace TDiss
 		//	arr.emplace_back("CR8", OperandTypeAbs::REG, 16, RegIndex::CR8);
 	}
 
-	void OperandBuilder::Add_DREG(OperandDataArr& arr)
+	void OperandBuilder::Add_DREG(OperandDataArr& arr) const
 	{
 		arr.emplace_back("DR0", OperandTypeAbs::REG, 32, RegIndex::DR0);
 		arr.emplace_back("DR1", OperandTypeAbs::REG, 32, RegIndex::DR1);
@@ -1013,7 +1013,7 @@ namespace TDiss
 		arr.emplace_back("DR7", OperandTypeAbs::REG, 32, RegIndex::DR7);
 	}
 
-	void OperandBuilder::Add_SREG(OperandDataArr& arr)
+	void OperandBuilder::Add_SREG(OperandDataArr& arr) const
 	{
 		arr.emplace_back("ES", OperandTypeAbs::REG, 16, RegIndex::ES);
 		arr.emplace_back("CS", OperandTypeAbs::REG, 16, RegIndex::CS);
@@ -1023,7 +1023,7 @@ namespace TDiss
 		arr.emplace_back("GS", OperandTypeAbs::REG, 16, RegIndex::GS);
 	}
 
-	void OperandBuilder::Add_8BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume)
+	void OperandBuilder::Add_8BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume) const
 	{
 		if (IncAccume) {
 			arr.emplace_back("AL", OperandTypeAbs::REG, 8, RegIndex::AL);
@@ -1058,7 +1058,7 @@ namespace TDiss
 		}
 	}
 
-	void OperandBuilder::Add_16BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume)
+	void OperandBuilder::Add_16BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume) const
 	{
 		if (IncAccume) {
 			arr.emplace_back("AX", OperandTypeAbs::REG, 16, RegIndex::AX);
@@ -1091,7 +1091,7 @@ namespace TDiss
 		}
 	}
 
-	void OperandBuilder::Add_32BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume)
+	void OperandBuilder::Add_32BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume) const
 	{
 		if (IncAccume) {
 			arr.emplace_back("EAX", OperandTypeAbs::REG, 32, RegIndex::EAX);
@@ -1124,7 +1124,7 @@ namespace TDiss
 		}
 	}
 
-	void OperandBuilder::Add_64BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume)
+	void OperandBuilder::Add_64BitGPR(OperandDataArr& arr, bool IncExt, bool IncAccume) const
 	{
 		if (IncAccume) {
 			arr.emplace_back("RAX", OperandTypeAbs::REG, 64, RegIndex::RAX);
@@ -1157,7 +1157,7 @@ namespace TDiss
 		}
 	}
 
-	void OperandBuilder::DereferenceOperands(OperandDataArr& arr, int32_t prefixSize)
+	void OperandBuilder::DereferenceOperands(OperandDataArr& arr, int32_t prefixSize) const
 	{
 		for (auto& op : arr)
 		{
@@ -1523,9 +1523,10 @@ namespace TDiss
 
 	TestBuilder::TestBuilder(CodeType::Enum type) :
 		codeType_(type),
-		tempPath_(GetTempFileName())
+		tempPath_(GetTempFileName()),
+		opBuilder_(type)
 	{
-		opBuilder_.BuildTables(type, true);
+		opBuilder_.BuildTables(true);
 		tests_.reserve(256);
 
 		AddNasmOverRides();
