@@ -44,3 +44,5 @@
 #define X_IMPORT									__declspec(dllimport)
 #define X_EXPORT									__declspec(dllexport)
 
+#define X_NODISCARD									[[nodiscard]]
+#define X_FALLTHROUGH								[[fallthrough]]

@@ -923,8 +923,7 @@ namespace TDiss
 			// MOFFS*
 		case OperandType::MOFFS_8:
 			op.size = 8;
-			// fall through.
-			//	break;
+			X_FALLTHROUGH;
 		case OperandType::MOFFS_FULL:
 			op.type = OperandTypeAbs::DISP;
 
@@ -978,8 +977,7 @@ namespace TDiss
 
 			break;
 		case OperandType::ACC_FULL_NOT64:
-			// fall through
-			// break;
+			X_FALLTHROUGH;
 		case OperandType::ACC_FULL:
 			if (effOp == CodeType::CODE_16BIT)
 			{
