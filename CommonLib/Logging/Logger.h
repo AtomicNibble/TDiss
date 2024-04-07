@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Threading\CriticalSection.h"
+#include <mutex>
 
 struct ILoggerBase;
 
@@ -36,7 +36,7 @@ private:
 private:
 	typedef std::vector<ILoggerBase*> Loggers;
 
-	CriticalSection critical_;
+	std::mutex critical_;
 
 	Loggers loggers_;
 	bool noPause_;
