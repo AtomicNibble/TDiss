@@ -183,8 +183,13 @@ namespace TDiss
 	const char* RegIndex::ToString(Enum reg)
 	{
 		static_assert(NONE + 1 == numStrings, ""); // + 1 for index to count.
+
+		if (static_cast<size_t>(reg) < numStrings) {
+			return pReg[reg];
+		}
+
 		X_ASSERT(static_cast<size_t>(reg) < numStrings);
-		return pReg[reg];
+		return "<invalid>";
 	}
 
 } // namespace TDiss
