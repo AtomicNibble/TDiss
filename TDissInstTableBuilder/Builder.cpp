@@ -453,7 +453,8 @@ namespace TDiss
 				{
 					TableNode* pChild = table.ChildAt(x);
 
-					uint16_t val = static_cast<uint16_t>((pChild->type << 13) | (nextTableIdx & 0x1FFF));
+					// top 3 bits for type 13 bits for tableIdx
+					uint16_t val = static_cast<uint16_t>((pChild->type << 13) & 0x1FFF | (nextTableIdx & 0x1FFF));
 
 					const auto tagHStr = pChild->GetTagHierarchyStr();
 					const auto tagH = pChild->GetTagHierarchy();
@@ -1212,7 +1213,7 @@ namespace TDiss
 		AddInstruction("0x6b", "IMUL", OperandType::REG_FULL, OperandType::RM_FULL, OperandType::IMM_S_8,
 			InstructionFlag::MODRM_REQUIRED);
 
-		// Stringyyy like a goat. (string instructions).
+		// string instructions
 		{
 			// Input byte from I/O port specified in DX into memory location specified -> IN <- ES:(E)DI.
 			AddInstruction("0x6c", "INSB", OperandType::REG_EDI, OperandType::REG_DX,
@@ -1230,7 +1231,7 @@ namespace TDiss
 
 		}
 
-		// House of pain (jmp.., jmp..)
+		// jmp
 		// not unconditional tho like: 0xe9, 0ex9, 0ex9!!
 		// all these are rel 8
 
@@ -1635,8 +1636,8 @@ namespace TDiss
 		AddInstruction("0xe2", "LOOP", OperandType::REL_CI_8,
 			InstructionFlag::PRE_ADDR_SIZE | InstructionFlag::NATIVE, FlowControl::CND_BRANCH);
 
-		// the adddress prefix affects the register size: (e)CX
-		// in 64bits it's premoted: J(r/e)CXZ
+		// the address prefix affects the register size: (e)CX
+		// in 64bits it's promoted: J(r/e)CXZ
 		AddInstruction("0xe3", "JCXZ, JECXZ, JRCXZ", OperandType::REL_CI_8,
 			InstructionFlag::PRE_ADDR_SIZE |
 			InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2, FlowControl::CND_BRANCH);
@@ -3365,9 +3366,9 @@ namespace TDiss
 	void Builder::BuildTable(void)
 	{
 		// ok so we process each instruction creating child tables if not yet created.
-		// untill we reach a opcodelen of OL_1 where we assign the instruction info to this node.
-		// We can have diffrent sized tables depending on the type of opecode len, at each op.
-		// if we already have a table type for a given opcode that is diffrent to one we would of created
+		// until we reach a opcode len of OL_1 where we assign the instruction info to this node.
+		// We can have different sized tables depending on the type of opcode len, at each op.
+		// if we already have a table type for a given opcode that is different to one we would of created
 		// that is a error :(
 		size_t i = 0;
 
@@ -3451,7 +3452,7 @@ namespace TDiss
 				{
 					TableNode* pOld = node.ChildAt(op);
 
-					// collsion?
+					// collision?
 					if (pOld->pInst->entry == inst.entry) {
 						X_ASSERT_UNREACABLE();
 					}
@@ -3518,4 +3519,4 @@ namespace TDiss
 
 	// ----------------------------------------------
 
-	} // namespace TDiss
+} // namespace TDiss

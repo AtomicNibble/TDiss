@@ -312,7 +312,7 @@ namespace TDiss
 		std::string InstructionIdOverride(const std::string& instId);
 
 		void AddNasmOverRides(void);
-		std::string ApplyNasmOveride(const SourceInstruction& inst, const std::string& nasm, const std::string& operands);
+		std::string ApplyNasmOverride(const SourceInstruction& inst, const std::string& nasm, const std::string& operands);
 		bool GenerateTestInstructions(const SourceInstruction& inst, TestData& dataOut);
 		bool Assemble(const CodeType::Enum type, const std::string& byteSource, std::vector<uint8_t>& bytes);
 		bool AssembleFile(const CodeType::Enum type, const std::wstring& Path, std::vector<uint8_t>& bytes);

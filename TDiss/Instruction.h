@@ -326,15 +326,15 @@ namespace TDiss
 			USE_OP4 = BIT(17),
 
 			// for marking instructions as 32 or 64
-			// both are set when it behaves diffrent depending on mode.
-			BITS64 = BIT(18), // instruction auto promted
+			// both are set when it behaves different depending on mode.
+			BITS64 = BIT(18), // instruction auto prompted
 			BITS32 = BIT(19),
 			BITS16 = BIT(20),
 
 			// 3dnow shizzz
 			NOW3D_FETCH = BIT(21),
 
-			// instructuons which require suffix letter to indicate op size.
+			// instructions which require suffix letter to indicate op size.
 			NATIVE = BIT(22),
 
 			// Flag for supporting op codes that have 2 or 3 mnemocis.
@@ -430,8 +430,8 @@ namespace TDiss
 			// relative to current instruction full.
 			REL_CI_FULL,
 
-			// these block operands are to deal with the fact I add op codes that specifiy
-			// register in the opcode themself with REG_BLOCK.
+			// these block operands are to deal with the fact I add op codes that specifically
+			// register in the opcode themselves with REG_BLOCK.
 			// These two are to specify what size the reg is across the block range.
 			BLOCK_R_8,
 			BLOCK_R_FULL,
@@ -590,7 +590,7 @@ namespace TDiss
 	Adjust: 4 -> 8
 	Zero: 6, -> 32
 	Sign: 7 -> 64
-	TrapFlag: 8 (sigle step) -> 128
+	TrapFlag: 8 (single step) -> 128
 	Interrupt: 9 -> 256
 	Direction: 10 -> 512
 	Overflow: 11 -> 1024

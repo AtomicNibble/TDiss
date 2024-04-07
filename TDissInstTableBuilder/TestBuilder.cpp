@@ -1278,7 +1278,7 @@ namespace TDiss
 			for (auto op2 : op2Data)
 			{
 				// special case for MEM_32_64 && REG_32_64
-				// won't premote to rex prefixed unless reg is 64.
+				// won't promote to rex prefixed unless reg is 64.
 				if (op1Type == OperandType::MEM_32_64 && op1.size == 64)
 				{
 					if (op2Type == OperandType::REG_32_64 && op2.size != 64)
@@ -2044,10 +2044,10 @@ namespace
 		nasmOverRides_.insert(std::make_pair("FNDISI", NasmOverride("db 0xdb\n db 0xe1", OperandType::NONE)));
 	}
 
-	std::string TestBuilder::ApplyNasmOveride(const SourceInstruction& inst, const std::string& nasm,
+	std::string TestBuilder::ApplyNasmOverride(const SourceInstruction& inst, const std::string& nasm,
 		const std::string& operands)
 	{
-		auto range = nasmOverRides_.equal_range(nasm);
+		const auto range = nasmOverRides_.equal_range(nasm);
 		for (auto it = range.first; it != range.second; ++it)
 		{
 			const NasmOverride& o = it->second;
@@ -2117,7 +2117,7 @@ namespace
 			{
 				TestInstruction newInst;
 
-				std::string nasm = ApplyNasmOveride(inst, mnemonic, op.operands);
+				std::string nasm = ApplyNasmOverride(inst, mnemonic, op.operands);
 
 				newInst.preAssemble = nasm;
 
