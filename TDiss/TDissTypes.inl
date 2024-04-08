@@ -66,14 +66,22 @@ namespace TDiss
         return pEnd_;
     }
 
-    X_INLINE intptr_t CodeStream::length(void) const
+    X_INLINE size_t CodeStream::length(void) const
     {
-        return pEnd_ - pBegin_;
+        X_ASSERT(pBegin_ <= pEnd_);
+        return safe_static_cast<size_t>(pEnd_ - pBegin_);
     }
 
-    X_INLINE intptr_t CodeStream::bytesLeft(void) const
+    X_INLINE size_t CodeStream::offset(void) const
     {
-        return pEnd_ - pCur_;
+        X_ASSERT(pBegin_ <= pCur_);
+        return safe_static_cast<size_t>(pCur_ - pBegin_);
+    }
+
+    X_INLINE size_t CodeStream::bytesLeft(void) const
+    {
+        X_ASSERT(pCur_ <= pEnd_);
+        return safe_static_cast<size_t>(pEnd_ - pCur_);
     }
 
     X_INLINE uint64_t CodeStream::baseVA(void) const
@@ -83,12 +91,12 @@ namespace TDiss
 
     X_INLINE uint64_t CodeStream::currentVA(void) const
     {
-        return codeVirtualAdd_ + union_cast<uintptr_t>(pCur_ - pBegin_);
+        return codeVirtualAdd_ + offset();
     }
 
     X_INLINE uint64_t CodeStream::currentVAOffset(void) const
     {
-        return union_cast<uintptr_t>(pCur_ - pBegin_);
+        return offset();
     }
 
     X_INLINE void CodeStream::setMarker(void)
@@ -105,7 +113,7 @@ namespace TDiss
 
     X_INLINE bool CodeStream::ReadDisplacementValue(uint64_t& out, size_t size)
     {
-        if (bytesLeft() < static_cast<intptr_t>(size)) {
+        if (bytesLeft() < size) {
             return false;
         }
 
