@@ -82,6 +82,10 @@ namespace TDiss
 
 	struct PrefixState
 	{
+	private:
+		static const uint16_t INVALID_PREFIX_INDEX;
+
+	public:
 		PrefixState(IDissLogger* pLogger);
 		~PrefixState() = default;
 

@@ -31,6 +31,8 @@ namespace TDiss
 
 	*/
 
+	const uint16_t PrefixState::INVALID_PREFIX_INDEX = std::numeric_limits<uint16_t>::max();
+
 	bool PrefixState::isValidPrefix(CodeStream& strm)
 	{
 		if (strm.isEof()) {
@@ -163,7 +165,7 @@ namespace TDiss
 		vexV = 0;
 		vrex = 0;
 
-		memset(pfIndexOff, -1, sizeof(pfIndexOff));
+		memset(pfIndexOff, INVALID_PREFIX_INDEX, sizeof(pfIndexOff));
 	}
 
 	void PrefixState::decode(CodeStream& strm)
@@ -340,7 +342,7 @@ namespace TDiss
 
 	void PrefixState::ignorePrefix(PrefixGroup::Enum group)
 	{
-		if (pfIndexOff[group] != -1) {
+		if (pfIndexOff[group] != INVALID_PREFIX_INDEX) {
 			unusedPrefixMask = bitUtil::SetBitFlag(unusedPrefixMask, pfIndexOff[group]);
 		}
 	}
