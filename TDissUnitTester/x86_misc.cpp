@@ -42,7 +42,7 @@ TEST(x86_misc, push)
 	Instruction instructions[32];
 	size_t instructionCount;
 
-	uint8_t pOps[] = {
+	const uint8_t pOps[] = {
 		0x50,      //     PUSH EAX
 		0x53,	   //     PUSH EBX
 		0x51,	   //     PUSH ECX
@@ -84,7 +84,7 @@ TEST(x86_misc, pop)
 	size_t instructionCount;
 
 	// just add 0x8 to shift the push op to pop op.
-	uint8_t pOps[] = {
+	const uint8_t pOps[] = {
 		0x50 + 0x8,      //     POP EAX
 		0x53 + 0x8,	   //     POP EBX
 		0x51 + 0x8,	   //     POP ECX
@@ -127,7 +127,7 @@ TEST(x86_misc, mod_rm_sib)
 	Instruction instructions[8];
 	size_t instructionCount;
 
-	uint8_t pOps[] = { 0x8B, 0x84, 0x70, 0x55, 0x55, 0x55, 0x00 }; //  MOV EAX, DWORD PTR DS : [EAX + ESI * 2 + 555555]
+	const uint8_t pOps[] = { 0x8B, 0x84, 0x70, 0x55, 0x55, 0x55, 0x00 }; //  MOV EAX, DWORD PTR DS : [EAX + ESI * 2 + 555555]
 
 	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_32BIT);
 
@@ -167,7 +167,7 @@ TEST(x86_misc, mov_seg_32dis)
 	Instruction instructions[8];
 	size_t instructionCount;
 
-	uint8_t pOps[] = { 0x8B, 0x15, 0x30, 0x03, 0xFE, 0x7F,	 //   8B15 3003FE7F    MOV EDX, DWORD PTR DS:[7FFE0330] 
+	const uint8_t pOps[] = { 0x8B, 0x15, 0x30, 0x03, 0xFE, 0x7F,	 //   8B15 3003FE7F    MOV EDX, DWORD PTR DS:[7FFE0330]
 		0x64, 0xa1, 0x18, 0x00, 0x00, 0x00,								//   64:A1 18000000   MOV EAX, DWORD PTR FS:[18]
 	};
 
@@ -227,7 +227,7 @@ TEST(x86_misc, add_ebp_base)
 	Instruction instructions[8];
 	size_t instructionCount;
 
-	uint8_t pOps[] = { 0x0, 0x4c, 0x5, 0x0 }; // ADD [EBP + EAX], CL						
+	const uint8_t pOps[] = { 0x0, 0x4c, 0x5, 0x0 }; // ADD [EBP + EAX], CL
 
 	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_32BIT);
 
@@ -493,7 +493,7 @@ TEST(x86_misc, misc)
 	Instruction instructions[0x200];
 	size_t instructionCount;
 
-	uint8_t pOps[] =
+	const uint8_t pOps[] =
 	{
 		0x8B, 0xFF, 0x55, 0x8B, 0xEC, 0xA1, 0x00, 0x11, 0x71, 0x77, 0x83, 0xEC, 0x0C, 0x56, 0x8B, 0xF1,
 		0xA8, 0x03, 0x74, 0x24, 0x56, 0x68, 0x8A, 0xB3, 0x65, 0x77, 0x6A, 0x00, 0x68, 0xBE, 0xB3, 0x65,
@@ -939,7 +939,7 @@ TEST(DISABLED_x86_misc, misc_1)
 	Instruction instructions[0x200];
 	size_t instructionCount;
 
-	uint8_t pOps[] =
+	const uint8_t pOps[] =
 	{
 		0xFA, 0xE3, 0x75, 0x94, 0xFB, 0x25, 0xCF, 0x43, 0xA9, 0x8B, 0xBC, 0x7B, 0x02, 0x90, 0x7F, 0x81,
 		0xF4, 0xB5, 0x72, 0x9F, 0xC4, 0xE2, 0xFF, 0x01, 0xF9, 0x3C, 0x05, 0x0B, 0x26, 0x3A, 0xCC, 0xD5,
