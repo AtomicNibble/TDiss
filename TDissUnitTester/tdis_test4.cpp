@@ -142,7 +142,7 @@ TEST(x86_FPU, FXTRACT)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -190,7 +190,7 @@ TEST(x86_FPU, FPREM1)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -238,7 +238,7 @@ TEST(x86_FPU, FDECSTP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -286,7 +286,7 @@ TEST(x86_FPU, FINCSTP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -334,7 +334,7 @@ TEST(x86_FPU, FPREM)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -382,7 +382,7 @@ TEST(x86_FPU, FYL2XP1)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -430,7 +430,7 @@ TEST(x86_FPU, FSQRT)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -478,7 +478,7 @@ TEST(x86_FPU, FSINCOS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -526,7 +526,7 @@ TEST(x86_FPU, FRNDINT)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -574,7 +574,7 @@ TEST(x86_FPU, FSCALE)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -622,7 +622,7 @@ TEST(x86_FPU, FSIN)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -670,7 +670,7 @@ TEST(x86_FPU, FCOS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -718,7 +718,7 @@ TEST(x86_FPU, FIADD_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -766,7 +766,7 @@ TEST(x86_FPU, FIMUL_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -814,7 +814,7 @@ TEST(x86_FPU, FICOM_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -862,7 +862,7 @@ TEST(x86_FPU, FICOMP_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -910,7 +910,7 @@ TEST(x86_FPU, FISUB_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -958,7 +958,7 @@ TEST(x86_FPU, FISUBR_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1006,7 +1006,7 @@ TEST(x86_FPU, FIDIV_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1054,7 +1054,7 @@ TEST(x86_FPU, FIDIVR_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1102,7 +1102,7 @@ TEST(x86_FPU, FUCOMPP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1150,7 +1150,7 @@ TEST(x86_FPU, FILD_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1198,7 +1198,7 @@ TEST(x86_FPU, FIST_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1246,7 +1246,7 @@ TEST(x86_FPU, FISTP_O_FPUM32)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1294,7 +1294,7 @@ TEST(x86_FPU, FLD_O_FPUM80)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EAX, 0x50, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1342,7 +1342,7 @@ TEST(x86_FPU, FSTP_O_FPUM80)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EAX, 0x50, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1392,7 +1392,7 @@ TEST(x86_FPU, FENI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1442,7 +1442,7 @@ TEST(x86_FPU, FNDISI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1490,7 +1490,7 @@ TEST(x86_FPU, FNCLEX)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1538,7 +1538,7 @@ TEST(x86_FPU, FNINIT)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1586,7 +1586,7 @@ TEST(x86_FPU, FSETPM)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1634,7 +1634,7 @@ TEST(x86_FPU, FUCOMI_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -1682,7 +1682,7 @@ TEST(x86_FPU, FADD_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1730,7 +1730,7 @@ TEST(x86_FPU, FMUL_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1778,7 +1778,7 @@ TEST(x86_FPU, FCOM_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1826,7 +1826,7 @@ TEST(x86_FPU, FCOMP_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1874,7 +1874,7 @@ TEST(x86_FPU, FSUB_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1922,7 +1922,7 @@ TEST(x86_FPU, FSUBR_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -1970,7 +1970,7 @@ TEST(x86_FPU, FDIV_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2018,7 +2018,7 @@ TEST(x86_FPU, FDIVR_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2066,7 +2066,7 @@ TEST(x86_FPU, FADD_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -2114,7 +2114,7 @@ TEST(x86_FPU, FMUL_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -2162,7 +2162,7 @@ TEST(x86_FPU, FSUBR_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -2210,7 +2210,7 @@ TEST(x86_FPU, FSUB_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -2258,7 +2258,7 @@ TEST(x86_FPU, FDIVR_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -2306,7 +2306,7 @@ TEST(x86_FPU, FDIV_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -2354,7 +2354,7 @@ TEST(x86_FPU, FLD_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2402,7 +2402,7 @@ TEST(x86_FPU, FST_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2450,7 +2450,7 @@ TEST(x86_FPU, FSTP_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2498,7 +2498,7 @@ TEST(x86_FPU, FRSTOR_O_MEM)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::MEM, RegIndex::EDX, 0x0, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2546,7 +2546,7 @@ TEST(x86_FPU, FNSAVE_O_MEM)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::MEM, RegIndex::EDX, 0x0, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2594,7 +2594,7 @@ TEST(x86_FPU, FNSTSW_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2642,7 +2642,7 @@ TEST(x86_FPU, FFREE_O_FPU_SI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST3, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5f)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2690,7 +2690,7 @@ TEST(x86_FPU, FST_O_FPU_SI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST3, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5f)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2738,7 +2738,7 @@ TEST(x86_FPU, FSTP_O_FPU_SI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST3, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5f)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2786,7 +2786,7 @@ TEST(x86_FPU, FUCOMP_O_FPU_SI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST3, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5f)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2834,7 +2834,7 @@ TEST(x86_FPU, FIADD_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2882,7 +2882,7 @@ TEST(x86_FPU, FIMUL_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2930,7 +2930,7 @@ TEST(x86_FPU, FICOM_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -2978,7 +2978,7 @@ TEST(x86_FPU, FICOMP_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3026,7 +3026,7 @@ TEST(x86_FPU, FISUB_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3074,7 +3074,7 @@ TEST(x86_FPU, FISUBR_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3122,7 +3122,7 @@ TEST(x86_FPU, FIDIV_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3170,7 +3170,7 @@ TEST(x86_FPU, FIDIVR_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3218,7 +3218,7 @@ TEST(x86_FPU, FADDP_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -3266,7 +3266,7 @@ TEST(x86_FPU, FADDP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3314,7 +3314,7 @@ TEST(x86_FPU, FMULP_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -3362,7 +3362,7 @@ TEST(x86_FPU, FMULP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3410,7 +3410,7 @@ TEST(x86_FPU, FCOMPP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3458,7 +3458,7 @@ TEST(x86_FPU, FSUBRP_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -3506,7 +3506,7 @@ TEST(x86_FPU, FSUBRP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3554,7 +3554,7 @@ TEST(x86_FPU, FSUBP_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -3602,7 +3602,7 @@ TEST(x86_FPU, FSUBP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3650,7 +3650,7 @@ TEST(x86_FPU, FDIVRP_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -3698,7 +3698,7 @@ TEST(x86_FPU, FDIVRP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3746,7 +3746,7 @@ TEST(x86_FPU, FDIVP_O_FPU_SIS)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
@@ -3794,7 +3794,7 @@ TEST(x86_FPU, FDIVP)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperandNotSet(inst.ops[0], __FILE__, __LINE__); // ns
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3842,7 +3842,7 @@ TEST(x86_FPU, FILD_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3890,7 +3890,7 @@ TEST(x86_FPU, FIST_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3938,7 +3938,7 @@ TEST(x86_FPU, FISTP_O_FPUM16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EBX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -3986,7 +3986,7 @@ TEST(x86_FPU, FBLD_O_FPUM80)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EAX, 0x50, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -4034,7 +4034,7 @@ TEST(x86_FPU, FILD_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -4082,7 +4082,7 @@ TEST(x86_FPU, FBSTP_O_FPUM80)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::EAX, 0x50, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -4130,7 +4130,7 @@ TEST(x86_FPU, FISTP_O_FPUM64)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::SMEM, RegIndex::ESP, 0x40, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -4178,7 +4178,7 @@ TEST(x86_FPU, FNSTSW_O_ACC_16)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::AX, 0x10, __FILE__, __LINE__); // set! (reg idx: 0x20)
 		ValidateOperandNotSet(inst.ops[1], __FILE__, __LINE__); // ns
@@ -4226,7 +4226,7 @@ TEST(x86_FPU, FUCOMIP_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -4274,7 +4274,7 @@ TEST(x86_FPU, FCOMIP_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -4377,7 +4377,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -4403,7 +4403,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -4429,7 +4429,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -4455,7 +4455,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -4481,7 +4481,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -4507,7 +4507,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -4533,7 +4533,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -4559,7 +4559,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -4585,7 +4585,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -4611,7 +4611,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -4637,7 +4637,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -4663,7 +4663,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -4689,7 +4689,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -4715,7 +4715,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -4741,7 +4741,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -4767,7 +4767,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -4793,7 +4793,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -4819,7 +4819,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -4845,7 +4845,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -4871,7 +4871,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -4897,7 +4897,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -4923,7 +4923,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -4949,7 +4949,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -4975,7 +4975,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -5001,7 +5001,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -5027,7 +5027,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -5053,7 +5053,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -5079,7 +5079,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -5105,7 +5105,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -5131,7 +5131,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -5157,7 +5157,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -5183,7 +5183,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -5209,7 +5209,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -5235,7 +5235,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -5261,7 +5261,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -5287,7 +5287,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -5313,7 +5313,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -5339,7 +5339,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -5365,7 +5365,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -5391,7 +5391,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -5417,7 +5417,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -5443,7 +5443,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -5469,7 +5469,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -5495,7 +5495,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -5521,7 +5521,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -5547,7 +5547,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -5573,7 +5573,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -5599,7 +5599,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -5625,7 +5625,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -5651,7 +5651,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -5677,7 +5677,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -5703,7 +5703,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -5729,7 +5729,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -5755,7 +5755,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -5781,7 +5781,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -5807,7 +5807,7 @@ TEST(x86_P6, CMOVO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -5910,7 +5910,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -5936,7 +5936,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -5962,7 +5962,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -5988,7 +5988,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -6014,7 +6014,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -6040,7 +6040,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -6066,7 +6066,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -6092,7 +6092,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -6118,7 +6118,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -6144,7 +6144,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -6170,7 +6170,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -6196,7 +6196,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -6222,7 +6222,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -6248,7 +6248,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -6274,7 +6274,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -6300,7 +6300,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -6326,7 +6326,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -6352,7 +6352,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -6378,7 +6378,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -6404,7 +6404,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -6430,7 +6430,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -6456,7 +6456,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -6482,7 +6482,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -6508,7 +6508,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -6534,7 +6534,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -6560,7 +6560,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -6586,7 +6586,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -6612,7 +6612,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -6638,7 +6638,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -6664,7 +6664,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -6690,7 +6690,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -6716,7 +6716,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -6742,7 +6742,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -6768,7 +6768,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -6794,7 +6794,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -6820,7 +6820,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -6846,7 +6846,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -6872,7 +6872,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -6898,7 +6898,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -6924,7 +6924,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -6950,7 +6950,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -6976,7 +6976,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -7002,7 +7002,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -7028,7 +7028,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -7054,7 +7054,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -7080,7 +7080,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -7106,7 +7106,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -7132,7 +7132,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -7158,7 +7158,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -7184,7 +7184,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -7210,7 +7210,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -7236,7 +7236,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -7262,7 +7262,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -7288,7 +7288,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -7314,7 +7314,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -7340,7 +7340,7 @@ TEST(x86_P6, CMOVNO_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -7443,7 +7443,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -7469,7 +7469,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -7495,7 +7495,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -7521,7 +7521,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -7547,7 +7547,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -7573,7 +7573,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -7599,7 +7599,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -7625,7 +7625,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -7651,7 +7651,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -7677,7 +7677,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -7703,7 +7703,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -7729,7 +7729,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -7755,7 +7755,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -7781,7 +7781,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -7807,7 +7807,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -7833,7 +7833,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -7859,7 +7859,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -7885,7 +7885,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -7911,7 +7911,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -7937,7 +7937,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -7963,7 +7963,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -7989,7 +7989,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -8015,7 +8015,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -8041,7 +8041,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -8067,7 +8067,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -8093,7 +8093,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -8119,7 +8119,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -8145,7 +8145,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -8171,7 +8171,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -8197,7 +8197,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -8223,7 +8223,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -8249,7 +8249,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -8275,7 +8275,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -8301,7 +8301,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -8327,7 +8327,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -8353,7 +8353,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -8379,7 +8379,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -8405,7 +8405,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -8431,7 +8431,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -8457,7 +8457,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -8483,7 +8483,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -8509,7 +8509,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -8535,7 +8535,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -8561,7 +8561,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -8587,7 +8587,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -8613,7 +8613,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -8639,7 +8639,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -8665,7 +8665,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -8691,7 +8691,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -8717,7 +8717,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -8743,7 +8743,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -8769,7 +8769,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -8795,7 +8795,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -8821,7 +8821,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -8847,7 +8847,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -8873,7 +8873,7 @@ TEST(x86_P6, CMOVB_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -8976,7 +8976,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -9002,7 +9002,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -9028,7 +9028,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -9054,7 +9054,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -9080,7 +9080,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -9106,7 +9106,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -9132,7 +9132,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -9158,7 +9158,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -9184,7 +9184,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -9210,7 +9210,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -9236,7 +9236,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -9262,7 +9262,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -9288,7 +9288,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -9314,7 +9314,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -9340,7 +9340,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -9366,7 +9366,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -9392,7 +9392,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -9418,7 +9418,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -9444,7 +9444,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -9470,7 +9470,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -9496,7 +9496,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -9522,7 +9522,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -9548,7 +9548,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -9574,7 +9574,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -9600,7 +9600,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -9626,7 +9626,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -9652,7 +9652,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -9678,7 +9678,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -9704,7 +9704,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -9730,7 +9730,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -9756,7 +9756,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -9782,7 +9782,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -9808,7 +9808,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -9834,7 +9834,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -9860,7 +9860,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -9886,7 +9886,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -9912,7 +9912,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -9938,7 +9938,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -9964,7 +9964,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -9990,7 +9990,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -10016,7 +10016,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -10042,7 +10042,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -10068,7 +10068,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -10094,7 +10094,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -10120,7 +10120,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -10146,7 +10146,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -10172,7 +10172,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -10198,7 +10198,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -10224,7 +10224,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -10250,7 +10250,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -10276,7 +10276,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -10302,7 +10302,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -10328,7 +10328,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -10354,7 +10354,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -10380,7 +10380,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -10406,7 +10406,7 @@ TEST(x86_P6, CMOVAE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -10509,7 +10509,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -10535,7 +10535,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -10561,7 +10561,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -10587,7 +10587,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -10613,7 +10613,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -10639,7 +10639,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -10665,7 +10665,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -10691,7 +10691,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -10717,7 +10717,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -10743,7 +10743,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -10769,7 +10769,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -10795,7 +10795,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -10821,7 +10821,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -10847,7 +10847,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -10873,7 +10873,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -10899,7 +10899,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -10925,7 +10925,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -10951,7 +10951,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -10977,7 +10977,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -11003,7 +11003,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -11029,7 +11029,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -11055,7 +11055,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -11081,7 +11081,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -11107,7 +11107,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -11133,7 +11133,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -11159,7 +11159,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -11185,7 +11185,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -11211,7 +11211,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -11237,7 +11237,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -11263,7 +11263,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -11289,7 +11289,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -11315,7 +11315,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -11341,7 +11341,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -11367,7 +11367,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -11393,7 +11393,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -11419,7 +11419,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -11445,7 +11445,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -11471,7 +11471,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -11497,7 +11497,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -11523,7 +11523,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -11549,7 +11549,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -11575,7 +11575,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -11601,7 +11601,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -11627,7 +11627,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -11653,7 +11653,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -11679,7 +11679,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -11705,7 +11705,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -11731,7 +11731,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -11757,7 +11757,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -11783,7 +11783,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -11809,7 +11809,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -11835,7 +11835,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -11861,7 +11861,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -11887,7 +11887,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -11913,7 +11913,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -11939,7 +11939,7 @@ TEST(x86_P6, CMOVZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -12042,7 +12042,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -12068,7 +12068,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -12094,7 +12094,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -12120,7 +12120,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -12146,7 +12146,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -12172,7 +12172,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -12198,7 +12198,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -12224,7 +12224,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -12250,7 +12250,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -12276,7 +12276,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -12302,7 +12302,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -12328,7 +12328,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -12354,7 +12354,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -12380,7 +12380,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -12406,7 +12406,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -12432,7 +12432,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -12458,7 +12458,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -12484,7 +12484,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -12510,7 +12510,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -12536,7 +12536,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -12562,7 +12562,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -12588,7 +12588,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -12614,7 +12614,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -12640,7 +12640,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -12666,7 +12666,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -12692,7 +12692,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -12718,7 +12718,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -12744,7 +12744,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -12770,7 +12770,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -12796,7 +12796,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -12822,7 +12822,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -12848,7 +12848,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -12874,7 +12874,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -12900,7 +12900,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -12926,7 +12926,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -12952,7 +12952,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -12978,7 +12978,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -13004,7 +13004,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -13030,7 +13030,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -13056,7 +13056,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -13082,7 +13082,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -13108,7 +13108,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -13134,7 +13134,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -13160,7 +13160,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -13186,7 +13186,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -13212,7 +13212,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -13238,7 +13238,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -13264,7 +13264,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -13290,7 +13290,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -13316,7 +13316,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -13342,7 +13342,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -13368,7 +13368,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -13394,7 +13394,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -13420,7 +13420,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -13446,7 +13446,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -13472,7 +13472,7 @@ TEST(x86_P6, CMOVNZ_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -13575,7 +13575,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -13601,7 +13601,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -13627,7 +13627,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -13653,7 +13653,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -13679,7 +13679,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -13705,7 +13705,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -13731,7 +13731,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -13757,7 +13757,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -13783,7 +13783,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -13809,7 +13809,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -13835,7 +13835,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -13861,7 +13861,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -13887,7 +13887,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -13913,7 +13913,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -13939,7 +13939,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -13965,7 +13965,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -13991,7 +13991,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -14017,7 +14017,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -14043,7 +14043,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -14069,7 +14069,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -14095,7 +14095,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -14121,7 +14121,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -14147,7 +14147,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -14173,7 +14173,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -14199,7 +14199,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -14225,7 +14225,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -14251,7 +14251,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -14277,7 +14277,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -14303,7 +14303,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -14329,7 +14329,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -14355,7 +14355,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -14381,7 +14381,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -14407,7 +14407,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -14433,7 +14433,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -14459,7 +14459,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -14485,7 +14485,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -14511,7 +14511,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -14537,7 +14537,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -14563,7 +14563,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -14589,7 +14589,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -14615,7 +14615,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -14641,7 +14641,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -14667,7 +14667,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -14693,7 +14693,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -14719,7 +14719,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -14745,7 +14745,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -14771,7 +14771,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -14797,7 +14797,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -14823,7 +14823,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -14849,7 +14849,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -14875,7 +14875,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -14901,7 +14901,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -14927,7 +14927,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -14953,7 +14953,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -14979,7 +14979,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -15005,7 +15005,7 @@ TEST(x86_P6, CMOVBE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -15108,7 +15108,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -15134,7 +15134,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -15160,7 +15160,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -15186,7 +15186,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -15212,7 +15212,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -15238,7 +15238,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -15264,7 +15264,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -15290,7 +15290,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -15316,7 +15316,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -15342,7 +15342,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -15368,7 +15368,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -15394,7 +15394,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -15420,7 +15420,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -15446,7 +15446,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -15472,7 +15472,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -15498,7 +15498,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -15524,7 +15524,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -15550,7 +15550,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -15576,7 +15576,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -15602,7 +15602,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -15628,7 +15628,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -15654,7 +15654,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -15680,7 +15680,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -15706,7 +15706,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -15732,7 +15732,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -15758,7 +15758,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -15784,7 +15784,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -15810,7 +15810,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -15836,7 +15836,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -15862,7 +15862,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -15888,7 +15888,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -15914,7 +15914,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -15940,7 +15940,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -15966,7 +15966,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -15992,7 +15992,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -16018,7 +16018,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -16044,7 +16044,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -16070,7 +16070,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -16096,7 +16096,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -16122,7 +16122,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -16148,7 +16148,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -16174,7 +16174,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -16200,7 +16200,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -16226,7 +16226,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -16252,7 +16252,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -16278,7 +16278,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -16304,7 +16304,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -16330,7 +16330,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -16356,7 +16356,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -16382,7 +16382,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -16408,7 +16408,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -16434,7 +16434,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -16460,7 +16460,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -16486,7 +16486,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -16512,7 +16512,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -16538,7 +16538,7 @@ TEST(x86_P6, CMOVA_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -16641,7 +16641,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -16667,7 +16667,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -16693,7 +16693,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -16719,7 +16719,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -16745,7 +16745,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -16771,7 +16771,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -16797,7 +16797,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -16823,7 +16823,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -16849,7 +16849,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -16875,7 +16875,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -16901,7 +16901,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -16927,7 +16927,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -16953,7 +16953,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -16979,7 +16979,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -17005,7 +17005,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -17031,7 +17031,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -17057,7 +17057,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -17083,7 +17083,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -17109,7 +17109,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -17135,7 +17135,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -17161,7 +17161,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -17187,7 +17187,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -17213,7 +17213,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -17239,7 +17239,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -17265,7 +17265,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -17291,7 +17291,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -17317,7 +17317,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -17343,7 +17343,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -17369,7 +17369,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -17395,7 +17395,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -17421,7 +17421,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -17447,7 +17447,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -17473,7 +17473,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -17499,7 +17499,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -17525,7 +17525,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -17551,7 +17551,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -17577,7 +17577,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -17603,7 +17603,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -17629,7 +17629,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -17655,7 +17655,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -17681,7 +17681,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -17707,7 +17707,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -17733,7 +17733,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -17759,7 +17759,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -17785,7 +17785,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -17811,7 +17811,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -17837,7 +17837,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -17863,7 +17863,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -17889,7 +17889,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -17915,7 +17915,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -17941,7 +17941,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -17967,7 +17967,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -17993,7 +17993,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -18019,7 +18019,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -18045,7 +18045,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -18071,7 +18071,7 @@ TEST(x86_P6, CMOVS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -18174,7 +18174,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -18200,7 +18200,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -18226,7 +18226,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -18252,7 +18252,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -18278,7 +18278,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -18304,7 +18304,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -18330,7 +18330,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -18356,7 +18356,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -18382,7 +18382,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -18408,7 +18408,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -18434,7 +18434,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -18460,7 +18460,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -18486,7 +18486,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -18512,7 +18512,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -18538,7 +18538,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -18564,7 +18564,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -18590,7 +18590,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -18616,7 +18616,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -18642,7 +18642,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -18668,7 +18668,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -18694,7 +18694,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -18720,7 +18720,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -18746,7 +18746,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -18772,7 +18772,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -18798,7 +18798,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -18824,7 +18824,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -18850,7 +18850,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -18876,7 +18876,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -18902,7 +18902,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -18928,7 +18928,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -18954,7 +18954,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -18980,7 +18980,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -19006,7 +19006,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -19032,7 +19032,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -19058,7 +19058,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -19084,7 +19084,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -19110,7 +19110,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -19136,7 +19136,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -19162,7 +19162,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -19188,7 +19188,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -19214,7 +19214,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -19240,7 +19240,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -19266,7 +19266,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -19292,7 +19292,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -19318,7 +19318,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -19344,7 +19344,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -19370,7 +19370,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -19396,7 +19396,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -19422,7 +19422,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -19448,7 +19448,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -19474,7 +19474,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -19500,7 +19500,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -19526,7 +19526,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -19552,7 +19552,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -19578,7 +19578,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -19604,7 +19604,7 @@ TEST(x86_P6, CMOVNS_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -19707,7 +19707,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -19733,7 +19733,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -19759,7 +19759,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -19785,7 +19785,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -19811,7 +19811,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -19837,7 +19837,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -19863,7 +19863,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -19889,7 +19889,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -19915,7 +19915,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -19941,7 +19941,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -19967,7 +19967,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -19993,7 +19993,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -20019,7 +20019,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -20045,7 +20045,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -20071,7 +20071,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -20097,7 +20097,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -20123,7 +20123,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -20149,7 +20149,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -20175,7 +20175,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -20201,7 +20201,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -20227,7 +20227,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -20253,7 +20253,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -20279,7 +20279,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -20305,7 +20305,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -20331,7 +20331,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -20357,7 +20357,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -20383,7 +20383,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -20409,7 +20409,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -20435,7 +20435,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -20461,7 +20461,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -20487,7 +20487,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -20513,7 +20513,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -20539,7 +20539,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -20565,7 +20565,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -20591,7 +20591,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -20617,7 +20617,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -20643,7 +20643,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -20669,7 +20669,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -20695,7 +20695,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -20721,7 +20721,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -20747,7 +20747,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -20773,7 +20773,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -20799,7 +20799,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -20825,7 +20825,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -20851,7 +20851,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -20877,7 +20877,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -20903,7 +20903,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -20929,7 +20929,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -20955,7 +20955,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -20981,7 +20981,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -21007,7 +21007,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -21033,7 +21033,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -21059,7 +21059,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -21085,7 +21085,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -21111,7 +21111,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -21137,7 +21137,7 @@ TEST(x86_P6, CMOVP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -21240,7 +21240,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -21266,7 +21266,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -21292,7 +21292,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -21318,7 +21318,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -21344,7 +21344,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -21370,7 +21370,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -21396,7 +21396,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -21422,7 +21422,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -21448,7 +21448,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -21474,7 +21474,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -21500,7 +21500,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -21526,7 +21526,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -21552,7 +21552,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -21578,7 +21578,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -21604,7 +21604,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -21630,7 +21630,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -21656,7 +21656,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -21682,7 +21682,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -21708,7 +21708,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -21734,7 +21734,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -21760,7 +21760,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -21786,7 +21786,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -21812,7 +21812,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -21838,7 +21838,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -21864,7 +21864,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -21890,7 +21890,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -21916,7 +21916,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -21942,7 +21942,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -21968,7 +21968,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -21994,7 +21994,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -22020,7 +22020,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -22046,7 +22046,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -22072,7 +22072,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -22098,7 +22098,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -22124,7 +22124,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -22150,7 +22150,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -22176,7 +22176,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -22202,7 +22202,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -22228,7 +22228,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -22254,7 +22254,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -22280,7 +22280,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -22306,7 +22306,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -22332,7 +22332,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -22358,7 +22358,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -22384,7 +22384,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -22410,7 +22410,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -22436,7 +22436,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -22462,7 +22462,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -22488,7 +22488,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -22514,7 +22514,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -22540,7 +22540,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -22566,7 +22566,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -22592,7 +22592,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -22618,7 +22618,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -22644,7 +22644,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -22670,7 +22670,7 @@ TEST(x86_P6, CMOVNP_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -22773,7 +22773,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -22799,7 +22799,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -22825,7 +22825,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -22851,7 +22851,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -22877,7 +22877,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -22903,7 +22903,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -22929,7 +22929,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -22955,7 +22955,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -22981,7 +22981,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -23007,7 +23007,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -23033,7 +23033,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -23059,7 +23059,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -23085,7 +23085,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -23111,7 +23111,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -23137,7 +23137,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -23163,7 +23163,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -23189,7 +23189,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -23215,7 +23215,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -23241,7 +23241,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -23267,7 +23267,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -23293,7 +23293,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -23319,7 +23319,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -23345,7 +23345,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -23371,7 +23371,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -23397,7 +23397,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -23423,7 +23423,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -23449,7 +23449,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -23475,7 +23475,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -23501,7 +23501,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -23527,7 +23527,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -23553,7 +23553,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -23579,7 +23579,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -23605,7 +23605,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -23631,7 +23631,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -23657,7 +23657,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -23683,7 +23683,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -23709,7 +23709,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -23735,7 +23735,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -23761,7 +23761,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -23787,7 +23787,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -23813,7 +23813,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -23839,7 +23839,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -23865,7 +23865,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -23891,7 +23891,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -23917,7 +23917,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -23943,7 +23943,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -23969,7 +23969,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -23995,7 +23995,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -24021,7 +24021,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -24047,7 +24047,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -24073,7 +24073,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -24099,7 +24099,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -24125,7 +24125,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -24151,7 +24151,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -24177,7 +24177,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -24203,7 +24203,7 @@ TEST(x86_P6, CMOVL_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -24306,7 +24306,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -24332,7 +24332,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -24358,7 +24358,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -24384,7 +24384,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -24410,7 +24410,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -24436,7 +24436,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -24462,7 +24462,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -24488,7 +24488,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -24514,7 +24514,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -24540,7 +24540,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -24566,7 +24566,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -24592,7 +24592,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -24618,7 +24618,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -24644,7 +24644,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -24670,7 +24670,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -24696,7 +24696,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -24722,7 +24722,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -24748,7 +24748,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -24774,7 +24774,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -24800,7 +24800,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -24826,7 +24826,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -24852,7 +24852,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -24878,7 +24878,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -24904,7 +24904,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -24930,7 +24930,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -24956,7 +24956,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -24982,7 +24982,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -25008,7 +25008,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -25034,7 +25034,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -25060,7 +25060,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -25086,7 +25086,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -25112,7 +25112,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -25138,7 +25138,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -25164,7 +25164,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -25190,7 +25190,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -25216,7 +25216,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -25242,7 +25242,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -25268,7 +25268,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -25294,7 +25294,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -25320,7 +25320,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -25346,7 +25346,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -25372,7 +25372,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -25398,7 +25398,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -25424,7 +25424,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -25450,7 +25450,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -25476,7 +25476,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -25502,7 +25502,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -25528,7 +25528,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -25554,7 +25554,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -25580,7 +25580,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -25606,7 +25606,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -25632,7 +25632,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -25658,7 +25658,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -25684,7 +25684,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -25710,7 +25710,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -25736,7 +25736,7 @@ TEST(x86_P6, CMOVGE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -25839,7 +25839,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -25865,7 +25865,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -25891,7 +25891,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -25917,7 +25917,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -25943,7 +25943,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -25969,7 +25969,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -25995,7 +25995,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -26021,7 +26021,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -26047,7 +26047,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -26073,7 +26073,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -26099,7 +26099,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -26125,7 +26125,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -26151,7 +26151,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -26177,7 +26177,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -26203,7 +26203,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -26229,7 +26229,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -26255,7 +26255,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -26281,7 +26281,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -26307,7 +26307,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -26333,7 +26333,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -26359,7 +26359,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -26385,7 +26385,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -26411,7 +26411,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -26437,7 +26437,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -26463,7 +26463,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -26489,7 +26489,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -26515,7 +26515,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -26541,7 +26541,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -26567,7 +26567,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -26593,7 +26593,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -26619,7 +26619,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -26645,7 +26645,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -26671,7 +26671,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -26697,7 +26697,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -26723,7 +26723,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -26749,7 +26749,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -26775,7 +26775,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -26801,7 +26801,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -26827,7 +26827,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -26853,7 +26853,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -26879,7 +26879,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -26905,7 +26905,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -26931,7 +26931,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -26957,7 +26957,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -26983,7 +26983,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -27009,7 +27009,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -27035,7 +27035,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -27061,7 +27061,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -27087,7 +27087,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -27113,7 +27113,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -27139,7 +27139,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -27165,7 +27165,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -27191,7 +27191,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -27217,7 +27217,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -27243,7 +27243,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -27269,7 +27269,7 @@ TEST(x86_P6, CMOVLE_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -27372,7 +27372,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -27398,7 +27398,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -27424,7 +27424,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -27450,7 +27450,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -27476,7 +27476,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -27502,7 +27502,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -27528,7 +27528,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EAX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x0)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -27554,7 +27554,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -27580,7 +27580,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -27606,7 +27606,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -27632,7 +27632,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -27658,7 +27658,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -27684,7 +27684,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -27710,7 +27710,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -27736,7 +27736,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -27762,7 +27762,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -27788,7 +27788,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -27814,7 +27814,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -27840,7 +27840,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -27866,7 +27866,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -27892,7 +27892,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -27918,7 +27918,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -27944,7 +27944,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -27970,7 +27970,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -27996,7 +27996,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -28022,7 +28022,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -28048,7 +28048,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -28074,7 +28074,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -28100,7 +28100,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -28126,7 +28126,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -28152,7 +28152,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -28178,7 +28178,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -28204,7 +28204,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -28230,7 +28230,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -28256,7 +28256,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -28282,7 +28282,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -28308,7 +28308,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -28334,7 +28334,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -28360,7 +28360,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -28386,7 +28386,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -28412,7 +28412,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -28438,7 +28438,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -28464,7 +28464,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -28490,7 +28490,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -28516,7 +28516,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -28542,7 +28542,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -28568,7 +28568,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -28594,7 +28594,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -28620,7 +28620,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -28646,7 +28646,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ECX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x1)
@@ -28672,7 +28672,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x2)
@@ -28698,7 +28698,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBX, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x3)
@@ -28724,7 +28724,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x4)
@@ -28750,7 +28750,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EBP, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5)
@@ -28776,7 +28776,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::ESI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x6)
@@ -28802,7 +28802,7 @@ TEST(x86_P6, CMOVG_O_REG_FULL_RM_FULL)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::SMEM, RegIndex::EDI, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x7)
@@ -28850,7 +28850,7 @@ TEST(x86_P6, FCMOVB_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -28898,7 +28898,7 @@ TEST(x86_P6, FCMOVE_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -28946,7 +28946,7 @@ TEST(x86_P6, FCMOVBE_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -28994,7 +28994,7 @@ TEST(x86_P6, FCMOVU_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -29042,7 +29042,7 @@ TEST(x86_P6, FCMOVNB_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -29090,7 +29090,7 @@ TEST(x86_P6, FCMOVNE_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -29138,7 +29138,7 @@ TEST(x86_P6, FCMOVNBE_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -29186,7 +29186,7 @@ TEST(x86_P6, FCMOVNU_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
@@ -29234,7 +29234,7 @@ TEST(x86_P6, FCOMI_O_FPU_SSI)
 			__LINE__
 		);
 
-		EXPECT_EQ(0x0, inst.imm.uint64);
+		EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 		ValidateOperand(inst.ops[0], OperandTypeAbs::REG, RegIndex::ST0, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5c)
 		ValidateOperand(inst.ops[1], OperandTypeAbs::REG, RegIndex::ST2, 0x20, __FILE__, __LINE__); // set! (reg idx: 0x5e)
