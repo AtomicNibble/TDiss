@@ -1464,28 +1464,24 @@ namespace TDiss
 	// ----------------------------------------------
 
 	TestBuilder::NasmOverride::NasmOverride() :
-		requiredOpType(OperandType::NONE)
+		NasmOverride("", "", OperandType::NONE)
 	{
 	}
 
-
-	TestBuilder::NasmOverride::NasmOverride(std::string nasm_, OperandType::Enum reqOpType) :
-		nasm(nasm_),
-		requiredOpType(reqOpType)
+	TestBuilder::NasmOverride::NasmOverride(std::string nasm, OperandType::Enum reqOpType) :
+		NasmOverride(nasm, "", reqOpType)
 	{
 	}
 
-	TestBuilder::NasmOverride::NasmOverride(std::string nasm_, std::string operandAppend_) :
-		nasm(nasm_),
-		operandAppend(operandAppend_),
-		requiredOpType(OperandType::NONE)
+	TestBuilder::NasmOverride::NasmOverride(std::string nasm, std::string operandAppend) :
+		NasmOverride(nasm, operandAppend, OperandType::NONE)
 	{
 	}
 
 	TestBuilder::NasmOverride::NasmOverride(std::string nasm_, std::string operandAppend_, OperandType::Enum reqOpType) :
+		requiredOpType(reqOpType),
 		nasm(nasm_),
-		operandAppend(operandAppend_),
-		requiredOpType(reqOpType)
+		operandAppend(operandAppend_)
 	{
 	}
 
