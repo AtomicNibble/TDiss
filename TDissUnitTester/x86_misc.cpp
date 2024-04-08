@@ -143,7 +143,7 @@ TEST(x86_misc, mod_rm_sib)
 	EXPECT_EQ(7, inst.size); // 7 byte instruction
 	EXPECT_EQ(2, inst.scale);
 	EXPECT_EQ(32, inst.displacementSize); // 32 bit displacement
-	EXPECT_EQ(0x555555, inst.displacement);
+	EXPECT_EQ(0x555555_ui64, inst.displacement);
 	EXPECT_EQ(RegIndex::DS, inst.segment); // DS segment.
 	EXPECT_EQ(RegIndex::EAX, inst.base); // we have a base reg of EAX
 	EXPECT_EQ(FlowControl::NONE, inst.flow); // no flow
@@ -182,11 +182,11 @@ TEST(x86_misc, mov_seg_32dis)
 		const Instruction& inst = instructions[0];
 
 		EXPECT_EQ(InstructionID::MOV, inst.opcode);
-		EXPECT_EQ(0, inst.add);
+		EXPECT_EQ(0_ui64, inst.add);
 		EXPECT_EQ(6, inst.size); // 6 byte instruction
 		EXPECT_EQ(0, inst.scale);
 		EXPECT_EQ(32, inst.displacementSize); // 32 bit displacement
-		EXPECT_EQ(0x7FFE0330, inst.displacement);
+		EXPECT_EQ(0x7FFE0330_ui64, inst.displacement);
 		EXPECT_EQ(RegIndex::DS, inst.segment); // DS segment.
 		EXPECT_EQ(RegIndex::NONE, inst.base);
 		EXPECT_EQ(FlowControl::NONE, inst.flow); // no flow
@@ -203,11 +203,11 @@ TEST(x86_misc, mov_seg_32dis)
 		const Instruction& inst = instructions[1];
 
 		EXPECT_EQ(InstructionID::MOV, inst.opcode);
-		EXPECT_EQ(6, inst.add); // address is 6
+		EXPECT_EQ(6_ui64, inst.add); // address is 6
 		EXPECT_EQ(6, inst.size); // 6 byte instruction
 		EXPECT_EQ(0, inst.scale);
 		EXPECT_EQ(32, inst.displacementSize); // 32 bit displacement
-		EXPECT_EQ(0x18, inst.displacement);
+		EXPECT_EQ(0x18_ui64, inst.displacement);
 		EXPECT_EQ(RegIndex::FS, inst.segment); // FS segment.
 		EXPECT_EQ(RegIndex::NONE, inst.base);
 		EXPECT_EQ(FlowControl::NONE, inst.flow); // no flow
@@ -250,7 +250,7 @@ TEST(x86_misc, add_ebp_base)
 		__FILE__, __LINE__
 	);
 
-	EXPECT_EQ(0x0, inst.imm.uint64);
+	EXPECT_EQ(0x0_ui64, inst.imm.uint64);
 
 	ValidateOperand(inst.ops[0], OperandTypeAbs::MEM, 0x0, 0x8, __FILE__, __LINE__); // set!
 	ValidateOperand(inst.ops[1], OperandTypeAbs::REG, 0x31, 0x8, __FILE__, __LINE__); // set!
