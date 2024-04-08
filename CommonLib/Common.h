@@ -19,6 +19,7 @@
 
 #include <assert.h>
 #include <inttypes.h>
+#include <stdint.h>
 #include <stdio.h>
 
 #include <memory>
@@ -46,9 +47,13 @@
 #define PRIdS "zd"
 #endif // X_WIN32
 
+#if !defined(PRIuS)
+#define PRIuS "Iu"
+#endif
+
+
 // Local
 
-#include "Types.h"
 #include "Util/Macros.h"
 
 #include "Debugging/Assert.h"
