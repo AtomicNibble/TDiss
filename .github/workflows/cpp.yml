@@ -9,9 +9,14 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
+    - name: support 32bit
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt-get -qq update
+        sudo apt-get -y install gcc-multilib g++-multilib
     - uses: actions/checkout@v3
       with:
         submodules: 'recursive'
