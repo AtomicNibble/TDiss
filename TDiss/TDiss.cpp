@@ -40,32 +40,34 @@ namespace TDiss
 
 	bool Diss::StopForFlow(const Instruction& inst) const
 	{
-		if (inst.flow != FlowControl::NONE)
-		{
-			uint32_t disOptions = strm_.options();
-
-			if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CALL) && inst.flow == FlowControl::CALL) {
-				return true;
-			}
-			if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CMOV) && inst.flow == FlowControl::CMOV) {
-				return true;
-			}
-			if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH) && inst.flow == FlowControl::CND_BRANCH) {
-				return true;
-			}
-			if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH) && inst.flow == FlowControl::UNC_BRANCH) {
-				return true;
-			}
-			if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_INT) && inst.flow == FlowControl::INT) {
-				return true;
-			}
-			if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_RET) && inst.flow == FlowControl::RET) {
-				return true;
-			}
-			if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_SYS) && inst.flow == FlowControl::SYS) {
-				return true;
-			}
+		if (inst.flow == FlowControl::NONE) {
+			return false;
 		}
+
+		const uint32_t disOptions = strm_.options();
+
+		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CALL) && inst.flow == FlowControl::CALL) {
+			return true;
+		}
+		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CMOV) && inst.flow == FlowControl::CMOV) {
+			return true;
+		}
+		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH) && inst.flow == FlowControl::CND_BRANCH) {
+			return true;
+		}
+		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH) && inst.flow == FlowControl::UNC_BRANCH) {
+			return true;
+		}
+		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_INT) && inst.flow == FlowControl::INT) {
+			return true;
+		}
+		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_RET) && inst.flow == FlowControl::RET) {
+			return true;
+		}
+		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_SYS) && inst.flow == FlowControl::SYS) {
+			return true;
+		}
+
 		return false;
 	}
 
