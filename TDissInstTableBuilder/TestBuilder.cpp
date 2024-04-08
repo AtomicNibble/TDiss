@@ -2114,7 +2114,7 @@ namespace
 				X_UNUSED(x);
 			}
 
-			for (const auto op : ops)
+			for (const auto& op : ops)
 			{
 				TestInstruction newInst;
 
