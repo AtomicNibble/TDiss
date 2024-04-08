@@ -45,4 +45,4 @@ const Instruction& inst0 = instructions[0x0];
 
 ## Building
 
-The project uses premake5 for generating build files.
+See [building.md](building.md)
