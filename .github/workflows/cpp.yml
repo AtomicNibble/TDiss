@@ -36,7 +36,7 @@ jobs:
         make -j$(nproc) config=release_x64
     - name: Test
       run: |
-        /build/release_x64/TDissUnitTester --gtest_output=xml:test_results.xml
+        ./build/release_x64/TDissUnitTester --gtest_output=xml:test_results.xml
     - name: Upload test results
       uses: actions/upload-artifact@v2
       with:
