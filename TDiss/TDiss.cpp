@@ -40,35 +40,29 @@ namespace TDiss
 
 	bool Diss::StopForFlow(const Instruction& inst) const
 	{
-		if (inst.flow == FlowControl::NONE) {
-			return false;
-		}
-
 		const uint32_t disOptions = strm_.options();
 
-		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CALL) && inst.flow == FlowControl::CALL) {
-			return true;
+		switch (inst.flow)
+		{
+		case FlowControl::NONE:
+			return false;
+		case FlowControl::CALL:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CALL);
+		case FlowControl::RET:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_RET);
+		case FlowControl::SYS:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_SYS);
+		case FlowControl::UNC_BRANCH:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH);
+		case FlowControl::CND_BRANCH:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH);
+		case FlowControl::CMOV:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CMOV);
+		case FlowControl::INT:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_INT);
+		default:
+			return false;
 		}
-		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CMOV) && inst.flow == FlowControl::CMOV) {
-			return true;
-		}
-		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH) && inst.flow == FlowControl::CND_BRANCH) {
-			return true;
-		}
-		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH) && inst.flow == FlowControl::UNC_BRANCH) {
-			return true;
-		}
-		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_INT) && inst.flow == FlowControl::INT) {
-			return true;
-		}
-		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_RET) && inst.flow == FlowControl::RET) {
-			return true;
-		}
-		if (bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_SYS) && inst.flow == FlowControl::SYS) {
-			return true;
-		}
-
-		return false;
 	}
 
 	DisResult::Enum Diss::disassemble_int(Instruction* pDecodeInst, size_t* usedInstructionsCount)
