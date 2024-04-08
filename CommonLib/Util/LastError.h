@@ -11,6 +11,6 @@ namespace lastError
 	typedef char Description[512];
 
 	ErrorInt Get(void);
-	X_NO_INLINE char* ToString(ErrorInt error, Description& desc);
-	X_NO_INLINE char* ToString(Description& desc);
+	X_NO_INLINE const char* ToString(ErrorInt error, Description& desc);
+	X_NO_INLINE const char* ToString(Description& desc);
 } // namespace lastError
