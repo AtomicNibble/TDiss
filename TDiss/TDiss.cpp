@@ -99,11 +99,11 @@ namespace TDiss
 					}
 				}
 
-				// in 64 CS DS ES SS segment goats are slapped.
+				// in 64 CS DS ES SS clear segment regs
 				const uint32_t segMask = (InstructionFlag::PRE_CS | InstructionFlag::PRE_DS | InstructionFlag::PRE_ES | InstructionFlag::PRE_SS);
 
-				if (ps.decodedPrefixFlags & segMask) {
-					ps.decodedPrefixFlags &= ~segMask;
+				if (bitUtil::IsAnyBitFlagSet(ps.decodedPrefixFlags, segMask)) {
+					ps.decodedPrefixFlags = bitUtil::ClearBitFlag(ps.decodedPrefixFlags, segMask);
 					// ignore them.
 					ps.ignorePrefix(PrefixGroup::SEG);
 				}
