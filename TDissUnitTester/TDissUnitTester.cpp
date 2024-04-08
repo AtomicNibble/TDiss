@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
 	int res;
 
-	bool ci = false;
+	// bool ci = false;
 	{
 	//	std::wstring cmd(lpCmdLine);
 	//	if (cmd.find(L"-ci") != std::wstring::npos) {

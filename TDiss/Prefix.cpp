@@ -330,7 +330,7 @@ namespace TDiss
 	{
 		ignorePrefix(group);
 
-		pfIndexOff[group] = static_cast<int32_t>(idx);
+		pfIndexOff[group] = safe_static_cast<uint16_t>(idx);
 	}
 
 	void PrefixState::addUsedPrefix(InstructionFlag::Enum pre)

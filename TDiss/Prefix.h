@@ -124,7 +124,7 @@ namespace TDiss
 		uint32_t vrex;
 
 		// offsets to prefix byte based on group / index.
-		int32_t pfIndexOff[PrefixGroup::INDEX_NUM];
+		uint16_t pfIndexOff[PrefixGroup::INDEX_NUM];
 	};
 
 

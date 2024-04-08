@@ -10,7 +10,7 @@ namespace lastError
 		return ::GetLastError();
 	}
 
-	const char* ToString(DWORD error, Description& desc)
+	const char* ToString(ErrorInt error, Description& desc)
 	{
         desc[0] = '\0';
 
@@ -34,7 +34,7 @@ namespace lastError
 
         int err = snprintf(desc, sizeof(desc), "Error(0x%08x): %s", error, tmp);
         if (err < 0) {
-            std::strncpy(desc, "Failed to encode error message", sizeof(desc));
+            strncpy_s(desc, "Failed to encode error message", sizeof(desc));
         }
 
         return desc;
