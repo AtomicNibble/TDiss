@@ -45,4 +45,6 @@ const Instruction& inst0 = instructions[0x0];
 
 ## Building
 
-See [building.md](building.md)
+THe libary can be built as a static or shared lib.
+
+See [building.md](building.md) for details.
