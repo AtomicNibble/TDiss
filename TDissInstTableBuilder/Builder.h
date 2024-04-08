@@ -296,7 +296,7 @@ namespace TDiss
 	public:
 		TestBuilder(CodeType::Enum type);
 
-		bool SaveTests(const std::wstring& outDir, size_t numTestFiles);
+		bool SaveTests(const std::string& outDir, size_t numTestFiles);
 		void CreateTestForInst(const SourceInstruction& inst);
 
 	private:
@@ -315,9 +315,9 @@ namespace TDiss
 		std::string ApplyNasmOverride(const SourceInstruction& inst, const std::string& nasm, const std::string& operands);
 		bool GenerateTestInstructions(const SourceInstruction& inst, TestData& dataOut);
 		bool Assemble(const CodeType::Enum type, const std::string& byteSource, std::vector<uint8_t>& bytes);
-		bool AssembleFile(const CodeType::Enum type, const std::wstring& Path, std::vector<uint8_t>& bytes);
+		bool AssembleFile(const CodeType::Enum type, const std::string& Path, std::vector<uint8_t>& bytes);
 
-		static std::wstring GetTempFileName(void);
+		static std::string GetTempFileName(void);
 
 		std::string MakeTestName(const SourceInstruction& inst);
 		std::string FormatNameString(const std::string& str);
@@ -362,7 +362,7 @@ namespace TDiss
 		typedef std::vector<std::unique_ptr<Test>> TestArr;
 
 		const CodeType::Enum codeType_;
-		const std::wstring tempPath_;
+		const std::string tempPath_;
 
 		Stats stats_;
 		TestArr tests_;
@@ -382,9 +382,9 @@ namespace TDiss
 		~Builder();
 
 		bool Build(void);
-		bool SaveTables(const std::wstring& outPath);
-		bool SaveMnemocis(const std::wstring& outHeader, const std::wstring& outSource);
-		bool SaveTests(const std::wstring& outDir, size_t numTestFiles);
+		bool SaveTables(const std::string& outPath);
+		bool SaveMnemocis(const std::string& outHeader, const std::string& outSource);
+		bool SaveTests(const std::string& outDir, size_t numTestFiles);
 
 	private:
 		void BuildTable(void);

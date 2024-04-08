@@ -21,7 +21,9 @@
 
 #include <assert.h>
 #include <inttypes.h>
+#include <stdio.h>
 
+#include <memory>
 #include <iostream>
 #include <ostream>
 #include <sstream> 
@@ -38,7 +40,7 @@
 #include <numeric>
 #include <limits>
 #include <cstring>
-
+#include <cstdarg>
 
 #ifdef X_WIN32
 #define PRIdS "Id"
@@ -64,9 +66,6 @@
 #include "Util/BitUtil.h"
 #include "Util/UserLiterals.h"
 
-// logging
-#include "Logging/Logger.h"
-#include "Logging/LoggerTypes.h"
 
 
 
