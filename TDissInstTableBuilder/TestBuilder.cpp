@@ -1560,7 +1560,7 @@ namespace TDiss
 			const std::string testFileName = StrUtil::EnsureSlash(outDir) + testName + StrUtil::to_string(i) + ".cpp";
 
 			FileUtil::ScopedFile f;
-			if (!f.Open(testFileName, "w")) {
+			if (!f.Open(testFileName, "wb")) {
 				return false;
 			}
 
@@ -2158,7 +2158,7 @@ namespace
 		bytes.clear();
 
 		FileUtil::ScopedFile file;
-		if (!file.Open(tempPath_, "w")) {
+		if (!file.Open(tempPath_, "wb")) {
 			return false;
 		}
 
