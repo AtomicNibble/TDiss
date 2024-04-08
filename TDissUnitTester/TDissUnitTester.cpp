@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 #endif
 
 	::testing::InitGoogleTest(&argc, argv);
-	::testing::GTEST_FLAG(filter) = "Misc*";
+	//::testing::GTEST_FLAG(filter) = "Misc*";
 
 	res = RUN_ALL_TESTS();
 
