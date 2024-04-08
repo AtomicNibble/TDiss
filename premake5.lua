@@ -10,9 +10,15 @@ workspace "TDiss"
 
     filter { "platforms:x86*" }
         architecture "x86"
+        defines {
+            "X_64=0",
+        }
 
     filter { "platforms:x64*" }
         architecture "x86_64"
+        defines {
+            "X_64=1",
+        }
 
     filter { "configurations:Debug" }
         symbols "FastLink"

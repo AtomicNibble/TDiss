@@ -2,8 +2,11 @@
 
 X_INTRINSIC(_BitScanReverse)
 X_INTRINSIC(_BitScanForward)
+
+#if X_64
 X_INTRINSIC(_BitScanReverse64)
 X_INTRINSIC(_BitScanForward64)
+#endif // X_64
 
 namespace bitUtil
 {
@@ -122,17 +125,17 @@ namespace bitUtil
 
                 unsigned long index = 0;
 
-#if BB_WIN32
+#if X_WIN32
                 const unsigned char result = _BitScanForward64(&index, static_cast<uint64_t>(value));
                 if (result == 0) {
                     return NO_BIT_SET;
                 }
-#else
+#else // X_WIN32
                 if (value == 0) {
                     return NO_BIT_SET;
                 }
                 index = __builtin_ffsll(static_cast<uint64_t>(value)) - 1;
-#endif
+#endif // X_WIN32
 
                 return index;
             }
@@ -142,7 +145,7 @@ namespace bitUtil
             {
                 static_assert(sizeof(T) == 8, "sizeof(T) is not 8 bytes.");
 
-#if BB_WIN32
+#if X_WIN32
                 unsigned long index = 0;
 
                 const unsigned char result = _BitScanReverse64(&index, static_cast<uint64_t>(value));
@@ -151,7 +154,7 @@ namespace bitUtil
                 }
 
                 return index;
-#else
+#else // X_WIN32
                 static const unsigned int bval[] = {
                     0,
                     1,
@@ -182,7 +185,7 @@ namespace bitUtil
                     value >>= 16 / 4;
                 }
                 return r + bval[value] - 1;
-#endif // !BB_WIN32
+#endif // !X_WIN32
             }
         };
 
@@ -256,17 +259,17 @@ namespace bitUtil
 
                 unsigned long index = 0;
 
-#if BB_WIN32
+#if X_WIN32
                 const unsigned char result = _BitScanForward(&index, static_cast<uint32_t>(value));
                 if (result == 0) {
                     return NO_BIT_SET;
                 }
-#else
+#else // X_WIN32
                 if (value == 0) {
                     return NO_BIT_SET;
                 }
                 index = __builtin_ffs(static_cast<uint32_t>(value)) - 1;
-#endif
+#endif // X_WIN32
 
                 return index;
             }
@@ -278,12 +281,12 @@ namespace bitUtil
 
                 unsigned long index = 0;
 
-#if BB_WIN32
+#if X_WIN32
                 const unsigned char result = _BitScanReverse(&index, static_cast<DWORD>(value));
                 if (result == 0) {
                     return NO_BIT_SET;
                 }
-#else
+#else // X_WIN32
                 static const unsigned int bval[] = {
                     0,
                     1,
