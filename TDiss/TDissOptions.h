@@ -21,7 +21,7 @@ namespace TDiss
 
 			SKIP_INVALID = BIT(8), // skip past unkown instructions and decode them as single bytes
 
-			STOP_ON_FLOW = (STOP_ON_CALL | STOP_ON_RET | STOP_ON_SYS | STOP_ON_UNC_BRANCH | STOP_ON_CND_BRANCH | STOP_ON_CMOV | STOP_ON_INT),
+			STOP_ON_FLOW_ALL = (STOP_ON_CALL | STOP_ON_RET | STOP_ON_SYS | STOP_ON_UNC_BRANCH | STOP_ON_CND_BRANCH | STOP_ON_CMOV | STOP_ON_INT),
 		};
 	};
 

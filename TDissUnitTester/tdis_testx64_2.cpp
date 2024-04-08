@@ -213,7 +213,7 @@ TEST(x64, MOV_O_REG_FULL_M16_SREG)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0xfc, options, CodeType::CODE_64BIT);
 
@@ -2738,7 +2738,7 @@ TEST(x64, LEA_O_REG_FULL_MEM)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x40, options, CodeType::CODE_64BIT);
 
@@ -3015,7 +3015,7 @@ TEST(x64, MOV_O_SREG_RM_16)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x60, options, CodeType::CODE_64BIT);
 
@@ -4291,7 +4291,7 @@ TEST(x64, POP_O_RM_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x10, options, CodeType::CODE_64BIT);
 
@@ -4501,7 +4501,7 @@ TEST(x64, XCHG_O_BLOCK_R_FULL_ACC_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0xe, options, CodeType::CODE_64BIT);
 
@@ -4707,7 +4707,7 @@ TEST(x64, CBW_CWDE_CDQE)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x5, options, CodeType::CODE_64BIT);
 
@@ -4809,7 +4809,7 @@ TEST(x64, CWD_CDQ_CQO)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x5, options, CodeType::CODE_64BIT);
 
@@ -4909,7 +4909,7 @@ TEST(x64, PUSHF)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -4957,7 +4957,7 @@ TEST(x64, POPF)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5005,7 +5005,7 @@ TEST(x64, SAHF)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5053,7 +5053,7 @@ TEST(x64, LAHF)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5101,7 +5101,7 @@ TEST(x64, MOVSB_O_REG_EDI_REG_ESI)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5149,7 +5149,7 @@ TEST(x64, MOVS_O_REG_EDI_REG_ESI)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -5197,7 +5197,7 @@ TEST(x64, CMPSB_O_REG_ESI_REG_EDI)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5245,7 +5245,7 @@ TEST(x64, CMPS_O_REG_ESI_REG_EDI)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -5294,7 +5294,7 @@ TEST(x64, TEST_O_ACC_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x5, options, CodeType::CODE_64BIT);
 
@@ -5368,7 +5368,7 @@ TEST(x64, TEST_O_ACC_FULL_IMM_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -5416,7 +5416,7 @@ TEST(x64, STOSB_O_REG_EDI_ACC_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5464,7 +5464,7 @@ TEST(x64, STOS_O_REG_EDI_ACC_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -5512,7 +5512,7 @@ TEST(x64, LODSB_O_ACC_8_REG_ESI)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5560,7 +5560,7 @@ TEST(x64, LODS_O_ACC_FULL_REG_ESI)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -5608,7 +5608,7 @@ TEST(x64, SCASB_O_REG_EDI_ACC_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -5656,7 +5656,7 @@ TEST(x64, SCAS_O_REG_EDI_ACC_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -5707,7 +5707,7 @@ TEST(x64, MOV_O_BLOCK_R_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x8, options, CodeType::CODE_64BIT);
 
@@ -5840,7 +5840,7 @@ TEST(x64, MOV_O_BLOCK_R_FULL_IMM_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x50, options, CodeType::CODE_64BIT);
 
@@ -6072,7 +6072,7 @@ TEST(x64, ROL_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6174,7 +6174,7 @@ TEST(x64, ROR_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6276,7 +6276,7 @@ TEST(x64, RCL_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6378,7 +6378,7 @@ TEST(x64, RCR_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6480,7 +6480,7 @@ TEST(x64, SHL_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6582,7 +6582,7 @@ TEST(x64, SHR_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6684,7 +6684,7 @@ TEST(x64, SAL_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6786,7 +6786,7 @@ TEST(x64, SAR_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x9, options, CodeType::CODE_64BIT);
 
@@ -6892,7 +6892,7 @@ TEST(x64, ROL_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -7102,7 +7102,7 @@ TEST(x64, ROR_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -7312,7 +7312,7 @@ TEST(x64, RCL_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -7522,7 +7522,7 @@ TEST(x64, RCR_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -7732,7 +7732,7 @@ TEST(x64, SHL_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -7942,7 +7942,7 @@ TEST(x64, SHR_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -8152,7 +8152,7 @@ TEST(x64, SAL_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -8362,7 +8362,7 @@ TEST(x64, SAR_O_RM_FULL_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1e, options, CodeType::CODE_64BIT);
 
@@ -8566,7 +8566,7 @@ TEST(x64, RETN_O_IMM_16)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_RET);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);
 
 	CodeStream strm(0, pOps, 0x3, options, CodeType::CODE_64BIT);
 
@@ -8662,7 +8662,7 @@ TEST(x64, RETN)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_RET);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -8758,7 +8758,7 @@ TEST(x64, MOV_O_RM_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x3, options, CodeType::CODE_64BIT);
 
@@ -8812,7 +8812,7 @@ TEST(x64, MOV_O_RM_FULL_IMM_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x33, options, CodeType::CODE_64BIT);
 
@@ -9016,7 +9016,7 @@ TEST(x64, ENTER_O_IMM_16_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x4, options, CodeType::CODE_64BIT);
 
@@ -9064,7 +9064,7 @@ TEST(x64, LEAVE)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -9112,7 +9112,7 @@ TEST(x64, RETF_O_IMM_16)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_RET);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);
 
 	CodeStream strm(0, pOps, 0x4, options, CodeType::CODE_64BIT);
 
@@ -9208,7 +9208,7 @@ TEST(x64, RETF)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_RET);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -9304,7 +9304,7 @@ TEST(x64, INT3)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_INT);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_INT);
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -9400,7 +9400,7 @@ TEST(x64, INT_O_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_INT);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_INT);
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -9496,7 +9496,7 @@ TEST(x64, IRET)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_RET);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -9594,7 +9594,7 @@ TEST(x64, ROL_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -9696,7 +9696,7 @@ TEST(x64, ROR_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -9798,7 +9798,7 @@ TEST(x64, RCL_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -9900,7 +9900,7 @@ TEST(x64, RCR_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -10002,7 +10002,7 @@ TEST(x64, SHL_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -10104,7 +10104,7 @@ TEST(x64, SHR_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -10206,7 +10206,7 @@ TEST(x64, SAL_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -10308,7 +10308,7 @@ TEST(x64, SAR_O_RM_8_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -10414,7 +10414,7 @@ TEST(x64, ROL_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -10624,7 +10624,7 @@ TEST(x64, ROR_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -10834,7 +10834,7 @@ TEST(x64, RCL_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -11044,7 +11044,7 @@ TEST(x64, RCR_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -11254,7 +11254,7 @@ TEST(x64, SHL_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -11464,7 +11464,7 @@ TEST(x64, SHR_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -11674,7 +11674,7 @@ TEST(x64, SAL_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -11884,7 +11884,7 @@ TEST(x64, SAR_O_RM_FULL_CONST1)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -12090,7 +12090,7 @@ TEST(x64, ROL_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12192,7 +12192,7 @@ TEST(x64, ROR_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12294,7 +12294,7 @@ TEST(x64, RCL_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12396,7 +12396,7 @@ TEST(x64, RCR_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12498,7 +12498,7 @@ TEST(x64, SHL_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12600,7 +12600,7 @@ TEST(x64, SHR_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12702,7 +12702,7 @@ TEST(x64, SAL_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12804,7 +12804,7 @@ TEST(x64, SAR_O_RM_8_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x6, options, CodeType::CODE_64BIT);
 
@@ -12910,7 +12910,7 @@ TEST(x64, ROL_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -13120,7 +13120,7 @@ TEST(x64, ROR_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -13330,7 +13330,7 @@ TEST(x64, RCL_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -13540,7 +13540,7 @@ TEST(x64, RCR_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -13750,7 +13750,7 @@ TEST(x64, SHL_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -13960,7 +13960,7 @@ TEST(x64, SHR_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -14170,7 +14170,7 @@ TEST(x64, SAL_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -14380,7 +14380,7 @@ TEST(x64, SAR_O_RM_FULL_REG_CL)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x17, options, CodeType::CODE_64BIT);
 
@@ -14584,7 +14584,7 @@ TEST(x64, XLAT_O_REG_EBXAL_DS)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x1, options, CodeType::CODE_64BIT);
 
@@ -14632,7 +14632,7 @@ TEST(x64, LOOPNZ_O_REL_CI_8)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CND_BRANCH);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -14728,7 +14728,7 @@ TEST(x64, LOOPZ_O_REL_CI_8)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CND_BRANCH);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -14824,7 +14824,7 @@ TEST(x64, LOOP_O_REL_CI_8)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CND_BRANCH);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -14922,7 +14922,7 @@ TEST(x64, JCXZ_JECXZ_JRCXZ_O_REL_CI_8)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CND_BRANCH);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);
 
 	CodeStream strm(0, pOps, 0x8, options, CodeType::CODE_64BIT);
 
@@ -15072,7 +15072,7 @@ TEST(x64, IN_O_ACC_8_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -15121,7 +15121,7 @@ TEST(x64, IN_O_ACC_FULL_NOT64_IMM_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x5, options, CodeType::CODE_64BIT);
 
@@ -15195,7 +15195,7 @@ TEST(x64, OUT_O_IMM_8_ACC_8)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x2, options, CodeType::CODE_64BIT);
 
@@ -15244,7 +15244,7 @@ TEST(x64, OUT_O_IMM_8_ACC_FULL_NOT64)
 	};
 
 	uint32_t options = 0;
-	options |= DisOptions::STOP_ON_FLOW;
+	options |= DisOptions::STOP_ON_FLOW_ALL;
 
 	CodeStream strm(0, pOps, 0x5, options, CodeType::CODE_64BIT);
 
@@ -15318,7 +15318,7 @@ TEST(x64, CALL_O_REL_CI_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CALL);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CALL);
 
 	CodeStream strm(0, pOps, 0x5, options, CodeType::CODE_64BIT);
 
@@ -15414,7 +15414,7 @@ TEST(x64, JMP_O_REL_CI_FULL)
 	};
 
 	uint32_t options = 0;
-	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_UNC_BRANCH);
+	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_UNC_BRANCH);
 
 	CodeStream strm(0, pOps, 0x5, options, CodeType::CODE_64BIT);
 

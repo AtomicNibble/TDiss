@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 #endif
 
 	::testing::InitGoogleTest(&argc, argv);
-	//::testing::GTEST_FLAG(filter) = "Misc*";
+	::testing::GTEST_FLAG(filter) = "*JMP_O_RM_FULL_1_stopOnFlow*";
 
 	res = RUN_ALL_TESTS();
 

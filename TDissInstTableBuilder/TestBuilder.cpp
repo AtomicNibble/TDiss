@@ -1889,43 +1889,43 @@ namespace
 			{
 			case FlowControl::CALL:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CALL);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CALL);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_CALL;\n";
 				break;
 			case FlowControl::CMOV:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CMOV);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CMOV);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_CMOV;\n";
 				break;
 			case FlowControl::CND_BRANCH:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CND_BRANCH);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_CND_BRANCH;\n";
 				break;
 			case FlowControl::INT:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_INT);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_INT);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_INT;\n";
 				break;
 			case FlowControl::RET:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_RET);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_RET;\n";
 				break;
 			case FlowControl::SYS:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_SYS);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_SYS);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_SYS;\n";
 				break;
 			case FlowControl::UNC_BRANCH:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_UNC_BRANCH);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_UNC_BRANCH);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_UNC_BRANCH;\n";
 				break;
@@ -1937,7 +1937,7 @@ namespace
 		else
 		{
 			// turn on all flow stop to check we don't stop on flow incorrectly.
-			ss << "	options |= DisOptions::STOP_ON_FLOW;\n";
+			ss << "	options |= DisOptions::STOP_ON_FLOW_ALL;\n";
 		}
 	}
 
