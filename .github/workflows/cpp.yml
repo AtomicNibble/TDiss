@@ -17,9 +17,9 @@ jobs:
         sudo dpkg --add-architecture i386
         sudo apt-get -qq update
         sudo apt-get -y install gcc-multilib g++-multilib
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@vv
       with:
-        submodules: 'recursive'
+        submodules: 'true'
     - uses: abel0b/setup-premake@v2.4
       with:
         version: "5.0.0-beta2"
