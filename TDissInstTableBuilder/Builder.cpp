@@ -291,7 +291,7 @@ namespace TDiss
 		si.testedFlags = inst.testedFlags;
 		si.undefinedFlags = inst.undefinedFlags;
 
-		if ((inst.Flags & InstructionFlag::EXTENDED) == 0)
+		if ((inst.Flags & InstructionFlag::EXTENDED_MASK) == 0)
 		{
 			X_ASSERT(inst.mnemonics.size() == 1); // none extended only allowed one mnem
 
@@ -526,7 +526,7 @@ namespace TDiss
 				si.testedFlags = inst.testedFlags;
 				si.undefinedFlags = inst.undefinedFlags;
 
-				if ((inst.Flags & InstructionFlag::EXTENDED) == 0)
+				if ((inst.Flags & InstructionFlag::EXTENDED_MASK) == 0)
 				{
 					X_ASSERT(inst.mnemonics.size() == 1); // none extended only allowed one mnem
 

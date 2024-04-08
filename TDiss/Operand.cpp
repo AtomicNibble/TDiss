@@ -787,13 +787,13 @@ namespace TDiss
 
 #if X_DEBUG
 			// check the instruction flags have alleast one seg reg set.
-			if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::SEGMENTS)) {
+			if (!bitUtil::IsAnyBitFlagSet(instructionFlag, InstructionFlag::SEGMENTS_MASK)) {
 				X_ASSERT_UNREACABLE();
 			}
 #endif // !X_DEBUG
 
 			// work out the segment from instruction flag.
-			switch (instructionFlag & InstructionFlag::SEGMENTS)
+			switch (instructionFlag & InstructionFlag::SEGMENTS_MASK)
 			{
 			case InstructionFlag::PRE_CS:
 				segReg = RegIndex::CS;
