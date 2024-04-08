@@ -2188,8 +2188,6 @@ namespace
 		// run yasm.
 		const std::string yasmBinPath = "..\\..\\3rdparty\\bin\\yasm-1.3.0-win64.exe";
 
-		X_ASSERT(FileUtil::FileExsists(yasmBinPath));
-
 		std::string outFile = path + ".out";
 		std::string cmd = yasmBinPath + std::string(" ");
 
@@ -2203,12 +2201,12 @@ namespace
 			cmd += "-m amd64";
 		}
 
-		cmd += L" -o \"" + outFile + L"\" \"" + path + L"\"";
+		cmd += " -o \"" + outFile + "\" \"" + path + "\"";
 
-		STARTUPINFOW info = { sizeof(info) };
+		STARTUPINFOA info = { sizeof(info) };
 		PROCESS_INFORMATION processInfo;
 
-		if (CreateProcessW(NULL, const_cast<wchar_t*>(cmd.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
+		if (CreateProcessA(NULL, const_cast<char*>(cmd.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
 		{
 			DWORD exitCode;
 			::WaitForSingleObject(processInfo.hProcess, INFINITE);
@@ -2221,8 +2219,8 @@ namespace
 			}
 
 			// read the output.
-			FileUtil::ScopedFileWin32 file;
-			if (file.Open(outFile, GENERIC_READ, OPEN_EXISTING))
+			FileUtil::ScopedFile file;
+			if (file.Open(outFile, "rb"))
 			{
 				size_t length = file.GetLength();
 
