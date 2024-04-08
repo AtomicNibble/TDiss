@@ -2,20 +2,9 @@
 
 namespace StrUtil
 {
-	const char* Convert(const wchar_t *input, char *output, unsigned outputLength);
-	const char* Convert(const wchar_t *input, unsigned inputLength, char *output, unsigned outputLength);
-
-	const wchar_t* Convert(const char *input, wchar_t *output, unsigned outputLength);
-	const wchar_t* Convert(const char *input, unsigned inputLength, wchar_t *output, unsigned outputLength);
-
 	bool IsEqual(const char* startInclusiveS1, const char* startInclusiveS2);
 	bool IsEqual(const char* startInclusiveS1, const char* endExclusiveS1, const char* startInclusiveS2);
 	bool IsEqual(const char* startInclusiveS1, const char* endExclusiveS1, const char* startInclusiveS2, const char* endExclusiveS2);
-
-	bool IsEqual(const wchar_t* startInclusiveS1, const wchar_t* startInclusiveS2);
-	bool IsEqual(const wchar_t* startInclusiveS1, const wchar_t* endExclusiveS1, const wchar_t* startInclusiveS2);
-	bool IsEqual(const wchar_t* startInclusiveS1, const wchar_t* endExclusiveS1, const wchar_t* startInclusiveS2, const wchar_t* endExclusiveS2);
-
 
 	bool IsEqualCaseInsen(const std::string& str1, const std::string& str2);
 	bool IsEqualCaseInsen(const std::wstring& str1, const std::wstring& str2);
