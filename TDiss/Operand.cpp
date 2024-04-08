@@ -21,7 +21,6 @@ namespace TDiss
 				BITS_256 = 32,
 			};
 
-
 			// max is 32 * 8
 			static int32_t OpSizeToBits(Enum size)
 			{
@@ -29,14 +28,12 @@ namespace TDiss
 			}
 		};
 
-
-
 		// SIB
 		// http://www.c-jump.com/CIS77/CPU/x86/X77_0100_sib_byte_layout.htm
 		// |  7-6   |  5-3   |   2-0  |
 		// | Scale | Index | Base |
 		//
-		// 
+		//
 		//
 		//
 		OperandDecodeResult::Enum ExtractScaledIndexBase(Instruction* pInst,
@@ -57,14 +54,12 @@ namespace TDiss
 				op.type = OperandTypeAbs::SMEM;
 				pIndex = &op.index;
 			}
-			else
-			{
+			else {
 				op.type = OperandTypeAbs::MEM;
 				pIndex = reinterpret_cast<uint8_t*>(&pInst->base);
 			}
 
-			if (base == 5)
-			{
+			if (base == 5) {
 				/*
 				means a disp32 with no base if the MOD is 00B. Otherwise, means disp8 or disp32 + [EBP].
 				This provides the following address modes:
@@ -73,8 +68,7 @@ namespace TDiss
 				01 [scaled index] + disp8 + [EBP]
 				10 [scaled index] + disp32 + [EBP]
 				*/
-				if (mod != 0)
-				{
+				if (mod != 0) {
 					uint8_t grpOffset = 0;
 
 					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
@@ -83,28 +77,24 @@ namespace TDiss
 						grpOffset = RegIndex::EX_GPR_OFFSET;
 					}
 
-					if (effAdd == CodeType::CODE_64BIT)
-					{
+					if (effAdd == CodeType::CODE_64BIT) {
 						*pIndex = RegIndex::REG_64_BASE;
 						*pIndex += 5;
 						*pIndex += grpOffset;
 					}
-					else
-					{
+					else {
 						*pIndex = RegIndex::REG_32_BASE;
 						*pIndex += 5;
 						*pIndex += grpOffset;
 					}
 				}
-				else if (index == 4)
-				{
+				else if (index == 4) {
 					// when here we have no scaled index and just disp32.
 					op.type = OperandTypeAbs::DISP;
 					return OperandDecodeResult::OK;
 				}
 			}
-			else
-			{
+			else {
 				if (effAdd == CodeType::CODE_64BIT) {
 					*pIndex = RegIndex::REG_64_BASE;
 				}
@@ -121,8 +111,7 @@ namespace TDiss
 			}
 
 			// valid index?
-			if (index != 4)
-			{
+			if (index != 4) {
 				if (effAdd == CodeType::CODE_64BIT) {
 					//	op.size = 64;
 					op.index = index + RegIndex::REG_64_BASE;
@@ -143,7 +132,6 @@ namespace TDiss
 			return OperandDecodeResult::OK;
 		}
 
-
 		// http://www.c-jump.com/CIS77/CPU/x86/X77_0060_mod_reg_r_m_byte.htm
 		// | 7-6 | 5-3 | 2-0
 		// | MOD | REG | R/M |
@@ -154,7 +142,7 @@ namespace TDiss
 		// 01: one byte signed dis
 		// 10: four byte signed dis
 		// 11: register
-		// 
+		//
 		OperandDecodeResult::Enum ExtractOperandModRm(CodeStream* info, Instruction* pInst, PrefixState& ps,
 			OperandType::Enum opType, OperandIdx::Enum opIdx,
 			CodeType::Enum effOp, CodeType::Enum effAdd,
@@ -169,153 +157,140 @@ namespace TDiss
 
 				op.type = OperandTypeAbs::REG;
 
-				switch (opType)
-				{
-				case OperandType::REG_FULL_M16:
-				case OperandType::RM_FULL:
+				switch (opType) {
+					case OperandType::REG_FULL_M16:
+					case OperandType::RM_FULL:
 
-					switch (effOp)
-					{
-					case CodeType::CODE_16BIT:
-						ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-						{
+						switch (effOp) {
+							case CodeType::CODE_16BIT:
+								ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+								if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+									ps.addUsedPrefix(InstructionFlag::PRE_REX);
+									rm += RegIndex::EX_GPR_OFFSET;
+								}
+
+								size = 16;
+								rm += RegIndex::REG_16_BASE;
+								break;
+							case CodeType::CODE_32BIT:
+								ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+								if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+									ps.addUsedPrefix(InstructionFlag::PRE_REX);
+									rm += RegIndex::EX_GPR_OFFSET;
+								}
+
+								size = 32;
+								rm += RegIndex::REG_32_BASE;
+								break;
+							case CodeType::CODE_64BIT:
+								if (opType == OperandType::REG_FULL_M16) {
+									ps.addUsedPrefix(InstructionFlag::PRE_REX);
+								}
+
+								if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+									ps.addUsedPrefix(InstructionFlag::PRE_REX);
+								}
+
+								if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+									ps.addUsedPrefix(InstructionFlag::PRE_REX);
+									rm += RegIndex::EX_GPR_OFFSET;
+								}
+
+								size = 64;
+								rm += RegIndex::REG_64_BASE;
+								break;
+							default:
+								X_ASSERT_NOT_IMPLEMENTED();
+								break;
+						}
+
+						break;
+					case OperandType::RM_32_64:
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 							rm += RegIndex::EX_GPR_OFFSET;
 						}
 
-						size = 16;
-						rm += RegIndex::REG_16_BASE;
-						break;
-					case CodeType::CODE_32BIT:
-						ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-						{
-							ps.addUsedPrefix(InstructionFlag::PRE_REX);
-							rm += RegIndex::EX_GPR_OFFSET;
+						// promoted instruction.
+						if (info->codeType() == CodeType::CODE_64BIT) {
+							if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) && !bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+								size = 64;
+								rm += RegIndex::REG_64_BASE;
+								break; // don't fall down
+							}
 						}
 
-						size = 32;
-						rm += RegIndex::REG_32_BASE;
-						break;
-					case CodeType::CODE_64BIT:
-						if (opType == OperandType::REG_FULL_M16) {
+						// REX.W promoted
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::W)) {
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						}
-
-						if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
-							ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						}
-
-						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-						{
-							ps.addUsedPrefix(InstructionFlag::PRE_REX);
-							rm += RegIndex::EX_GPR_OFFSET;
-						}
-
-						size = 64;
-						rm += RegIndex::REG_64_BASE;
-						break;
-					default:
-						X_ASSERT_NOT_IMPLEMENTED();
-						break;
-					}
-
-					break;
-				case OperandType::RM_32_64:
-					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						rm += RegIndex::EX_GPR_OFFSET;
-					}
-
-					// promoted instruction.
-					if (info->codeType() == CodeType::CODE_64BIT) {
-						if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-							!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
 							size = 64;
 							rm += RegIndex::REG_64_BASE;
-							break; // don't fall down
 						}
-					}
+						else {
+							size = 32;
+							rm += RegIndex::REG_32_BASE;
+						}
 
-					// REX.W promoted
-					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::W)) {
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						size = 64;
-						rm += RegIndex::REG_64_BASE;
-					}
-					else {
-						size = 32;
-						rm += RegIndex::REG_32_BASE;
-					}
-
-					break;
-				case OperandType::RM_32:
-					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-					{
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						rm += RegIndex::EX_GPR_OFFSET;
-					}
-					rm += RegIndex::REG_32_BASE;
-
-					size = 32;
-					break;
-				case OperandType::RM_16:
-					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-					{
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						rm += RegIndex::EX_GPR_OFFSET;
-					}
-					rm += RegIndex::REG_16_BASE;
-					break;
-				case OperandType::RM_8:
-
-					if (ps.ExtType == PrefixExtType::REX)
-					{
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-						{
+						break;
+					case OperandType::RM_32:
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 							rm += RegIndex::EX_GPR_OFFSET;
 						}
+						rm += RegIndex::REG_32_BASE;
 
-						if (rm >= 4 && rm < 8) {
-							rm += RegIndex::REG_8_REX_BASE;
-							rm -= 4; // turn the 4-7 to 0-3
+						size = 32;
+						break;
+					case OperandType::RM_16:
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							rm += RegIndex::EX_GPR_OFFSET;
+						}
+						rm += RegIndex::REG_16_BASE;
+						break;
+					case OperandType::RM_8:
+
+						if (ps.ExtType == PrefixExtType::REX) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+								rm += RegIndex::EX_GPR_OFFSET;
+							}
+
+							if (rm >= 4 && rm < 8) {
+								rm += RegIndex::REG_8_REX_BASE;
+								rm -= 4; // turn the 4-7 to 0-3
+							}
+							else {
+								rm += RegIndex::REG_8_BASE;
+							}
 						}
 						else {
 							rm += RegIndex::REG_8_BASE;
 						}
-					}
-					else
-					{
-						rm += RegIndex::REG_8_BASE;
-					}
-					break;
+						break;
 
-				case OperandType::MM_32:
-				case OperandType::MM_64:
-					size = 64;
-					rm += RegIndex::REG_MMX_BASE;
-					break;
+					case OperandType::MM_32:
+					case OperandType::MM_64:
+						size = 64;
+						rm += RegIndex::REG_MMX_BASE;
+						break;
 
-				case OperandType::XMM_16:
-				case OperandType::XMM_32:
-				case OperandType::XMM_64:
-				case OperandType::XMM_128:
-					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-					{
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						rm += RegIndex::EX_GPR_OFFSET;
-					}
+					case OperandType::XMM_16:
+					case OperandType::XMM_32:
+					case OperandType::XMM_64:
+					case OperandType::XMM_128:
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							rm += RegIndex::EX_GPR_OFFSET;
+						}
 
-					size = 128;
-					rm += RegIndex::REG_SSE_BASE;
-					break;
+						size = 128;
+						rm += RegIndex::REG_SSE_BASE;
+						break;
 
-
-				default:
-					X_ASSERT_NOT_IMPLEMENTED();
-					break;
+					default:
+						X_ASSERT_NOT_IMPLEMENTED();
+						break;
 				}
 
 				op.size = size;
@@ -323,10 +298,8 @@ namespace TDiss
 				return OperandDecodeResult::OK;
 			}
 
-			if (effAdd == CodeType::CODE_16BIT)
-			{
-				if (mod == 0 && rm == 6)
-				{
+			if (effAdd == CodeType::CODE_16BIT) {
+				if (mod == 0 && rm == 6) {
 					op.type = OperandTypeAbs::DISP;
 
 					pInst->displacementSize = 16;
@@ -335,8 +308,7 @@ namespace TDiss
 						return OperandDecodeResult::STREAM_END;
 					}
 				}
-				else
-				{
+				else {
 					// MEM for 16 bits indirection that requires 2 registers, E.G: [BS + SI].
 					// or SMEM for a single register indirection, E.G : [BP].
 
@@ -344,34 +316,28 @@ namespace TDiss
 						RegIndex::BX, RegIndex::BX,
 						RegIndex::BP, RegIndex::BP,
 						RegIndex::SI, RegIndex::DI,
-						RegIndex::BP, RegIndex::BX
-					};
+						RegIndex::BP, RegIndex::BX};
 					static RegIndex::Enum MODS2[] = {
 						RegIndex::SI, RegIndex::DI,
-						RegIndex::SI, RegIndex::DI
-					};
+						RegIndex::SI, RegIndex::DI};
 
-					if (rm < 4)
-					{
+					if (rm < 4) {
 						op.type = OperandTypeAbs::MEM;
 						op.index = MODS2[rm];
 						pInst->base = MODS[rm];
 					}
-					else
-					{
+					else {
 						op.type = OperandTypeAbs::SMEM;
 						op.index = MODS[rm];
 					}
 
-					if (mod == 1)
-					{
+					if (mod == 1) {
 						pInst->displacementSize = 8;
 						if (!info->ReadDisplacementValue(pInst->displacement, 1)) {
 							return OperandDecodeResult::STREAM_END;
 						}
 					}
-					else
-					{
+					else {
 						pInst->displacementSize = 16;
 						if (!info->ReadDisplacementValue(pInst->displacement, 1)) {
 							return OperandDecodeResult::STREAM_END;
@@ -379,45 +345,35 @@ namespace TDiss
 					}
 				}
 
-				if (rm == 2 || rm == 3 || (rm == 6 && mod != 0))
-				{
+				if (rm == 2 || rm == 3 || (rm == 6 && mod != 0)) {
 					ps.useSegment(InstructionFlag::PRE_SS, info->codeType(), pInst);
 				}
-				else
-				{
+				else {
 					ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
 				}
-
 			}
-			else
-			{
-				if (mod == 0 && rm == 5)
-				{
+			else {
+				if (mod == 0 && rm == 5) {
 					pInst->displacementSize = 32;
 
 					if (!info->ReadDisplacementValue(pInst->displacement, 4)) {
 						return OperandDecodeResult::STREAM_END;
 					}
 
-					if (info->codeType() == CodeType::CODE_64BIT)
-					{
+					if (info->codeType() == CodeType::CODE_64BIT) {
 						op.type = OperandTypeAbs::SMEM;
 						op.regIndex = RegIndex::RIP;
-
 					}
-					else
-					{
+					else {
 						// absolute
 						op.type = OperandTypeAbs::DISP;
 						op.size = 32;
 					}
 				}
-				else
-				{
+				else {
 					uint8_t sib = 0;
 
-					if (rm == 4)
-					{
+					if (rm == 4) {
 						if (!info->ReadValue(sib)) {
 							return OperandDecodeResult::STREAM_END;
 						}
@@ -427,31 +383,25 @@ namespace TDiss
 							return res;
 						}
 					}
-					else
-					{
+					else {
 						op.type = OperandTypeAbs::SMEM;
 
-						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-						{
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 							rm += RegIndex::EX_GPR_OFFSET;
 						}
 
-						if (effAdd == CodeType::CODE_64BIT)
-						{
+						if (effAdd == CodeType::CODE_64BIT) {
 							op.index = RegIndex::REG_64_BASE + rm;
 						}
-						else
-						{
+						else {
 							op.index = RegIndex::REG_32_BASE + rm;
 						}
 					}
 
 					// ------------------
 
-
-					if (mod == 1)
-					{
+					if (mod == 1) {
 						pInst->displacementSize = 8;
 
 						if (!info->ReadDisplacementValue(pInst->displacement, 1)) {
@@ -476,22 +426,18 @@ namespace TDiss
 					baseReg = 0;
 				}
 
-				if (baseReg == RegIndex::EBP || baseReg == RegIndex::ESP)
-				{
+				if (baseReg == RegIndex::EBP || baseReg == RegIndex::ESP) {
 					ps.useSegment(InstructionFlag::PRE_SS, info->codeType(), pInst);
 				}
-				else
-				{
+				else {
 					ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
 				}
-
 			}
 
 			return OperandDecodeResult::OK;
 		}
 
 	} // namespace
-
 
 	void Operand::Set8(OperandTypeAbs::Enum type_)
 	{
@@ -524,7 +470,6 @@ namespace TDiss
 		size = 64;
 		type = type_;
 	}
-
 
 	void Operand::Set8(OperandTypeAbs::Enum type_, int32_t index_)
 	{
@@ -563,11 +508,9 @@ namespace TDiss
 
 	// =====================================================
 
-
 	OperandDecodeResult::Enum ExtractOperand(CodeStream* info, Instruction* pInst, PrefixState& ps, uint32_t instructionFlag, uint32_t modRm,
 		OperandType::Enum opType, OperandIdx::Enum opIdx, CodeType::Enum effOp, CodeType::Enum effAdd)
 	{
-
 		Operand& op = pInst->ops[opIdx];
 
 		// http://www.c-jump.com/CIS77/CPU/x86/X77_0060_mod_reg_r_m_byte.htm
@@ -584,68 +527,66 @@ namespace TDiss
 			OpSize::Enum opSize = OpSize::INVALID;
 			bool handled = true;
 
-			switch (opType)
-			{
-			case OperandType::MEM:
-				// size unkown.
-				break;
-			case OperandType::MEM_32:
-				opSize = OpSize::BITS_32;
-				break;
-			case OperandType::MEM_32_64:
-				// 64bits with REX
-				if (effOp == CodeType::CODE_64BIT) {
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					opSize = OpSize::BITS_64;
-				}
-				else {
+			switch (opType) {
+				case OperandType::MEM:
+					// size unkown.
+					break;
+				case OperandType::MEM_32:
 					opSize = OpSize::BITS_32;
-				}
-				break;
-			case OperandType::MEM_64:
-				opSize = OpSize::BITS_64;
-				break;
-			case OperandType::MEM_64_128:
-				if (effOp == CodeType::CODE_64BIT) {
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					opSize = OpSize::BITS_128;
-				}
-				else {
+					break;
+				case OperandType::MEM_32_64:
+					// 64bits with REX
+					if (effOp == CodeType::CODE_64BIT) {
+						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+						opSize = OpSize::BITS_64;
+					}
+					else {
+						opSize = OpSize::BITS_32;
+					}
+					break;
+				case OperandType::MEM_64:
 					opSize = OpSize::BITS_64;
-				}
-				break;
-			case OperandType::MEM_128:
-				opSize = OpSize::BITS_128;
-				break;
+					break;
+				case OperandType::MEM_64_128:
+					if (effOp == CodeType::CODE_64BIT) {
+						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+						opSize = OpSize::BITS_128;
+					}
+					else {
+						opSize = OpSize::BITS_64;
+					}
+					break;
+				case OperandType::MEM_128:
+					opSize = OpSize::BITS_128;
+					break;
 
-			case OperandType::MEM_OPT:
-				// mem optional only required if mod != 3
-				if (mod == 0x3) {
-					return OperandDecodeResult::OK;
-				}
-				break;
+				case OperandType::MEM_OPT:
+					// mem optional only required if mod != 3
+					if (mod == 0x3) {
+						return OperandDecodeResult::OK;
+					}
+					break;
 
-			case OperandType::FPUM16:
-				opSize = OpSize::BITS_16;
-				break;
-			case OperandType::FPUM32:
-				opSize = OpSize::BITS_32;
-				break;
-			case OperandType::FPUM64:
-				opSize = OpSize::BITS_64;
-				break;
-			case OperandType::FPUM80:
-				opSize = OpSize::BITS_80;
-				break;
+				case OperandType::FPUM16:
+					opSize = OpSize::BITS_16;
+					break;
+				case OperandType::FPUM32:
+					opSize = OpSize::BITS_32;
+					break;
+				case OperandType::FPUM64:
+					opSize = OpSize::BITS_64;
+					break;
+				case OperandType::FPUM80:
+					opSize = OpSize::BITS_80;
+					break;
 
-				break;
-			default:
-				handled = false;
-				break;
+					break;
+				default:
+					handled = false;
+					break;
 			}
 
-			if (handled)
-			{
+			if (handled) {
 				if (mod == 0x3) {
 					// GPR can't be used.
 					return OperandDecodeResult::INVALID;
@@ -665,79 +606,73 @@ namespace TDiss
 			bool handled = true;
 
 			// handle ones that can be memory address or a GPR.
-			switch (opType)
-			{
-			case OperandType::REG_FULL_M16:
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				opSize = OpSize::BITS_16;
-				break;
-
-			case OperandType::RM_FULL:
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				if (effOp == CodeType::CODE_16BIT)
-				{
+			switch (opType) {
+				case OperandType::REG_FULL_M16:
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 					opSize = OpSize::BITS_16;
-				}
-				else if (effOp == CodeType::CODE_32BIT)
-				{
-					opSize = OpSize::BITS_32;
-				}
-				else if (effOp == CodeType::CODE_64BIT)
-				{
-					opSize = OpSize::BITS_64;
+					break;
 
-					// only mark rex if it took rex to get here.
-					if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+				case OperandType::RM_FULL:
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+					if (effOp == CodeType::CODE_16BIT) {
+						opSize = OpSize::BITS_16;
 					}
-				}
-				break;
-			case OperandType::RM_32_64:
-				// 32 unless rex.	
-				if (effOp == CodeType::CODE_64BIT) {
-					opSize = OpSize::BITS_64;
-
-					if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-						bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					else if (effOp == CodeType::CODE_32BIT) {
+						opSize = OpSize::BITS_32;
 					}
-				}
-				else {
+					else if (effOp == CodeType::CODE_64BIT) {
+						opSize = OpSize::BITS_64;
+
+						// only mark rex if it took rex to get here.
+						if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+						}
+					}
+					break;
+				case OperandType::RM_32_64:
+					// 32 unless rex.
+					if (effOp == CodeType::CODE_64BIT) {
+						opSize = OpSize::BITS_64;
+
+						if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+						}
+					}
+					else {
+						opSize = OpSize::BITS_32;
+					}
+					break;
+				case OperandType::XMM_128:
+					opSize = OpSize::BITS_128;
+					break;
+				case OperandType::MM_64:
+				case OperandType::XMM_64:
+					opSize = OpSize::BITS_64;
+					break;
+				case OperandType::RM_32:
+				case OperandType::MM_32:
+				case OperandType::XMM_32:
 					opSize = OpSize::BITS_32;
-				}
-				break;
-			case OperandType::XMM_128:
-				opSize = OpSize::BITS_128;
-				break;
-			case OperandType::MM_64:
-			case OperandType::XMM_64:
-				opSize = OpSize::BITS_64;
-				break;
-			case OperandType::RM_32:
-			case OperandType::MM_32:
-			case OperandType::XMM_32:
-				opSize = OpSize::BITS_32;
-				break;
-			case OperandType::RM_16:
-			case OperandType::XMM_16:
-				opSize = OpSize::BITS_16;
-				break;
-			case OperandType::RM_8:
-				opSize = OpSize::BITS_8;
-				break;
+					break;
+				case OperandType::RM_16:
+				case OperandType::XMM_16:
+					opSize = OpSize::BITS_16;
+					break;
+				case OperandType::RM_8:
+					opSize = OpSize::BITS_8;
+					break;
 
-			case OperandType::MEM_FULL_M16:
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				opSize = OpSize::BITS_16;
-				break;
+				case OperandType::MEM_FULL_M16:
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+					opSize = OpSize::BITS_16;
+					break;
 
-			default:
-				handled = false;
-				break;
+				default:
+					handled = false;
+					break;
 			}
 
-			if (handled)
-			{
+			if (handled) {
 				X_ASSERT(opSize != OpSize::INVALID);
 				op.size = safe_static_cast<uint16_t>(OpSize::OpSizeToBits(opSize));
 
@@ -747,729 +682,651 @@ namespace TDiss
 			}
 		}
 
-		switch (opType)
-		{
+		switch (opType) {
 			// REL_CI_* relative to current instruction.
-		case OperandType::REL_CI_8:
+			case OperandType::REL_CI_8:
 
-			op.Set8(OperandTypeAbs::PC);
+				op.Set8(OperandTypeAbs::PC);
 
-			if (!info->ReadValue(pInst->imm.sint8)) {
-				return OperandDecodeResult::STREAM_END;
-			}
-			break;
-		case OperandType::REL_CI_FULL:
-			ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-
-			if (effOp == CodeType::CODE_16BIT)
-			{
-				op.Set16(OperandTypeAbs::PC);
-
-				if (!info->ReadValue(pInst->imm.sint16)) {
+				if (!info->ReadValue(pInst->imm.sint8)) {
 					return OperandDecodeResult::STREAM_END;
 				}
-			}
-			else
-			{
-				op.Set32(OperandTypeAbs::PC);
-
-				if (!info->ReadValue(pInst->imm.sint32)) {
-					return OperandDecodeResult::STREAM_END;
-				}
-			}
-
-			break;
-
-			// SEG
-		case OperandType::SEG:
-		{
-			RegIndex::Enum segReg = RegIndex::NONE;
-
-#if X_DEBUG
-			// check the instruction flags have alleast one seg reg set.
-			if (!bitUtil::IsAnyBitFlagSet(instructionFlag, InstructionFlag::SEGMENTS_MASK)) {
-				X_ASSERT_UNREACABLE();
-			}
-#endif // !X_DEBUG
-
-			// work out the segment from instruction flag.
-			switch (instructionFlag & InstructionFlag::SEGMENTS_MASK)
-			{
-			case InstructionFlag::PRE_CS:
-				segReg = RegIndex::CS;
 				break;
-			case InstructionFlag::PRE_SS:
-				segReg = RegIndex::SS;
-				break;
-			case InstructionFlag::PRE_DS:
-				segReg = RegIndex::DS;
-				break;
-			case InstructionFlag::PRE_ES:
-				segReg = RegIndex::ES;
-				break;
-			case InstructionFlag::PRE_FS:
-				segReg = RegIndex::FS;
-				break;
-			case InstructionFlag::PRE_GS:
-				segReg = RegIndex::GS;
-				break;
-			}
-
-			op.Set(OperandTypeAbs::REG, segReg, 16);
-			break;
-		}
-		// IMM_*
-
-		case OperandType::IMM_8:
-			op.Set8(OperandTypeAbs::IMM);
-
-			if (!info->ReadValue(pInst->imm.uint8)) {
-				return OperandDecodeResult::STREAM_END;
-			}
-			break;
-		case OperandType::IMM_16:
-			op.Set16(OperandTypeAbs::IMM);
-
-			if (!info->ReadValue(pInst->imm.uint16)) {
-				return OperandDecodeResult::STREAM_END;
-			}
-			break;
-		case OperandType::IMM_32:
-			op.Set32(OperandTypeAbs::IMM);
-
-			if (info->codeType() == CodeType::CODE_64BIT)
-			{
-				// sign extended.
-				uint32_t temp;
-				if (!info->ReadValue(temp)) {
-					return OperandDecodeResult::STREAM_END;
-				}
-
-				pInst->imm.sint64 = temp;
-			}
-			else
-			{
-				if (!info->ReadValue(pInst->imm.uint32)) {
-					return OperandDecodeResult::STREAM_END;
-				}
-			}
-
-			break;
-		case OperandType::IMM_FULL:
-
-			if (effOp == CodeType::CODE_16BIT)
-			{
+			case OperandType::REL_CI_FULL:
 				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
+				if (effOp == CodeType::CODE_16BIT) {
+					op.Set16(OperandTypeAbs::PC);
+
+					if (!info->ReadValue(pInst->imm.sint16)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+				}
+				else {
+					op.Set32(OperandTypeAbs::PC);
+
+					if (!info->ReadValue(pInst->imm.sint32)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+				}
+
+				break;
+
+			// SEG
+			case OperandType::SEG: {
+				RegIndex::Enum segReg = RegIndex::NONE;
+
+#if X_DEBUG
+				// check the instruction flags have alleast one seg reg set.
+				if (!bitUtil::IsAnyBitFlagSet(instructionFlag, InstructionFlag::SEGMENTS_MASK)) {
+					X_ASSERT_UNREACABLE();
+				}
+#endif // !X_DEBUG
+
+				// work out the segment from instruction flag.
+				switch (instructionFlag & InstructionFlag::SEGMENTS_MASK) {
+					case InstructionFlag::PRE_CS:
+						segReg = RegIndex::CS;
+						break;
+					case InstructionFlag::PRE_SS:
+						segReg = RegIndex::SS;
+						break;
+					case InstructionFlag::PRE_DS:
+						segReg = RegIndex::DS;
+						break;
+					case InstructionFlag::PRE_ES:
+						segReg = RegIndex::ES;
+						break;
+					case InstructionFlag::PRE_FS:
+						segReg = RegIndex::FS;
+						break;
+					case InstructionFlag::PRE_GS:
+						segReg = RegIndex::GS;
+						break;
+				}
+
+				op.Set(OperandTypeAbs::REG, segReg, 16);
+				break;
+			}
+				// IMM_*
+
+			case OperandType::IMM_8:
+				op.Set8(OperandTypeAbs::IMM);
+
+				if (!info->ReadValue(pInst->imm.uint8)) {
+					return OperandDecodeResult::STREAM_END;
+				}
+				break;
+			case OperandType::IMM_16:
 				op.Set16(OperandTypeAbs::IMM);
 
 				if (!info->ReadValue(pInst->imm.uint16)) {
 					return OperandDecodeResult::STREAM_END;
 				}
-			}
-			else if (effOp == CodeType::CODE_64BIT &&
-				(bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-					bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-
-				op.Set64(OperandTypeAbs::IMM);
-
-				if (!info->ReadValue(pInst->imm.uint64)) {
-					return OperandDecodeResult::STREAM_END;
-				}
-			}
-			else // if (effOp == CodeType::CODE_32BIT)
-			{
+				break;
+			case OperandType::IMM_32:
 				op.Set32(OperandTypeAbs::IMM);
 
-				if (!info->ReadValue(pInst->imm.uint32)) {
+				if (info->codeType() == CodeType::CODE_64BIT) {
+					// sign extended.
+					uint32_t temp;
+					if (!info->ReadValue(temp)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+
+					pInst->imm.sint64 = temp;
+				}
+				else {
+					if (!info->ReadValue(pInst->imm.uint32)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+				}
+
+				break;
+			case OperandType::IMM_FULL:
+
+				if (effOp == CodeType::CODE_16BIT) {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+
+					op.Set16(OperandTypeAbs::IMM);
+
+					if (!info->ReadValue(pInst->imm.uint16)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+				}
+				else if (effOp == CodeType::CODE_64BIT && (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX))) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
+
+					op.Set64(OperandTypeAbs::IMM);
+
+					if (!info->ReadValue(pInst->imm.uint64)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+				}
+				else // if (effOp == CodeType::CODE_32BIT)
+				{
+					op.Set32(OperandTypeAbs::IMM);
+
+					if (!info->ReadValue(pInst->imm.uint32)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+				}
+
+				break;
+
+			case OperandType::IMM_S_8: // sign extended 8 bits.
+				op.Set32(OperandTypeAbs::IMM);
+
+				if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_OP_SIZE) && bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+
+					switch (info->codeType()) {
+						case CodeType::CODE_16BIT:
+							op.size = 32;
+							break;
+						case CodeType::CODE_32BIT:
+						case CodeType::CODE_64BIT:
+							op.size = 16;
+							break;
+					}
+				}
+				else {
+					op.size = 8;
+				}
+
+				if (!info->ReadValue(pInst->imm.sint8)) {
 					return OperandDecodeResult::STREAM_END;
 				}
-			}
-
-			break;
-
-		case OperandType::IMM_S_8: // sign extended 8 bits.
-			op.Set32(OperandTypeAbs::IMM);
-
-			if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_OP_SIZE) &&
-				bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-
-				switch (info->codeType())
-				{
-				case CodeType::CODE_16BIT:
-					op.size = 32;
-					break;
-				case CodeType::CODE_32BIT:
-				case CodeType::CODE_64BIT:
-					op.size = 16;
-					break;
-				}
-			}
-			else
-			{
-				op.size = 8;
-			}
-
-			if (!info->ReadValue(pInst->imm.sint8)) {
-				return OperandDecodeResult::STREAM_END;
-			}
-			break;
-
+				break;
 
 			// MOFFS*
-		case OperandType::MOFFS_8:
-			op.size = 8;
-			X_FALLTHROUGH;
-		case OperandType::MOFFS_FULL:
-			op.type = OperandTypeAbs::DISP;
+			case OperandType::MOFFS_8:
+				op.size = 8;
+				X_FALLTHROUGH;
+			case OperandType::MOFFS_FULL:
+				op.type = OperandTypeAbs::DISP;
 
-			if (op.size == 0) // if we did not fall through work out the size.
-			{
-				switch (effOp)
+				if (op.size == 0) // if we did not fall through work out the size.
 				{
-				case CodeType::CODE_16BIT: op.size = 16; break;
-				case CodeType::CODE_32BIT: op.size = 32; break;
-				case CodeType::CODE_64BIT: op.size = 64; break;
+					switch (effOp) {
+						case CodeType::CODE_16BIT:
+							op.size = 16;
+							break;
+						case CodeType::CODE_32BIT:
+							op.size = 32;
+							break;
+						case CodeType::CODE_64BIT:
+							op.size = 64;
+							break;
+					}
 				}
-			}
 
-			ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
+				ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
 
-			if (effAdd == CodeType::CODE_16BIT)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
+				if (effAdd == CodeType::CODE_16BIT) {
+					ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
 
-				pInst->displacementSize = 16;
-				if (!info->ReadDisplacementValue(pInst->displacement, 2)) {
-					return OperandDecodeResult::STREAM_END;
+					pInst->displacementSize = 16;
+					if (!info->ReadDisplacementValue(pInst->displacement, 2)) {
+						return OperandDecodeResult::STREAM_END;
+					}
 				}
-			}
-			else if (effAdd == CodeType::CODE_32BIT)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
+				else if (effAdd == CodeType::CODE_32BIT) {
+					ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
 
-				pInst->displacementSize = 32;
-				if (!info->ReadDisplacementValue(pInst->displacement, 4)) {
-					return OperandDecodeResult::STREAM_END;
+					pInst->displacementSize = 32;
+					if (!info->ReadDisplacementValue(pInst->displacement, 4)) {
+						return OperandDecodeResult::STREAM_END;
+					}
 				}
-			}
-			else // 64
-			{
-				pInst->displacementSize = 64;
+				else // 64
+				{
+					pInst->displacementSize = 64;
 
-				if (!info->ReadDisplacementValue(pInst->displacement, 8)) {
-					return OperandDecodeResult::STREAM_END;
+					if (!info->ReadDisplacementValue(pInst->displacement, 8)) {
+						return OperandDecodeResult::STREAM_END;
+					}
 				}
-			}
 
-			break;
+				break;
 
 			// ACC_*
-		case OperandType::ACC_8:
-			op.Set(OperandTypeAbs::REG, RegIndex::AL, 8);
-			break;
-		case OperandType::ACC_16:
-			op.Set(OperandTypeAbs::REG, RegIndex::AX, 16);
-
-			break;
-		case OperandType::ACC_FULL_NOT64:
-			X_FALLTHROUGH;
-		case OperandType::ACC_FULL:
-			if (effOp == CodeType::CODE_16BIT)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+			case OperandType::ACC_8:
+				op.Set(OperandTypeAbs::REG, RegIndex::AL, 8);
+				break;
+			case OperandType::ACC_16:
 				op.Set(OperandTypeAbs::REG, RegIndex::AX, 16);
-			}
-			else if (effOp == CodeType::CODE_32BIT)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				op.Set(OperandTypeAbs::REG, RegIndex::EAX, 32);
-			}
-			else // 64
-			{
-				// must be none auto promoted instruction in order to need a rex prefix.
-				if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
+
+				break;
+			case OperandType::ACC_FULL_NOT64:
+				X_FALLTHROUGH;
+			case OperandType::ACC_FULL:
+				if (effOp == CodeType::CODE_16BIT) {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+					op.Set(OperandTypeAbs::REG, RegIndex::AX, 16);
 				}
+				else if (effOp == CodeType::CODE_32BIT) {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+					op.Set(OperandTypeAbs::REG, RegIndex::EAX, 32);
+				}
+				else // 64
+				{
+					// must be none auto promoted instruction in order to need a rex prefix.
+					if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
+						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					}
 
-				op.Set(OperandTypeAbs::REG, RegIndex::RAX, 64);
-			}
-			break;
-
+					op.Set(OperandTypeAbs::REG, RegIndex::RAX, 64);
+				}
+				break;
 
 			// REG_*
-		case OperandType::REG_8:
-			if (ps.ExtType != PrefixExtType::NONE)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-				{
-					reg += RegIndex::EX_GPR_OFFSET;
-				}
+			case OperandType::REG_8:
+				if (ps.ExtType != PrefixExtType::NONE) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
+						reg += RegIndex::EX_GPR_OFFSET;
+					}
 
-				if (reg >= 4 && reg < 8) {
-					reg += RegIndex::REG_8_REX_BASE;
-					reg -= 4; // turn the 4-7 to 0-3
+					if (reg >= 4 && reg < 8) {
+						reg += RegIndex::REG_8_REX_BASE;
+						reg -= 4; // turn the 4-7 to 0-3
+					}
+					else {
+						reg += RegIndex::REG_8_BASE;
+					}
 				}
 				else {
 					reg += RegIndex::REG_8_BASE;
 				}
-			}
-			else
-			{
-				reg += RegIndex::REG_8_BASE;
-			}
 
-			op.Set8(OperandTypeAbs::REG, reg);
-			break;
-		case OperandType::REG_16:
-			op.Set16(OperandTypeAbs::REG, reg);
-			break;
-		case OperandType::REG_32:
-			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				reg += RegIndex::EX_GPR_OFFSET;
-			}
-			op.Set32(OperandTypeAbs::REG, reg);
-			break;
-
-		case OperandType::REG_32_64:
-			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				reg += RegIndex::EX_GPR_OFFSET;
-			}
-
-			if (info->codeType() == CodeType::CODE_64BIT &&
-				bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-				!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX))
-			{
-				op.Set64(OperandTypeAbs::REG, reg);
+				op.Set8(OperandTypeAbs::REG, reg);
 				break;
-			}
-
-			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::W))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				op.Set64(OperandTypeAbs::REG, reg);
-			}
-			else
-			{
-				op.Set32(OperandTypeAbs::REG, reg);
-			}
-			break;
-
-		case OperandType::REG_FULL:
-			switch (effOp)
-			{
-			case CodeType::CODE_16BIT:
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-				{
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					reg += RegIndex::EX_GPR_OFFSET;
-				}
-
+			case OperandType::REG_16:
 				op.Set16(OperandTypeAbs::REG, reg);
 				break;
-			case CodeType::CODE_32BIT:
-				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-				{
+			case OperandType::REG_32:
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					reg += RegIndex::EX_GPR_OFFSET;
 				}
-				else
-				{
-					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				}
-
 				op.Set32(OperandTypeAbs::REG, reg);
 				break;
-			case CodeType::CODE_64BIT:
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
-				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-				{
+			case OperandType::REG_32_64:
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					reg += RegIndex::EX_GPR_OFFSET;
 				}
 
-				op.Set64(OperandTypeAbs::REG, reg);
+				if (info->codeType() == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) && !bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+					op.Set64(OperandTypeAbs::REG, reg);
+					break;
+				}
+
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::W)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					op.Set64(OperandTypeAbs::REG, reg);
+				}
+				else {
+					op.Set32(OperandTypeAbs::REG, reg);
+				}
 				break;
-			default:
-				X_ASSERT_NOT_IMPLEMENTED();
+
+			case OperandType::REG_FULL:
+				switch (effOp) {
+					case CodeType::CODE_16BIT:
+						ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							reg += RegIndex::EX_GPR_OFFSET;
+						}
+
+						op.Set16(OperandTypeAbs::REG, reg);
+						break;
+					case CodeType::CODE_32BIT:
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							reg += RegIndex::EX_GPR_OFFSET;
+						}
+						else {
+							ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+						}
+
+						op.Set32(OperandTypeAbs::REG, reg);
+						break;
+					case CodeType::CODE_64BIT:
+						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
+							reg += RegIndex::EX_GPR_OFFSET;
+						}
+
+						op.Set64(OperandTypeAbs::REG, reg);
+						break;
+					default:
+						X_ASSERT_NOT_IMPLEMENTED();
+						break;
+				}
 				break;
-			}
-			break;
 
 			// instruction blocks.
-		case OperandType::BLOCK_R_8:
-			reg = (*(info->current() - 1) & 7);
+			case OperandType::BLOCK_R_8:
+				reg = (*(info->current() - 1) & 7);
 
-			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+				{
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
-				reg += RegIndex::REG_8_BASE + RegIndex::EX_GPR_OFFSET;
-			}
-			else if (ps.ExtType == PrefixExtType::REX)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					reg += RegIndex::REG_8_BASE + RegIndex::EX_GPR_OFFSET;
+				}
+				else if (ps.ExtType == PrefixExtType::REX) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
-				if (reg >= 4 && reg < 8) {
-					reg += RegIndex::REG_8_REX_BASE;
-					reg -= 4; // turn the 4-7 to 0-3
+					if (reg >= 4 && reg < 8) {
+						reg += RegIndex::REG_8_REX_BASE;
+						reg -= 4; // turn the 4-7 to 0-3
+					}
+					else {
+						reg += RegIndex::REG_8_BASE;
+					}
 				}
 				else {
 					reg += RegIndex::REG_8_BASE;
 				}
-			}
-			else
-			{
-				reg += RegIndex::REG_8_BASE;
-			}
 
-			op.Set8(OperandTypeAbs::REG, reg);
-			break;
-
-		case OperandType::BLOCK_R_FULL:
-			// go back to the Op code byte and get the 3 LSB's 
-			reg = (*(info->current() - 1) & 7);
-			switch (effOp)
-			{
-			case CodeType::CODE_16BIT:
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-
-				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
-				{
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					reg += RegIndex::EX_GPR_OFFSET;
-				}
-
-				op.Set16(OperandTypeAbs::REG, reg);
+				op.Set8(OperandTypeAbs::REG, reg);
 				break;
-			case CodeType::CODE_32BIT:
-				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
-				{
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					reg += RegIndex::EX_GPR_OFFSET;
-				}
-				else
-				{
-					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				}
 
-				op.Set32(OperandTypeAbs::REG, reg);
-				break;
-			case CodeType::CODE_64BIT:
-				// auto promoted can drop REX prefix.
-				if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-					!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX))
-				{
-					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
-					{
-						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						reg += RegIndex::EX_GPR_OFFSET;
-					}
-				}
-				else
-				{
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
-					{
-						reg += RegIndex::EX_GPR_OFFSET;
-					}
-				}
+			case OperandType::BLOCK_R_FULL:
+				// go back to the Op code byte and get the 3 LSB's
+				reg = (*(info->current() - 1) & 7);
+				switch (effOp) {
+					case CodeType::CODE_16BIT:
+						ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
-				op.Set64(OperandTypeAbs::REG, reg);
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+						{
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							reg += RegIndex::EX_GPR_OFFSET;
+						}
+
+						op.Set16(OperandTypeAbs::REG, reg);
+						break;
+					case CodeType::CODE_32BIT:
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+						{
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							reg += RegIndex::EX_GPR_OFFSET;
+						}
+						else {
+							ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+						}
+
+						op.Set32(OperandTypeAbs::REG, reg);
+						break;
+					case CodeType::CODE_64BIT:
+						// auto promoted can drop REX prefix.
+						if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) && !bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+							if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+							{
+								ps.addUsedPrefix(InstructionFlag::PRE_REX);
+								reg += RegIndex::EX_GPR_OFFSET;
+							}
+						}
+						else {
+							ps.addUsedPrefix(InstructionFlag::PRE_REX);
+							if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+							{
+								reg += RegIndex::EX_GPR_OFFSET;
+							}
+						}
+
+						op.Set64(OperandTypeAbs::REG, reg);
+						break;
+				}
 				break;
-			}
-			break;
 
 			// repeatable instructions
-		case OperandType::REG_ESI:
-			op.type = OperandTypeAbs::SMEM;
+			case OperandType::REG_ESI:
+				op.type = OperandTypeAbs::SMEM;
 
-			ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
+				ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
 
-			if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS16))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+				if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS16)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
-				if (effOp == CodeType::CODE_16BIT)
-				{
+					if (effOp == CodeType::CODE_16BIT) {
+						op.size = 8;
+					}
+					else if (effOp == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
+						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+						op.size = 64;
+					}
+					else // 32
+					{
+						op.size = 32;
+					}
+				}
+				else {
 					op.size = 8;
 				}
-				else if (effOp == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64))
-				{
-					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					op.size = 64;
+
+				pInst->segment = RegIndex::NONE;
+				ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
+
+				if (effAdd == CodeType::CODE_16BIT) {
+					op.regIndex = RegIndex::SI;
 				}
-				else // 32
-				{
-					op.size = 32;
+				else if (effAdd == CodeType::CODE_32BIT) {
+					op.regIndex = RegIndex::ESI;
 				}
-			}
-			else
-			{
-				op.size = 8;
-			}
-
-			pInst->segment = RegIndex::NONE;
-			ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
-
-			if (effAdd == CodeType::CODE_16BIT)
-			{
-				op.regIndex = RegIndex::SI;
-			}
-			else if (effAdd == CodeType::CODE_32BIT)
-			{
-				op.regIndex = RegIndex::ESI;
-			}
-			else // if (effOp == CodeType::CODE_64BIT)
-			{
-				op.regIndex = RegIndex::RSI;
-			}
-			break;
-
-
-		case OperandType::REG_EDI:
-			op.type = OperandTypeAbs::SMEM;
-
-			ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
-
-			if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS16))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-
-				if (effOp == CodeType::CODE_16BIT)
+				else // if (effOp == CodeType::CODE_64BIT)
 				{
+					op.regIndex = RegIndex::RSI;
+				}
+				break;
+
+			case OperandType::REG_EDI:
+				op.type = OperandTypeAbs::SMEM;
+
+				ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
+
+				if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS16)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+
+					if (effOp == CodeType::CODE_16BIT) {
+						op.size = 8;
+					}
+					else if (effOp == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
+						ps.addUsedPrefix(InstructionFlag::PRE_REX);
+						op.size = 64;
+					}
+					else // 32
+					{
+						op.size = 32;
+					}
+				}
+				else {
 					op.size = 8;
 				}
-				else if (effOp == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64))
+
+				if (opIdx == OperandIdx::Dest && info->codeType() != CodeType::CODE_64BIT) {
+					pInst->segment = RegIndex::ES;
+				}
+
+				if (effAdd == CodeType::CODE_16BIT) {
+					op.regIndex = RegIndex::DI;
+				}
+				else if (effAdd == CodeType::CODE_32BIT) {
+					op.regIndex = RegIndex::EDI;
+				}
+				else // if (effOp == CodeType::CODE_64BIT)
+				{
+					op.regIndex = RegIndex::RDI;
+				}
+
+				break;
+
+			case OperandType::REG_DX:
+				// IN/OUT
+				op.Set(OperandTypeAbs::REG, RegIndex::DX, 16);
+				break;
+			case OperandType::REG_CL:
+				op.Set(OperandTypeAbs::REG, RegIndex::CL, 8);
+				break;
+
+			case OperandType::REG_EBXAL:
+				// [(r)BX + AL]
+				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+
+				op.Set(OperandTypeAbs::MEM, RegIndex::AL, 8);
+
+				ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
+
+				if (effAdd == CodeType::CODE_16BIT) {
+					pInst->base = RegIndex::BX;
+				}
+				else if (effAdd == CodeType::CODE_32BIT) {
+					pInst->base = RegIndex::EBX;
+				}
+				else // if (effOp == CodeType::CODE_64BIT)
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					op.size = 64;
-				}
-				else // 32
-				{
-					op.size = 32;
-				}
-			}
-			else
-			{
-				op.size = 8;
-			}
-
-			if (opIdx == OperandIdx::Dest && info->codeType() != CodeType::CODE_64BIT) {
-				pInst->segment = RegIndex::ES;
-			}
-
-			if (effAdd == CodeType::CODE_16BIT)
-			{
-				op.regIndex = RegIndex::DI;
-			}
-			else if (effAdd == CodeType::CODE_32BIT)
-			{
-				op.regIndex = RegIndex::EDI;
-			}
-			else // if (effOp == CodeType::CODE_64BIT)
-			{
-				op.regIndex = RegIndex::RDI;
-			}
-
-			break;
-
-
-		case OperandType::REG_DX:
-			// IN/OUT
-			op.Set(OperandTypeAbs::REG, RegIndex::DX, 16);
-			break;
-		case OperandType::REG_CL:
-			op.Set(OperandTypeAbs::REG, RegIndex::CL, 8);
-			break;
-
-		case OperandType::REG_EBXAL:
-			// [(r)BX + AL] 
-			ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-
-			op.Set(OperandTypeAbs::MEM, RegIndex::AL, 8);
-
-			ps.useSegment(InstructionFlag::PRE_DS, info->codeType(), pInst);
-
-			if (effAdd == CodeType::CODE_16BIT)
-			{
-				pInst->base = RegIndex::BX;
-			}
-			else if (effAdd == CodeType::CODE_32BIT)
-			{
-				pInst->base = RegIndex::EBX;
-
-			}
-			else // if (effOp == CodeType::CODE_64BIT)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				pInst->base = RegIndex::RBX;
-			}
-
-			break;
-
-		case OperandType::MM:
-		{
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_MMX_BASE + reg), 64);
-			break;
-		}
-		case OperandType::MM_RM:
-		{
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_MMX_BASE + rm), 64);
-			break;
-		}
-		case OperandType::XMM:
-		{
-			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				reg += RegIndex::EX_GPR_OFFSET;
-			}
-
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_SSE_BASE + reg), 128);
-			break;
-		}
-		case OperandType::XMM_RM:
-		{
-			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				rm += RegIndex::EX_GPR_OFFSET;
-			}
-
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_SSE_BASE + rm), 128);
-			break;
-		}
-
-
-
-		// reg sets.
-		case OperandType::CREG:
-		{
-			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				reg += RegIndex::EX_GPR_OFFSET;
-			}
-			else if (info->codeType() == CodeType::CODE_64BIT &&
-				bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_LOCK))
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_LOCK);
-				reg += RegIndex::EX_GPR_OFFSET;
-			}
-
-			uint16_t regSize = 32;
-
-			if (info->codeType() == CodeType::CODE_64BIT) {
-				regSize = 64;
-			}
-
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_CREG_BASE + reg), regSize);
-			break;
-		}
-		case OperandType::DREG:
-		{
-			uint16_t regSize = 32;
-
-			if (info->codeType() == CodeType::CODE_64BIT) {
-				regSize = 64;
-			}
-
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_DREG_BASE + reg), regSize);
-			break;
-		}
-		case OperandType::SREG:
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_SREG_BASE + reg), 16);
-			break;
-
-		case OperandType::PTR16_FULL:
-
-			if (info->codeType() == CodeType::CODE_64BIT)
-			{
-				X_ASSERT_UNREACABLE();
-			}
-			else if (info->codeType() == CodeType::CODE_16BIT)
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-
-				uint16_t temp = 0;
-
-				if (!info->ReadValue(temp)) {
-					return OperandDecodeResult::STREAM_END;
-				}
-				if (!info->ReadValue(pInst->imm.ptr.seg)) {
-					return OperandDecodeResult::STREAM_END;
+					pInst->base = RegIndex::RBX;
 				}
 
-				pInst->imm.ptr.off = temp;
+				break;
 
-				op.Set(OperandTypeAbs::PTR, RegIndex::NONE, 16);
+			case OperandType::MM: {
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_MMX_BASE + reg), 64);
+				break;
 			}
-			else
-			{
-				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-
-				if (!info->ReadValue(pInst->imm.ptr.off)) {
-					return OperandDecodeResult::STREAM_END;
-				}
-				if (!info->ReadValue(pInst->imm.ptr.seg)) {
-					return OperandDecodeResult::STREAM_END;
-				}
-
-				op.Set(OperandTypeAbs::PTR, RegIndex::NONE, 32);
+			case OperandType::MM_RM: {
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_MMX_BASE + rm), 64);
+				break;
 			}
-			break;
+			case OperandType::XMM: {
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					reg += RegIndex::EX_GPR_OFFSET;
+				}
 
-		case OperandType::CONST1:
-			op.Set8(OperandTypeAbs::IMM);
-			pInst->imm.uint8 = 1;
-			break;
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_SSE_BASE + reg), 128);
+				break;
+			}
+			case OperandType::XMM_RM: {
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					rm += RegIndex::EX_GPR_OFFSET;
+				}
 
-		case OperandType::FPU_SI:
-		{
-			uint8_t idx = (*(info->getPtr<uint8_t>() - 1) & 7);
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_SSE_BASE + rm), 128);
+				break;
+			}
 
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_FPU_BASE + idx), 32);
-		}
-		break;
-		case OperandType::FPU_SSI:
-		{
-			// two operands are decoded.
-			Operand& op2 = pInst->ops[opIdx + 1];
-			uint8_t idx = (*(info->getPtr<uint8_t>() - 1) & 7);
+			// reg sets.
+			case OperandType::CREG: {
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_REX);
+					reg += RegIndex::EX_GPR_OFFSET;
+				}
+				else if (info->codeType() == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_LOCK)) {
+					ps.addUsedPrefix(InstructionFlag::PRE_LOCK);
+					reg += RegIndex::EX_GPR_OFFSET;
+				}
 
-			op.Set(OperandTypeAbs::REG, RegIndex::ST0, 32);
-			op2.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_FPU_BASE + idx), 32);
-		}
-		break;
-		case OperandType::FPU_SIS:
-		{
-			// two operands are decoded.
-			Operand& op2 = pInst->ops[opIdx + 1];
-			uint8_t idx = (*(info->getPtr<uint8_t>() - 1) & 7);
+				uint16_t regSize = 32;
 
-			op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_FPU_BASE + idx), 32);
-			op2.Set(OperandTypeAbs::REG, RegIndex::ST0, 32);
-		}
-		break;
+				if (info->codeType() == CodeType::CODE_64BIT) {
+					regSize = 64;
+				}
 
-		default:
-			X_ASSERT_NOT_IMPLEMENTED();
-			return OperandDecodeResult::INVALID;
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_CREG_BASE + reg), regSize);
+				break;
+			}
+			case OperandType::DREG: {
+				uint16_t regSize = 32;
+
+				if (info->codeType() == CodeType::CODE_64BIT) {
+					regSize = 64;
+				}
+
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_DREG_BASE + reg), regSize);
+				break;
+			}
+			case OperandType::SREG:
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_SREG_BASE + reg), 16);
+				break;
+
+			case OperandType::PTR16_FULL:
+
+				if (info->codeType() == CodeType::CODE_64BIT) {
+					X_ASSERT_UNREACABLE();
+				}
+				else if (info->codeType() == CodeType::CODE_16BIT) {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+
+					uint16_t temp = 0;
+
+					if (!info->ReadValue(temp)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+					if (!info->ReadValue(pInst->imm.ptr.seg)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+
+					pInst->imm.ptr.off = temp;
+
+					op.Set(OperandTypeAbs::PTR, RegIndex::NONE, 16);
+				}
+				else {
+					ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
+
+					if (!info->ReadValue(pInst->imm.ptr.off)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+					if (!info->ReadValue(pInst->imm.ptr.seg)) {
+						return OperandDecodeResult::STREAM_END;
+					}
+
+					op.Set(OperandTypeAbs::PTR, RegIndex::NONE, 32);
+				}
+				break;
+
+			case OperandType::CONST1:
+				op.Set8(OperandTypeAbs::IMM);
+				pInst->imm.uint8 = 1;
+				break;
+
+			case OperandType::FPU_SI: {
+				uint8_t idx = (*(info->getPtr<uint8_t>() - 1) & 7);
+
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_FPU_BASE + idx), 32);
+			} break;
+			case OperandType::FPU_SSI: {
+				// two operands are decoded.
+				Operand& op2 = pInst->ops[opIdx + 1];
+				uint8_t idx = (*(info->getPtr<uint8_t>() - 1) & 7);
+
+				op.Set(OperandTypeAbs::REG, RegIndex::ST0, 32);
+				op2.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_FPU_BASE + idx), 32);
+			} break;
+			case OperandType::FPU_SIS: {
+				// two operands are decoded.
+				Operand& op2 = pInst->ops[opIdx + 1];
+				uint8_t idx = (*(info->getPtr<uint8_t>() - 1) & 7);
+
+				op.Set(OperandTypeAbs::REG, static_cast<RegIndex::Enum>(RegIndex::REG_FPU_BASE + idx), 32);
+				op2.Set(OperandTypeAbs::REG, RegIndex::ST0, 32);
+			} break;
+
+			default:
+				X_ASSERT_NOT_IMPLEMENTED();
+				return OperandDecodeResult::INVALID;
 		}
 
 		return OperandDecodeResult::OK;
 	}
-
 
 } // namespace TDiss

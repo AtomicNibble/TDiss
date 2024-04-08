@@ -42,26 +42,25 @@ namespace TDiss
 	{
 		const uint32_t disOptions = strm_.options();
 
-		switch (inst.flow)
-		{
-		case FlowControl::NONE:
-			return false;
-		case FlowControl::CALL:
-			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CALL);
-		case FlowControl::RET:
-			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_RET);
-		case FlowControl::SYS:
-			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_SYS);
-		case FlowControl::UNC_BRANCH:
-			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH);
-		case FlowControl::CND_BRANCH:
-			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH);
-		case FlowControl::CMOV:
-			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CMOV);
-		case FlowControl::INT:
-			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_INT);
-		default:
-			return false;
+		switch (inst.flow) {
+			case FlowControl::NONE:
+				return false;
+			case FlowControl::CALL:
+				return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CALL);
+			case FlowControl::RET:
+				return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_RET);
+			case FlowControl::SYS:
+				return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_SYS);
+			case FlowControl::UNC_BRANCH:
+				return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH);
+			case FlowControl::CND_BRANCH:
+				return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH);
+			case FlowControl::CMOV:
+				return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CMOV);
+			case FlowControl::INT:
+				return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_INT);
+			default:
+				return false;
 		}
 	}
 
@@ -75,8 +74,7 @@ namespace TDiss
 
 		const bool canStopOnFlow = strm_.stopOnFlowEnabled();
 
-		while (!strm_.isEof())
-		{
+		while (!strm_.isEof()) {
 			// offset of current instruction.
 			instVAStart = strm_.currentVA();
 
@@ -88,14 +86,11 @@ namespace TDiss
 				TDISS_LOG2("0x%x prefixes. flags: 0x%x", ps.prefixSize(), ps.decodedPrefixFlags);
 			}
 
-			if (strm_.is64BitDecode())
-			{
+			if (strm_.is64BitDecode()) {
 				// REX
-				if (bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REX))
-				{
+				if (bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REX)) {
 					// check the res was preceding byte before instruction.
-					if (ps.pRex_ != (strm_.current() - 1))
-					{
+					if (ps.pRex_ != (strm_.current() - 1)) {
 						// not valid :(
 						ps.decodedPrefixFlags = bitUtil::ClearBitFlag(ps.decodedPrefixFlags, InstructionFlag::PRE_REX);
 						ps.ExtType = PrefixExtType::NONE;
@@ -105,8 +100,7 @@ namespace TDiss
 				}
 
 				// in 64 CS DS ES SS segment goats are slapped.
-				const uint32_t segMask = (InstructionFlag::PRE_CS | InstructionFlag::PRE_DS |
-					InstructionFlag::PRE_ES | InstructionFlag::PRE_SS);
+				const uint32_t segMask = (InstructionFlag::PRE_CS | InstructionFlag::PRE_DS | InstructionFlag::PRE_ES | InstructionFlag::PRE_SS);
 
 				if (ps.decodedPrefixFlags & segMask) {
 					ps.decodedPrefixFlags &= ~segMask;
@@ -122,15 +116,14 @@ namespace TDiss
 				return DisResult::OUTDATAFULL;
 			}
 
-			// now need to decode the instruction. 
+			// now need to decode the instruction.
 			Instruction& curInst = pDecodeInst[currentInstOut];
 
 			InstrDecodeResult::Enum res = decodeInst(ps, &curInst);
 
 			curInst.add = (instVAStart & addMask_);
 
-			if (res == InstrDecodeResult::OK)
-			{
+			if (res == InstrDecodeResult::OK) {
 				// add prefix size to instruction
 				curInst.size += static_cast<uint8_t>(ps.prefixSize());
 
@@ -139,17 +132,14 @@ namespace TDiss
 				currentInstOut++;
 			}
 			else if ((res == InstrDecodeResult::UNKNOWN_INST
-				|| res == InstrDecodeResult::OPERAND_DECODE_FAIL
-				|| res == InstrDecodeResult::INVALID)
-				&& bitUtil::IsBitFlagSet(strm_.options(), DisOptions::SKIP_INVALID))
-			{
+						 || res == InstrDecodeResult::OPERAND_DECODE_FAIL
+						 || res == InstrDecodeResult::INVALID)
+					 && bitUtil::IsBitFlagSet(strm_.options(), DisOptions::SKIP_INVALID)) {
 				const size_t numPrefix = ps.prefixSize();
-				if (numPrefix > 0)
-				{
+				if (numPrefix > 0) {
 					// we don't seek the stream for these.
 					const uint8_t* pStart = ps.pStart_;
-					for (size_t i = 0; i < numPrefix; i++, instVAStart++)
-					{
+					for (size_t i = 0; i < numPrefix; i++, instVAStart++) {
 						Instruction& curInstSub = pDecodeInst[currentInstOut];
 						curInstSub = Instruction();
 						curInstSub.size = 1;
@@ -179,24 +169,21 @@ namespace TDiss
 
 				strm_.SeekBytes(1);
 			}
-			else if (res == InstrDecodeResult::STREAM_END && bitUtil::IsBitFlagSet(strm_.options(), DisOptions::SKIP_INVALID))
-			{
+			else if (res == InstrDecodeResult::STREAM_END && bitUtil::IsBitFlagSet(strm_.options(), DisOptions::SKIP_INVALID)) {
 				curInst = Instruction();
 
 				TDISS_ERR("Reached end of stream mid decode");
 				*usedInstructionsCount = currentInstOut;
 				return DisResult::OK;
 			}
-			else
-			{
+			else {
 				TDISS_ERR("Invalid / unknown instruction");
 				*usedInstructionsCount = currentInstOut;
 				return DisResult::DATAERR;
 			}
 
 			// stop on flow?
-			if (canStopOnFlow)
-			{
+			if (canStopOnFlow) {
 				if (StopForFlow(curInst)) {
 					*usedInstructionsCount = currentInstOut;
 					return DisResult::OK;

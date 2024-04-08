@@ -8,10 +8,10 @@ int main(int argc, char* argv[])
 
 	// bool ci = false;
 	{
-	//	std::wstring cmd(lpCmdLine);
-	//	if (cmd.find(L"-ci") != std::wstring::npos) {
-	//		ci = true;
-	//	}
+		//	std::wstring cmd(lpCmdLine);
+		//	if (cmd.find(L"-ci") != std::wstring::npos) {
+		//		ci = true;
+		//	}
 	}
 #if 0
 	if (ci)
@@ -30,9 +30,7 @@ int main(int argc, char* argv[])
 
 	res = RUN_ALL_TESTS();
 
-//	gLogger.ShutDown();
+	//	gLogger.ShutDown();
 
 	return res;
 }
-
-

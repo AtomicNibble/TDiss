@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Prefix.h"
 
-
 namespace TDiss
 {
 	/*
@@ -43,47 +42,45 @@ namespace TDiss
 
 	bool PrefixState::isValidPrefix(const uint8_t op, CodeType::Enum ct)
 	{
-		switch (op)
-		{
-		case 0x40:
-		case 0x41:
-		case 0x42:
-		case 0x43:
-		case 0x44:
-		case 0x45:
-		case 0x46:
-		case 0x47:
-		case 0x48:
-		case 0x49:
-		case 0x4a:
-		case 0x4b:
-		case 0x4c:
-		case 0x4d:
-		case 0x4e:
-		case 0x4f:
-			return (ct == CodeType::CODE_64BIT);
+		switch (op) {
+			case 0x40:
+			case 0x41:
+			case 0x42:
+			case 0x43:
+			case 0x44:
+			case 0x45:
+			case 0x46:
+			case 0x47:
+			case 0x48:
+			case 0x49:
+			case 0x4a:
+			case 0x4b:
+			case 0x4c:
+			case 0x4d:
+			case 0x4e:
+			case 0x4f:
+				return (ct == CodeType::CODE_64BIT);
 
-		case Prefix::LOCK:
-		case Prefix::REPNZ:
-		case Prefix::REP:
-		case Prefix::CS:
-		case Prefix::SS:
-		case Prefix::DS:
-		case Prefix::ES:
-		case Prefix::FS:
-		case Prefix::GS:
-		case Prefix::OP_SIZE:
-		case Prefix::ADD_SIZE:
-			return true;
+			case Prefix::LOCK:
+			case Prefix::REPNZ:
+			case Prefix::REP:
+			case Prefix::CS:
+			case Prefix::SS:
+			case Prefix::DS:
+			case Prefix::ES:
+			case Prefix::FS:
+			case Prefix::GS:
+			case Prefix::OP_SIZE:
+			case Prefix::ADD_SIZE:
+				return true;
 
-		case Prefix::VEX2b:
-		case Prefix::VEX3b:
-			// need to confirm these
-			return true;
+			case Prefix::VEX2b:
+			case Prefix::VEX3b:
+				// need to confirm these
+				return true;
 
-		default:
-			break;
-
+			default:
+				break;
 		}
 
 		return false;
@@ -91,56 +88,54 @@ namespace TDiss
 
 	PrefixGroup::Enum PrefixState::getPrefixGroup(const uint8_t op, CodeType::Enum ct)
 	{
-		switch (op)
-		{
-		case 0x40:
-		case 0x41:
-		case 0x42:
-		case 0x43:
-		case 0x44:
-		case 0x45:
-		case 0x46:
-		case 0x47:
-		case 0x48:
-		case 0x49:
-		case 0x4a:
-		case 0x4b:
-		case 0x4c:
-		case 0x4d:
-		case 0x4e:
-		case 0x4f:
-		{
-			if (ct == CodeType::CODE_64BIT) {
-				return PrefixGroup::REX;
+		switch (op) {
+			case 0x40:
+			case 0x41:
+			case 0x42:
+			case 0x43:
+			case 0x44:
+			case 0x45:
+			case 0x46:
+			case 0x47:
+			case 0x48:
+			case 0x49:
+			case 0x4a:
+			case 0x4b:
+			case 0x4c:
+			case 0x4d:
+			case 0x4e:
+			case 0x4f: {
+				if (ct == CodeType::CODE_64BIT) {
+					return PrefixGroup::REX;
+				}
+				return PrefixGroup::NONE;
+				break;
 			}
-			return PrefixGroup::NONE;
-			break;
-		}
 
-		case Prefix::LOCK:
-		case Prefix::REPNZ:
-		case Prefix::REP:
-			return PrefixGroup::LOCK_REP;
+			case Prefix::LOCK:
+			case Prefix::REPNZ:
+			case Prefix::REP:
+				return PrefixGroup::LOCK_REP;
 
-		case Prefix::CS:
-		case Prefix::SS:
-		case Prefix::DS:
-		case Prefix::ES:
-		case Prefix::FS:
-		case Prefix::GS:
-			return PrefixGroup::SEG;
+			case Prefix::CS:
+			case Prefix::SS:
+			case Prefix::DS:
+			case Prefix::ES:
+			case Prefix::FS:
+			case Prefix::GS:
+				return PrefixGroup::SEG;
 
-		case Prefix::OP_SIZE:
-			return PrefixGroup::OP_SIZE;
+			case Prefix::OP_SIZE:
+				return PrefixGroup::OP_SIZE;
 
-		case Prefix::ADD_SIZE:
-			return PrefixGroup::ADD_SIZE;
+			case Prefix::ADD_SIZE:
+				return PrefixGroup::ADD_SIZE;
 
-			//	case Prefix::VEX2b:
-			//	case Prefix::VEX3b:
+				//	case Prefix::VEX2b:
+				//	case Prefix::VEX3b:
 
-		default:
-			break;
+			default:
+				break;
 		}
 
 		return PrefixGroup::NONE;
@@ -184,138 +179,126 @@ namespace TDiss
 		// VEX is only allowed once.
 		size_t byteIdx = 0;
 
-		for (; !strm.isEof() && union_cast<size_t>(strm.current() - pStart_) < MAX_INSTRUCTION_SIZE; strm.SeekBytes(1), byteIdx++)
-		{
+		for (; !strm.isEof() && union_cast<size_t>(strm.current() - pStart_) < MAX_INSTRUCTION_SIZE; strm.SeekBytes(1), byteIdx++) {
 			const uint8_t op = strm.get<uint8_t>();
 
 			// 64:
 			// REX : 0x40 - 0x4f, extends register access.
 
-			switch (op)
-			{
-				// rex x64 only
-			case 0x40:
-			case 0x41:
-			case 0x42:
-			case 0x43:
-			case 0x44:
-			case 0x45:
-			case 0x46:
-			case 0x47:
-			case 0x48:
-			case 0x49:
-			case 0x4a:
-			case 0x4b:
-			case 0x4c:
-			case 0x4d:
-			case 0x4e:
-			case 0x4f:
-			{
-				if (ct == CodeType::CODE_64BIT)
-				{
-					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REX);
-					addUsedPrefix(byteIdx, PrefixGroup::REX);
-					vrex = op & 0xf; // keep only the BXRW flags.
-					pRex_ = strm.current();
-					ExtType = PrefixExtType::REX;
+			switch (op) {
+					// rex x64 only
+				case 0x40:
+				case 0x41:
+				case 0x42:
+				case 0x43:
+				case 0x44:
+				case 0x45:
+				case 0x46:
+				case 0x47:
+				case 0x48:
+				case 0x49:
+				case 0x4a:
+				case 0x4b:
+				case 0x4c:
+				case 0x4d:
+				case 0x4e:
+				case 0x4f: {
+					if (ct == CodeType::CODE_64BIT) {
+						decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REX);
+						addUsedPrefix(byteIdx, PrefixGroup::REX);
+						vrex = op & 0xf; // keep only the BXRW flags.
+						pRex_ = strm.current();
+						ExtType = PrefixExtType::REX;
+					}
+					else {
+						goto exit_loop;
+					}
+					break;
 				}
-				else {
+
+				// seg
+				case Prefix::CS:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_CS);
+					addUsedPrefix(byteIdx, PrefixGroup::SEG);
+					break;
+				case Prefix::SS:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_SS);
+					addUsedPrefix(byteIdx, PrefixGroup::SEG);
+					break;
+				case Prefix::DS:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_DS);
+					addUsedPrefix(byteIdx, PrefixGroup::SEG);
+					break;
+				case Prefix::ES:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_ES);
+					addUsedPrefix(byteIdx, PrefixGroup::SEG);
+					break;
+				case Prefix::FS:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_FS);
+					addUsedPrefix(byteIdx, PrefixGroup::SEG);
+					break;
+				case Prefix::GS:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_GS);
+					addUsedPrefix(byteIdx, PrefixGroup::SEG);
+					break;
+
+					// lock
+				case Prefix::LOCK:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_LOCK);
+					addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
+					break;
+
+					// rep
+				case Prefix::REP:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REP);
+					addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
+					break;
+				case Prefix::REPNZ:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
+					addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
+					break;
+
+					// Op size
+				case Prefix::OP_SIZE:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE);
+					addUsedPrefix(byteIdx, PrefixGroup::OP_SIZE);
+					break;
+
+					// Add size
+				case Prefix::ADD_SIZE:
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_ADDR_SIZE);
+					addUsedPrefix(byteIdx, PrefixGroup::ADD_SIZE);
+					break;
+
+				default:
 					goto exit_loop;
-				}
-				break;
-			}
-
-			// seg
-			case Prefix::CS:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_CS);
-				addUsedPrefix(byteIdx, PrefixGroup::SEG);
-				break;
-			case Prefix::SS:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_SS);
-				addUsedPrefix(byteIdx, PrefixGroup::SEG);
-				break;
-			case Prefix::DS:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_DS);
-				addUsedPrefix(byteIdx, PrefixGroup::SEG);
-				break;
-			case Prefix::ES:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_ES);
-				addUsedPrefix(byteIdx, PrefixGroup::SEG);
-				break;
-			case Prefix::FS:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_FS);
-				addUsedPrefix(byteIdx, PrefixGroup::SEG);
-				break;
-			case Prefix::GS:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_GS);
-				addUsedPrefix(byteIdx, PrefixGroup::SEG);
-				break;
-
-				// lock
-			case Prefix::LOCK:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_LOCK);
-				addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
-				break;
-
-				// rep
-			case Prefix::REP:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REP);
-				addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
-				break;
-			case Prefix::REPNZ:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
-				addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
-				break;
-
-				// Op size
-			case Prefix::OP_SIZE:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE);
-				addUsedPrefix(byteIdx, PrefixGroup::OP_SIZE);
-				break;
-
-				// Add size
-			case Prefix::ADD_SIZE:
-				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_ADDR_SIZE);
-				addUsedPrefix(byteIdx, PrefixGroup::ADD_SIZE);
-				break;
-
-			default:
-				goto exit_loop;
-				break;
+					break;
 			}
 		}
 
 	exit_loop:
 
 		// VEX 2b
-		if (strm.bytesLeft() >= 2)
-		{
-			if (strm.get<uint8_t>() == Prefix::VEX2b)
-			{
+		if (strm.bytesLeft() >= 2) {
+			if (strm.get<uint8_t>() == Prefix::VEX2b) {
 				// space?
 				size_t curIs = (strm.current() - pStart_);
-				if (curIs <= (MAX_INSTRUCTION_SIZE - 2))
-				{
+				if (curIs <= (MAX_INSTRUCTION_SIZE - 2)) {
 					if (ct == CodeType::CODE_64BIT || *(strm.current() + 1) == 0xc0) // DIVIDED_MODRM
 					{
 						TDISS_WARN("Potentially VEX2b");
-
 					}
 				}
 			}
 		}
 
 		// VEX 3b
-		if (strm.bytesLeft() >= 3)
-		{
-			if (strm.get<uint8_t>() == Prefix::VEX3b)
-			{
+		if (strm.bytesLeft() >= 3) {
+			if (strm.get<uint8_t>() == Prefix::VEX3b) {
 				// space?
 				size_t curIs = (strm.current() - pStart_);
-				if (curIs <= (MAX_INSTRUCTION_SIZE - 3))
-				{
-					if (!bitUtil::IsBitFlagSet(decodedPrefixFlags, InstructionFlag::PRE_VEX))
-					{
+				if (curIs <= (MAX_INSTRUCTION_SIZE - 3)) {
+					if (!bitUtil::IsBitFlagSet(decodedPrefixFlags, InstructionFlag::PRE_VEX)) {
 						if (ct == CodeType::CODE_64BIT || *(strm.current() + 1) == 0xc0) // DIVIDED_MODRM
 						{
 							TDISS_WARN("Potentially VEX3b");
@@ -357,48 +340,42 @@ namespace TDiss
 		X_ASSERT_NOT_NULL(pInst);
 
 		uint32_t flags;
-		if (ct == CodeType::CODE_64BIT)
-		{
+		if (ct == CodeType::CODE_64BIT) {
 			flags = decodedPrefixFlags & InstructionFlag::SEG_OVERRIDE_MASK64;
 		}
-		else
-		{
+		else {
 			flags = decodedPrefixFlags & InstructionFlag::SEG_OVERRIDE_MASK;
 		}
 
-		if (flags == 0 || flags == segPrefix)
-		{
+		if (flags == 0 || flags == segPrefix) {
 			flags = segPrefix & 0xFFFFFFFF;
 		}
-		else
-		{
+		else {
 			usedPrefixFlags |= flags;
 		}
 
-		switch (flags)
-		{
-		case InstructionFlag::PRE_ES:
-			pInst->segment = RegIndex::ES;
-			break;
-		case InstructionFlag::PRE_CS:
-			pInst->segment = RegIndex::CS;
-			break;
-		case InstructionFlag::PRE_SS:
-			pInst->segment = RegIndex::SS;
-			break;
-		case InstructionFlag::PRE_DS:
-			pInst->segment = RegIndex::DS;
-			break;
-		case InstructionFlag::PRE_FS:
-			pInst->segment = RegIndex::FS;
-			break;
-		case InstructionFlag::PRE_GS:
-			pInst->segment = RegIndex::GS;
-			break;
+		switch (flags) {
+			case InstructionFlag::PRE_ES:
+				pInst->segment = RegIndex::ES;
+				break;
+			case InstructionFlag::PRE_CS:
+				pInst->segment = RegIndex::CS;
+				break;
+			case InstructionFlag::PRE_SS:
+				pInst->segment = RegIndex::SS;
+				break;
+			case InstructionFlag::PRE_DS:
+				pInst->segment = RegIndex::DS;
+				break;
+			case InstructionFlag::PRE_FS:
+				pInst->segment = RegIndex::FS;
+				break;
+			case InstructionFlag::PRE_GS:
+				pInst->segment = RegIndex::GS;
+				break;
 		}
 
-		if (ct == CodeType::CODE_64BIT && (flags & InstructionFlag::SEG_OVERRIDE_MASK32) != 0)
-		{
+		if (ct == CodeType::CODE_64BIT && (flags & InstructionFlag::SEG_OVERRIDE_MASK32) != 0) {
 			pInst->segment = RegIndex::NONE;
 		}
 	}

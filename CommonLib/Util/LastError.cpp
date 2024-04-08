@@ -12,32 +12,32 @@ namespace lastError
 
 	const char* ToString(ErrorInt error, Description& desc)
 	{
-        desc[0] = '\0';
+		desc[0] = '\0';
 
-        Description tmp;
+		Description tmp;
 
-        DWORD size = ::FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, // It's a system error
-            NULL,                                                 // No string to be formatted needed
-            error,
-            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Do it in the standard language
-            tmp,                                       // Put the message here
-            sizeof(tmp),                               // Number of bytes to store the message
-            NULL);
+		DWORD size = ::FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, // It's a system error
+			NULL,												  // No string to be formatted needed
+			error,
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Do it in the standard language
+			tmp,									   // Put the message here
+			sizeof(tmp),							   // Number of bytes to store the message
+			NULL);
 
-        if (size == 0) {
-            return desc;
-        }
-        // remove \n
-        if (size > 1) {
-            tmp[size - 2] = '\0';
-        }
+		if (size == 0) {
+			return desc;
+		}
+		// remove \n
+		if (size > 1) {
+			tmp[size - 2] = '\0';
+		}
 
-        int err = snprintf(desc, sizeof(desc), "Error(0x%08x): %s", error, tmp);
-        if (err < 0) {
-            strncpy_s(desc, "Failed to encode error message", sizeof(desc));
-        }
+		int err = snprintf(desc, sizeof(desc), "Error(0x%08x): %s", error, tmp);
+		if (err < 0) {
+			strncpy_s(desc, "Failed to encode error message", sizeof(desc));
+		}
 
-        return desc;
+		return desc;
 	}
 
 	const char* ToString(Description& desc)
@@ -47,27 +47,27 @@ namespace lastError
 
 #else // X_WIN32
 
-    ErrorInt Get(void)
-    {
-        return errno;
-    }
+	ErrorInt Get(void)
+	{
+		return errno;
+	}
 
-    const char* ToString(ErrorInt error, Description& desc)
-    {
-        desc[0] = '\0';
+	const char* ToString(ErrorInt error, Description& desc)
+	{
+		desc[0] = '\0';
 
-        Description tmp;
-        const char* pErrStr = ::strerror_r(error, tmp, safe_static_cast<int>(sizeof(tmp)));
+		Description tmp;
+		const char* pErrStr = ::strerror_r(error, tmp, safe_static_cast<int>(sizeof(tmp)));
 
-        snprintf(desc, sizeof(desc), "Error(0x%08x): %s", error, pErrStr);
-        return desc;
-    }
+		snprintf(desc, sizeof(desc), "Error(0x%08x): %s", error, pErrStr);
+		return desc;
+	}
 
-    const char* ToString(Description& desc)
-    {
-        return ToString(Get(), desc);
-    }
+	const char* ToString(Description& desc)
+	{
+		return ToString(Get(), desc);
+	}
 
 #endif // X_WIN32
 
-}
+} // namespace lastError

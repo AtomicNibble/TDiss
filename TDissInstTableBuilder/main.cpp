@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[])
 {
-	CLI::App app{ "TableBuilder" };
+	CLI::App app {"TableBuilder"};
 
 	std::string outputDir;
 	app.add_option("--out", outputDir);
@@ -31,20 +31,16 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	if (saveTests)
-	{
+	if (saveTests) {
 		if (!builder.SaveTests(testSource, numTestFiles)) {
 			return -1;
 		}
 	}
-	else
-	{
-		if (!builder.SaveTables(file) ||
-			!builder.SaveMnemocis(mneHeader, mneSource)) {
+	else {
+		if (!builder.SaveTables(file) || !builder.SaveMnemocis(mneHeader, mneSource)) {
 			return -1;
 		}
 	}
 
 	return 0;
 }
-

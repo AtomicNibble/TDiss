@@ -316,7 +316,6 @@ static void BM_decode(benchmark::State& state)
 	state.SetBytesProcessed(state.iterations() * sizeof(ops));
 }
 
-
 static void BM_decode_random(benchmark::State& state)
 {
 	auto size = safe_static_cast<size_t>(state.range(0));
@@ -340,7 +339,6 @@ static void BM_decode_random(benchmark::State& state)
 
 	state.SetBytesProcessed(state.iterations() * state.range(0));
 }
-
 
 constexpr size_t upper_size = 1 << 22;
 

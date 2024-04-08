@@ -73,8 +73,7 @@ namespace StrUtil
 		size_t Len = endExclusiveS1 - startInclusiveS1;
 
 		while (Len && *startInclusiveS2
-			&& (::tolower(*startInclusiveS1) == ::tolower(*startInclusiveS2)))
-		{
+			   && (::tolower(*startInclusiveS1) == ::tolower(*startInclusiveS2))) {
 			Len--;
 			startInclusiveS1++;
 			startInclusiveS2++;
@@ -83,22 +82,24 @@ namespace StrUtil
 		return Len == 0 && !(*startInclusiveS2);
 	}
 
-	std::string& ltrim(std::string& s) {
+	std::string& ltrim(std::string& s)
+	{
 		s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
 			return !std::isspace(ch);
-			}));
+		}));
 		return s;
 	}
 
 	// trim from end (in place)
-	std::string& rtrim(std::string& s) {
+	std::string& rtrim(std::string& s)
+	{
 		s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
 			return !std::isspace(ch);
-			}).base(), s.end());
+		}).base(),
+			s.end());
 
 		return s;
 	}
-
 
 	std::string& trim(std::string& s)
 	{
@@ -128,10 +129,9 @@ namespace StrUtil
 		std::string s;
 		s.reserve(len * (separator.length() + 4)); // ' 0x00'
 
-		const char* phexLookup = { "0123456789ABCDEF" };
+		const char* phexLookup = {"0123456789ABCDEF"};
 
-		for (size_t i = 0; i < len; i++)
-		{
+		for (size_t i = 0; i < len; i++) {
 			s.append(" 0x");
 
 			const uint8_t byte = pByes[i];

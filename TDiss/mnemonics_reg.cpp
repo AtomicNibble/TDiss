@@ -1,16 +1,14 @@
 #include "pch.h"
 #include "TDissTypes.h"
 
-
 namespace TDiss
 {
 	namespace
 	{
-		const char* pReg[] =
-		{
-			"EAX",	// R01D
-			"ECX",	// R02D
-			"EDX",	// etc..
+		const char* pReg[] = {
+			"EAX", // R01D
+			"ECX", // R02D
+			"EDX", // etc..
 			"EBX",
 			"ESP",
 			"EBP",
@@ -85,10 +83,10 @@ namespace TDiss
 			"R15B",
 
 			// 8bit shiz
-			"SPL",	// sp
-			"BPL",	// bp
-			"SIL",	// si
-			"DIL",	// di
+			"SPL", // sp
+			"BPL", // bp
+			"SIL", // si
+			"DIL", // di
 
 			// segment
 			"ES",
@@ -98,7 +96,6 @@ namespace TDiss
 			"FS",
 			"GS",
 			"RIP", // where to place this...(seg :S ?)
-
 
 			"CR0",
 			"CR1", // reserver
@@ -117,7 +114,7 @@ namespace TDiss
 			"",
 			"",
 			"DR6", // = DR3 + 3, // status
-			"DR7",	// control.
+			"DR7", // control.
 
 			// st0.
 			"ST0",
@@ -128,7 +125,6 @@ namespace TDiss
 			"ST5",
 			"ST6",
 			"ST7",
-
 
 			"MM0",
 			"MM1",
@@ -177,8 +173,7 @@ namespace TDiss
 		};
 
 		static const size_t numStrings = sizeof(pReg) / sizeof(const char*);
-	} // namespace 
-
+	} // namespace
 
 	const char* RegIndex::ToString(Enum reg)
 	{

@@ -9,58 +9,60 @@ namespace TDiss
 	namespace
 	{
 
-		
 		const char* FlowTypeToStr(FlowControl::Enum flow)
 		{
-			#define ADD_FLOW_ENUM_STR(f) case FlowControl::f: return #f;
+#define ADD_FLOW_ENUM_STR(f) \
+	case FlowControl::f:     \
+		return #f;
 
-			switch (flow)
-			{
+			switch (flow) {
 				ADD_FLOW_ENUM_STR(NONE)
-					ADD_FLOW_ENUM_STR(CALL)
-					ADD_FLOW_ENUM_STR(RET)
-					ADD_FLOW_ENUM_STR(SYS)
-					ADD_FLOW_ENUM_STR(UNC_BRANCH)
-					ADD_FLOW_ENUM_STR(CND_BRANCH)
-					ADD_FLOW_ENUM_STR(CMOV)
-					ADD_FLOW_ENUM_STR(INT)
+				ADD_FLOW_ENUM_STR(CALL)
+				ADD_FLOW_ENUM_STR(RET)
+				ADD_FLOW_ENUM_STR(SYS)
+				ADD_FLOW_ENUM_STR(UNC_BRANCH)
+				ADD_FLOW_ENUM_STR(CND_BRANCH)
+				ADD_FLOW_ENUM_STR(CMOV)
+				ADD_FLOW_ENUM_STR(INT)
 
-			default:
-				X_ASSERT_UNREACABLE();
-				break;
+				default:
+					X_ASSERT_UNREACABLE();
+					break;
 			}
 
 			return "<ukn>";
 
-			#undef ADD_FLOW_ENUM_STR
+#undef ADD_FLOW_ENUM_STR
 		}
 
 		const char* CodeTypeToStr(CodeType::Enum flow)
 		{
-			#define ADD_CT_ENUM_STR(ct) case CodeType::ct: return #ct;
+#define ADD_CT_ENUM_STR(ct) \
+	case CodeType::ct:      \
+		return #ct;
 
-			switch (flow)
-			{
+			switch (flow) {
 				ADD_CT_ENUM_STR(CODE_16BIT)
 				ADD_CT_ENUM_STR(CODE_32BIT)
 				ADD_CT_ENUM_STR(CODE_64BIT)
 
-			default:
-				X_ASSERT_UNREACABLE();
-				break;
+				default:
+					X_ASSERT_UNREACABLE();
+					break;
 			}
 
 			return "<ukn>";
 
-			#undef ADD_CT_ENUM_STR
+#undef ADD_CT_ENUM_STR
 		}
 
 		const char* OperandTypeAbsToStr(OperandTypeAbs::Enum flow)
 		{
-				#define ADD_OPA_ENUM_STR(ct) case OperandTypeAbs::ct: return #ct;
+#define ADD_OPA_ENUM_STR(ct) \
+	case OperandTypeAbs::ct: \
+		return #ct;
 
-			switch (flow)
-			{
+			switch (flow) {
 				ADD_OPA_ENUM_STR(NONE)
 				ADD_OPA_ENUM_STR(REG)
 				ADD_OPA_ENUM_STR(IMM)
@@ -72,22 +74,23 @@ namespace TDiss
 				ADD_OPA_ENUM_STR(PC)
 				ADD_OPA_ENUM_STR(PTR)
 
-			default:
-				X_ASSERT_UNREACABLE();
-				break;
+				default:
+					X_ASSERT_UNREACABLE();
+					break;
 			}
 
 			return "<ukn>";
 
-			#undef ADD_OPA_ENUM_STR
+#undef ADD_OPA_ENUM_STR
 		}
 
 		const char* InstructionSetAbsToStr(InstructionSet::Enum flow)
 		{
-			#define ADD_INSTRUCTION_ENUM_STR(ct) case InstructionSet::ct: return #ct;
+#define ADD_INSTRUCTION_ENUM_STR(ct) \
+	case InstructionSet::ct:         \
+		return #ct;
 
-			switch (flow)
-			{
+			switch (flow) {
 				ADD_INSTRUCTION_ENUM_STR(NONE)
 				ADD_INSTRUCTION_ENUM_STR(FPU)
 				ADD_INSTRUCTION_ENUM_STR(P6)
@@ -109,32 +112,30 @@ namespace TDiss
 				ADD_INSTRUCTION_ENUM_STR(CLMUL)
 				ADD_INSTRUCTION_ENUM_STR(AES)
 
-			default:
-				X_ASSERT_UNREACABLE();
-				break;
+				default:
+					X_ASSERT_UNREACABLE();
+					break;
 			}
 
 			return "<ukn>";
 
-			#undef ADD_INSTRUCTION_ENUM_STR
+#undef ADD_INSTRUCTION_ENUM_STR
 		}
 
 		size_t CodeTypeBitCount(CodeType::Enum ct)
 		{
-			switch (ct)
-			{
-			case CodeType::CODE_16BIT:
-				return 16;
-			case CodeType::CODE_32BIT:
-				return 32;
-			case CodeType::CODE_64BIT:
-				return 64;
+			switch (ct) {
+				case CodeType::CODE_16BIT:
+					return 16;
+				case CodeType::CODE_32BIT:
+					return 32;
+				case CodeType::CODE_64BIT:
+					return 64;
 			}
 
 			X_ASSERT_UNREACABLE();
 			return 0;
 		}
-
 
 		inline uint16_t unpackCpuFlagsToEFlags(uint8_t flags)
 		{
@@ -153,9 +154,7 @@ namespace TDiss
 			return res;
 		}
 
-
 	} // namespace
-
 
 	// ----------------------------------------
 
@@ -181,7 +180,6 @@ namespace TDiss
 		index = index_;
 	}
 
-
 	// ----------------------------------------
 
 	OperandBuilder::OperandInstructionInfo::OperandInstructionInfo() :
@@ -203,7 +201,6 @@ namespace TDiss
 		displacementSize = displacementSize_;
 	}
 
-
 	OperandBuilder::OperandInstructionInfo::OperandInstructionInfo(ImmVal imm_, ImmType::Enum immType_) :
 		OperandInstructionInfo(0, 0, RegIndex::NONE, RegIndex::NONE, 0)
 	{
@@ -216,12 +213,11 @@ namespace TDiss
 	{
 	}
 
-
 	// ----------------------------------------
 
-	OperandBuilder::OperandData::OperandData() : OperandResult()
+	OperandBuilder::OperandData::OperandData() :
+		OperandResult()
 	{
-
 	}
 
 	OperandBuilder::OperandData::OperandData(const std::string& op, OperandTypeAbs::Enum type) :
@@ -231,19 +227,21 @@ namespace TDiss
 	}
 
 	OperandBuilder::OperandData::OperandData(const std::string& op, OperandTypeAbs::Enum type,
-		int32_t size, int32_t index) : OperandResult(type, size, index)
+		int32_t size, int32_t index) :
+		OperandResult(type, size, index)
 	{
 		operand = op;
 	}
 
 	OperandBuilder::OperandData::OperandData(const std::string& op, OperandTypeAbs::Enum type,
-		OperandInstructionInfo info) : OperandData(op, type, 0, 0, info)
+		OperandInstructionInfo info) :
+		OperandData(op, type, 0, 0, info)
 	{
-
 	}
 
 	OperandBuilder::OperandData::OperandData(const std::string& op, OperandTypeAbs::Enum type,
-		int32_t size, int32_t index, OperandInstructionInfo info) : OperandResult(type, size, index)
+		int32_t size, int32_t index, OperandInstructionInfo info) :
+		OperandResult(type, size, index)
 	{
 		operand = op;
 		instInfo = std::shared_ptr<OperandInstructionInfo>(new OperandInstructionInfo(info));
@@ -253,17 +251,14 @@ namespace TDiss
 
 	OperandBuilder::MergedOperand::MergedOperand()
 	{
-
 	}
 
 	// ----------------------------------------
-
 
 	OperandBuilder::OperandBuilder(CodeType::Enum type) :
 		full_(false),
 		codeType_(type)
 	{
-
 	}
 
 	void OperandBuilder::BuildTables(bool full)
@@ -307,7 +302,7 @@ namespace TDiss
 			OperandDataArr& arr = operandTable_[OperandType::NONE];
 
 			// this is needed so instructions with no operands results are also checked to make sure they are not set.
-			// it is also needed to make the merging work or multiple operands as 0 x 10 is 0.	
+			// it is also needed to make the merging work or multiple operands as 0 x 10 is 0.
 			arr.emplace_back("", OperandTypeAbs::NONE);
 		}
 
@@ -332,7 +327,6 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::SEG];
 			X_UNUSED(arr);
-
 		}
 
 		// ACC_8
@@ -371,7 +365,6 @@ namespace TDiss
 			arr.emplace_back("EAX", OperandTypeAbs::REG, 32, RegIndex::EAX);
 		}
 
-
 		// RM_8
 		{
 			OperandDataArr& arr = operandTable_[OperandType::RM_8];
@@ -399,7 +392,6 @@ namespace TDiss
 			Add_32BitGPR(arr, false, true);
 		}
 
-
 		// RM_FULL
 		{
 			OperandDataArr& arr = operandTable_[OperandType::RM_FULL];
@@ -422,7 +414,6 @@ namespace TDiss
 
 				DereferenceOperands(arr);
 			}
-
 		}
 
 		// REG_8
@@ -498,7 +489,6 @@ namespace TDiss
 			}
 		}
 
-
 		// REG_ESI
 		{
 			OperandDataArr& arr = operandTable_[OperandType::REG_ESI];
@@ -527,7 +517,6 @@ namespace TDiss
 			}
 			else {
 				arr.emplace_back("", OperandTypeAbs::SMEM, 32, RegIndex::EDI);
-
 			}
 		}
 
@@ -549,13 +538,11 @@ namespace TDiss
 		{
 			OperandDataArr& arr = operandTable_[OperandType::REG_EBXAL];
 
-			if (codeType_ == CodeType::CODE_64BIT)
-			{
+			if (codeType_ == CodeType::CODE_64BIT) {
 				arr.push_back(OperandData("", OperandTypeAbs::MEM, 8, RegIndex::AL,
 					OperandInstructionInfo(0, 0, RegIndex::NONE, RegIndex::RBX, 0)));
 			}
-			else
-			{
+			else {
 				arr.push_back(OperandData("", OperandTypeAbs::MEM, 8, RegIndex::AL,
 					OperandInstructionInfo(0, 0, RegIndex::DS, RegIndex::EBX, 0)));
 			}
@@ -631,7 +618,6 @@ namespace TDiss
 				OperandInstructionInfo(imm, ImmType::S8)));
 		}
 
-
 		// BLOCK_R_8
 		{
 			OperandDataArr& arr = operandTable_[OperandType::BLOCK_R_8];
@@ -660,19 +646,15 @@ namespace TDiss
 
 			// points to memory
 			if (codeType_ == CodeType::CODE_16BIT) {
-
 			}
 			else if (codeType_ == CodeType::CODE_32BIT) {
-
 				arr.push_back(OperandData("[edx*4]", OperandTypeAbs::MEM, 0, RegIndex::EDX,
 					OperandInstructionInfo(0, 0, RegIndex::DS, RegIndex::NONE, 4)));
 			}
 			else if (codeType_ == CodeType::CODE_64BIT) {
-
 				arr.push_back(OperandData("[rdx*4]", OperandTypeAbs::MEM, 0, RegIndex::RDX,
 					OperandInstructionInfo(0, 0, RegIndex::NONE, RegIndex::NONE, 4)));
 			}
-
 		}
 
 		// MEM_32
@@ -705,7 +687,6 @@ namespace TDiss
 					OperandInstructionInfo(0x12345678, 0, RegIndex::NONE, RegIndex::NONE, 4)));
 			}
 		}
-
 
 		// MEM_64
 		{
@@ -741,22 +722,18 @@ namespace TDiss
 
 			// points to memory
 			if (codeType_ == CodeType::CODE_16BIT) {
-
 			}
 			else if (codeType_ == CodeType::CODE_32BIT) {
-
 				arr.push_back(OperandData("[edx*4]", OperandTypeAbs::MEM, 32, RegIndex::EDX,
 					OperandInstructionInfo(0, 0, RegIndex::DS, RegIndex::NONE, 4)));
 			}
 			else if (codeType_ == CodeType::CODE_64BIT) {
-
 				arr.push_back(OperandData("[rdx*4]", OperandTypeAbs::MEM, 64, RegIndex::RDX,
 					OperandInstructionInfo(0, 0, RegIndex::NONE, RegIndex::NONE, 4)));
 			}
 
 			arr.push_back(OperandData("", OperandTypeAbs::MEM, 0, RegIndex::NONE,
 				OperandInstructionInfo(0, 0, RegIndex::NONE, RegIndex::NONE, 0)));
-
 		}
 
 		// MEM_FULL_M16
@@ -765,7 +742,6 @@ namespace TDiss
 
 			// points to memory
 			if (codeType_ == CodeType::CODE_16BIT) {
-
 			}
 			else if (codeType_ == CodeType::CODE_32BIT) {
 				arr.push_back(OperandData("[0x12345678]", OperandTypeAbs::DISP, 32, 0,
@@ -775,7 +751,6 @@ namespace TDiss
 				arr.push_back(OperandData("[0x12345678]", OperandTypeAbs::DISP, 16, 0,
 					OperandInstructionInfo(0x12345678, 32, RegIndex::NONE, RegIndex::NONE, 0)));
 			}
-
 		}
 
 		// PTR16_FULL
@@ -784,7 +759,6 @@ namespace TDiss
 
 			// points to memory
 			if (codeType_ == CodeType::CODE_16BIT) {
-
 			}
 			else if (codeType_ == CodeType::CODE_32BIT) {
 				ImmVal imm;
@@ -794,9 +768,7 @@ namespace TDiss
 					OperandInstructionInfo(imm, ImmType::PTR)));
 			}
 			else if (codeType_ == CodeType::CODE_64BIT) {
-
 			}
-
 		}
 
 		// CREG
@@ -836,7 +808,6 @@ namespace TDiss
 				OperandInstructionInfo(0x5678, 16, RegIndex::DS, RegIndex::NONE, 0)));
 		}
 
-
 		// FPUM16
 		{
 			OperandDataArr& arr = operandTable_[OperandType::FPUM16];
@@ -848,7 +819,6 @@ namespace TDiss
 
 			arr.push_back(OperandData("word [ebx]", OperandTypeAbs::SMEM, 16, RegIndex::EBX,
 				OperandInstructionInfo(segment)));
-
 		}
 		// FPUM32
 		{
@@ -861,7 +831,6 @@ namespace TDiss
 
 			arr.push_back(OperandData("dword [esi]", OperandTypeAbs::SMEM, 32, RegIndex::ESI,
 				OperandInstructionInfo(segment)));
-
 		}
 		// FPUM64
 		{
@@ -893,7 +862,6 @@ namespace TDiss
 			OperandDataArr& arr = operandTable_[OperandType::FPU_SI];
 
 			arr.emplace_back("st3", OperandTypeAbs::REG, 32, RegIndex::ST3);
-
 		}
 		// FPU_SSI
 		{
@@ -907,7 +875,6 @@ namespace TDiss
 
 			arr.emplace_back("st2", OperandTypeAbs::REG, 32, RegIndex::ST2);
 		}
-
 
 		// MM
 		{
@@ -944,8 +911,6 @@ namespace TDiss
 			arr.emplace_back("mm0", OperandTypeAbs::REG, 64, RegIndex::MM0);
 			arr.emplace_back("mm1", OperandTypeAbs::REG, 64, RegIndex::MM1);
 		}
-
-
 
 		// XMM
 		{
@@ -989,7 +954,6 @@ namespace TDiss
 			arr.emplace_back("xmm0", OperandTypeAbs::REG, 128, RegIndex::XMM0);
 			arr.emplace_back("xmm1", OperandTypeAbs::REG, 128, RegIndex::XMM1);
 		}
-
 	}
 
 	void OperandBuilder::Add_CREG(OperandDataArr& arr) const
@@ -1159,14 +1123,12 @@ namespace TDiss
 
 	void OperandBuilder::DereferenceOperands(OperandDataArr& arr, int32_t prefixSize) const
 	{
-		for (auto& op : arr)
-		{
+		for (auto& op : arr) {
 			const std::string braced = "[" + op.operand + "]";
 
 			op.operand.clear();
 
-			if (prefixSize > 0)
-			{
+			if (prefixSize > 0) {
 				if (prefixSize == 32) {
 					op.size = 32;
 					op.operand = "dword ";
@@ -1180,8 +1142,7 @@ namespace TDiss
 					op.operand = "byte ";
 				}
 			}
-			else
-			{
+			else {
 				if (op.size == 32) {
 					op.operand = "dword ";
 				}
@@ -1201,7 +1162,6 @@ namespace TDiss
 				op.instInfo = std::shared_ptr<OperandInstructionInfo>(new OperandInstructionInfo(RegIndex::DS));
 			}
 
-
 			op.operand += braced;
 			op.operandType = OperandTypeAbs::SMEM;
 		}
@@ -1212,16 +1172,13 @@ namespace TDiss
 	{
 		MergedOperandsArr::value_type ret;
 
-		if (!op1.operand.empty() && !op2.operand.empty())
-		{
+		if (!op1.operand.empty() && !op2.operand.empty()) {
 			ret.operands = " " + op1.operand + ", " + op2.operand;
 		}
-		else if (!op1.operand.empty())
-		{
+		else if (!op1.operand.empty()) {
 			ret.operands = " " + op1.operand;
 		}
-		else if (!op2.operand.empty())
-		{
+		else if (!op2.operand.empty()) {
 			ret.operands = " " + op2.operand;
 		}
 
@@ -1261,11 +1218,9 @@ namespace TDiss
 		OperandType::Enum op3Type = inst.operands[2];
 		OperandType::Enum op4Type = inst.operands[3];
 
-		if (op3Type != OperandType::NONE || op4Type != OperandType::NONE)
-		{
+		if (op3Type != OperandType::NONE || op4Type != OperandType::NONE) {
 			return MergedOperandsArr();
 		}
-
 
 		OperandDataArr op1Data = GetOperand(inst, 0);
 		OperandDataArr op2Data = GetOperand(inst, 1);
@@ -1273,27 +1228,21 @@ namespace TDiss
 		MergedOperandsArr ret;
 
 		// mix them.
-		for (auto op1 : op1Data)
-		{
-			for (auto op2 : op2Data)
-			{
+		for (auto op1 : op1Data) {
+			for (auto op2 : op2Data) {
 				// special case for MEM_32_64 && REG_32_64
 				// won't promote to rex prefixed unless reg is 64.
-				if (op1Type == OperandType::MEM_32_64 && op1.size == 64)
-				{
-					if (op2Type == OperandType::REG_32_64 && op2.size != 64)
-					{
+				if (op1Type == OperandType::MEM_32_64 && op1.size == 64) {
+					if (op2Type == OperandType::REG_32_64 && op2.size != 64) {
 						op1.size = 32;
 						op2.size = 32;
 					}
 				}
 
 				// when we have 64bit reg the mem is promoted to 64bit.
-				// example: movnti QWORD PTR [eax*4+0x1234567c],rcx 
-				if (op1Type == OperandType::MEM_32_64 && op2Type == OperandType::REG_32_64)
-				{
-					if (op1.size == 64 || op2.size == 64)
-					{
+				// example: movnti QWORD PTR [eax*4+0x1234567c],rcx
+				if (op1Type == OperandType::MEM_32_64 && op2Type == OperandType::REG_32_64) {
+					if (op1.size == 64 || op2.size == 64) {
 						op1.size = 64;
 						op2.size = 64;
 					}
@@ -1315,104 +1264,76 @@ namespace TDiss
 		OperandDataArr ops = operandTable_[opType];
 		AddSegs(ops, opType, inst);
 
-		if (opType == OperandType::REG_EDI || opType == OperandType::REG_ESI)
-		{
-			for (auto& o : ops)
-			{
-				if (opType == OperandType::REG_EDI && opIdx == 0 && codeType_ != CodeType::CODE_64BIT)
-				{
+		if (opType == OperandType::REG_EDI || opType == OperandType::REG_ESI) {
+			for (auto& o : ops) {
+				if (opType == OperandType::REG_EDI && opIdx == 0 && codeType_ != CodeType::CODE_64BIT) {
 					o.instInfo = std::shared_ptr<OperandInstructionInfo>(
-						new OperandInstructionInfo(RegIndex::ES)
-					);
+						new OperandInstructionInfo(RegIndex::ES));
 				}
 
-				if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS16))
-				{
-					if (codeType_ == CodeType::CODE_32BIT)
-					{
+				if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS16)) {
+					if (codeType_ == CodeType::CODE_32BIT) {
 						o.size = 32;
 					}
-					else if (codeType_ == CodeType::CODE_16BIT)
-					{
+					else if (codeType_ == CodeType::CODE_16BIT) {
 						o.size = 8;
 					}
-					else if (codeType_ == CodeType::CODE_64BIT)
-					{
+					else if (codeType_ == CodeType::CODE_64BIT) {
 						o.size = 32;
 					}
 				}
-				else
-				{
+				else {
 					o.size = 8;
 				}
 
-				if (codeType_ == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64))
-				{
+				if (codeType_ == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64)) {
 					o.size = 64;
 				}
 			}
 		}
 
-		if (opType == OperandType::ACC_8 &&
-			(inst.mnemonics[0] == "STOSB" ||
-				inst.mnemonics[0] == "LODSB" ||
-				inst.mnemonics[0] == "SCASB"))
-		{
+		if (opType == OperandType::ACC_8 && (inst.mnemonics[0] == "STOSB" || inst.mnemonics[0] == "LODSB" || inst.mnemonics[0] == "SCASB")) {
 			// for STOSB ACC is explicit and only AL
 			ops.clear();
 			ops.emplace_back("AL", OperandTypeAbs::REG, 8, RegIndex::AL);
 		}
-		else if (opType == OperandType::ACC_8 &&
-			(inst.mnemonics[0] == "IN" || inst.mnemonics[0] == "OUT"))
-		{
+		else if (opType == OperandType::ACC_8 && (inst.mnemonics[0] == "IN" || inst.mnemonics[0] == "OUT")) {
 			// for IN ACC is explicit and only AL
 			ops.clear();
 			ops.emplace_back("AL", OperandTypeAbs::REG, 8, RegIndex::AL);
 		}
-		else if (opType == OperandType::REG_DX &&
-			(inst.mnemonics[0] == "IN" || inst.mnemonics[0] == "OUT"))
-		{
+		else if (opType == OperandType::REG_DX && (inst.mnemonics[0] == "IN" || inst.mnemonics[0] == "OUT")) {
 			ops.clear();
 			ops.emplace_back("DX", OperandTypeAbs::REG, 16, RegIndex::DX);
 		}
 
-		if (opIdx == 1)
-		{
+		if (opIdx == 1) {
 			OperandType::Enum opType0 = inst.operands[0];
 
 			// if we are op index 2 and index one was FPU_*SI* we need to add expected results for the second operand.
-			if (opType0 == OperandType::FPU_SSI)
-			{
+			if (opType0 == OperandType::FPU_SSI) {
 				ops.clear();
 				ops.emplace_back("st2", OperandTypeAbs::REG, 32, RegIndex::ST2);
 			}
 			// for FPU_SIS 2nd operant is explicit st0
-			else if (opType0 == OperandType::FPU_SIS)
-			{
+			else if (opType0 == OperandType::FPU_SIS) {
 				ops.clear();
 				ops.emplace_back("st0", OperandTypeAbs::REG, 32, RegIndex::ST0);
 			}
 		}
 
-		if (opType == OperandType::RM_8 &&
-			(inst.mnemonics[0] == "MOV"))
-		{
+		if (opType == OperandType::RM_8 && (inst.mnemonics[0] == "MOV")) {
 			ops.clear();
 			ops.emplace_back("SIL", OperandTypeAbs::REG, 8, RegIndex::SIL);
 		}
-		if (opType == OperandType::IMM_8 &&
-			(inst.mnemonics[0] == "MOV"))
-		{
+		if (opType == OperandType::IMM_8 && (inst.mnemonics[0] == "MOV")) {
 			ops.clear();
 			ops.emplace_back("AL", OperandTypeAbs::REG, 8, RegIndex::AL);
 		}
 
 		// auto promoted.
-		if (codeType_ == CodeType::CODE_64BIT)
-		{
-			if (opType == OperandType::IMM_FULL && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64) &&
-				bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_REX))
-			{
+		if (codeType_ == CodeType::CODE_64BIT) {
+			if (opType == OperandType::IMM_FULL && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64) && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_REX)) {
 				ImmVal imm;
 				imm.uint64 = 0xabafeebbabafeebb;
 				ops.clear();
@@ -1514,7 +1435,6 @@ namespace TDiss
 		return num;
 	}
 
-
 	// ----------------------------------------------
 
 	TestBuilder::TestBuilder(CodeType::Enum type) :
@@ -1539,8 +1459,7 @@ namespace TDiss
 
 		const std::string statsStr = GetStatsStr();
 
-		for (size_t i = 0; i < numTestFiles; i++)
-		{
+		for (size_t i = 0; i < numTestFiles; i++) {
 			size_t testToWrite = numTestPerFile;
 			size_t testLeft = tests_.size() - curTest;
 
@@ -1550,7 +1469,6 @@ namespace TDiss
 			if (testLeft < testToWrite) {
 				testToWrite = testLeft;
 			}
-
 
 			std::string testName = "tdis_test";
 			if (codeType_ == CodeType::CODE_64BIT) {
@@ -1616,8 +1534,7 @@ namespace
 			)");
 
 			// write each test
-			for (size_t t = 0; t < testToWrite; t++)
-			{
+			for (size_t t = 0; t < testToWrite; t++) {
 				const std::unique_ptr<Test>& test = tests_[curTest++];
 
 				f.WriteStr(test->body.c_str());
@@ -1626,7 +1543,6 @@ namespace
 
 		return true;
 	}
-
 
 	void TestBuilder::CreateTestForInst(const SourceInstruction& inst)
 	{
@@ -1647,8 +1563,7 @@ namespace
 
 		CreateTestForInst_int(inst, false);
 
-		if (inst.flow != FlowControl::NONE)
-		{
+		if (inst.flow != FlowControl::NONE) {
 			CreateTestForInst_int(inst, true);
 		}
 	}
@@ -1667,8 +1582,7 @@ namespace
 			if (!GenerateTestInstructions(inst, data)) {
 				size_t numOps = inst.NumOperands();
 				stats_.failedInst++;
-				stats_.failedTests.push_back(InstructionSetAbsToStr(inst.set) + std::string("-> ") +
-					testName + " ops(" + StrUtil::to_string(numOps) + ")");
+				stats_.failedTests.push_back(InstructionSetAbsToStr(inst.set) + std::string("-> ") + testName + " ops(" + StrUtil::to_string(numOps) + ")");
 				return;
 			}
 			else {
@@ -1691,8 +1605,7 @@ namespace
 				ss << "	// ops: ";
 
 				size_t num = OpCodeLen::NumOps(inst.opLen);
-				for (size_t i = 0; i < num; i++)
-				{
+				for (size_t i = 0; i < num; i++) {
 					ss << "0x" << std::hex << static_cast<uint32_t>(inst.ops[i]) << " ";
 				}
 				ss << "\n";
@@ -1701,13 +1614,11 @@ namespace
 			ss << "	const uint8_t pOps[0x" << data.numOpBytes() << "] = {\n";
 
 			{
-				for (size_t x = 0; x < data.instructions.size(); x++)
-				{
+				for (size_t x = 0; x < data.instructions.size(); x++) {
 					const TestInstruction& instX = data.instructions[x];
 
 					ss << "		";
-					for (size_t i = 0; i < instX.opcodes.size(); i++)
-					{
+					for (size_t i = 0; i < instX.opcodes.size(); i++) {
 						ss << "0x" << std::hex << static_cast<int32_t>(instX.opcodes[i]);
 
 						if ((i + 1) < instX.opcodes.size() || (x + 1) < data.instructions.size()) {
@@ -1718,7 +1629,6 @@ namespace
 						}
 					}
 					ss << " /* " << instX.preAssemble << " */\n";
-
 				}
 			}
 
@@ -1730,10 +1640,10 @@ namespace
 
 			ss << "\n";
 			ss << "	CodeStream strm(";
-			ss << "0, "; // virtual add
-			ss << "pOps, "; // src
+			ss << "0, ";										 // virtual add
+			ss << "pOps, ";										 // src
 			ss << "0x" << std::hex << data.numOpBytes() << ", "; // len
-			ss << "options, "; // options
+			ss << "options, ";									 // options
 			ss << "CodeType::" << CodeTypeToStr(data.codeType) << ");\n";
 			ss << "\n";
 
@@ -1758,8 +1668,7 @@ namespace
 
 			// validate instructions.
 			{
-				for (size_t i = 0; i < data.instructions.size(); i++)
-				{
+				for (size_t i = 0; i < data.instructions.size(); i++) {
 					const TestInstruction& testInst = data.instructions[i];
 					const TestResult& testRes = testInst.expected;
 					const OperandBuilder::MergedOperand& operandResult = testRes.operandResult;
@@ -1768,9 +1677,7 @@ namespace
 					ss << "		/* " << testInst.preAssemble << " */\n";
 					ss << "		const Instruction& inst = instructions[0x" << std::hex << i << "];\n";
 					ss << "		ValidateInstruction(inst,\n";
-					ss << "			InstructionID::" << Builder::FormatMnemonic(
-						InstructionIdOverride(testRes.InstId)
-					) << ",\n";
+					ss << "			InstructionID::" << Builder::FormatMnemonic(InstructionIdOverride(testRes.InstId)) << ",\n";
 					ss << "			FlowControl::" << FlowTypeToStr(testRes.flow) << ",\n";
 					ss << "			InstructionSet::" << InstructionSetAbsToStr(testRes.instSet) << ",\n";
 					ss << "			0x" << std::hex << testInst.opcodes.size() << ",\n";
@@ -1792,8 +1699,7 @@ namespace
 					ss << "\n";
 
 					// make sure operand types are valid + invalid.
-					for (size_t j = 0; j < MAX_OPERANDS; j++)
-					{
+					for (size_t j = 0; j < MAX_OPERANDS; j++) {
 						CreateOperandResult(j, operandResult.operandResults[j], ss);
 					}
 
@@ -1871,71 +1777,65 @@ namespace
 		if (opRes.operandType == OperandTypeAbs::NONE) {
 			ss << std::dec << "		ValidateOperandNotSet(inst.ops[" << idx << "], __FILE__, __LINE__); // ns\n";
 		}
-		else
-		{
+		else {
 			ss << std::dec << "		ValidateOperand(inst.ops[" << idx << "], "
-				"OperandTypeAbs::" << OperandTypeAbsToStr(opRes.operandType) <<
-				", RegIndex::" << std::hex << RegIndex::ToString(static_cast<RegIndex::Enum>(opRes.index)) <<
-				", 0x" << std::hex << opRes.size << ", __FILE__, __LINE__); // set! (reg idx: 0x" << opRes.index << ")\n";
+																		 "OperandTypeAbs::"
+			   << OperandTypeAbsToStr(opRes.operandType) << ", RegIndex::" << std::hex << RegIndex::ToString(static_cast<RegIndex::Enum>(opRes.index)) << ", 0x" << std::hex << opRes.size << ", __FILE__, __LINE__); // set! (reg idx: 0x" << opRes.index << ")\n";
 		}
 	}
 
-
 	void TestBuilder::AddFlowOptions(FlowControl::Enum flow, bool FlowFlip, std::stringstream& ss)
 	{
-		if (flow != FlowControl::NONE)
-		{
-			switch (flow)
-			{
-			case FlowControl::CALL:
-				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CALL);\n";
-				else
-					ss << "	options |= DisOptions::STOP_ON_CALL;\n";
-				break;
-			case FlowControl::CMOV:
-				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CMOV);\n";
-				else
-					ss << "	options |= DisOptions::STOP_ON_CMOV;\n";
-				break;
-			case FlowControl::CND_BRANCH:
-				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);\n";
-				else
-					ss << "	options |= DisOptions::STOP_ON_CND_BRANCH;\n";
-				break;
-			case FlowControl::INT:
-				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_INT);\n";
-				else
-					ss << "	options |= DisOptions::STOP_ON_INT;\n";
-				break;
-			case FlowControl::RET:
-				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);\n";
-				else
-					ss << "	options |= DisOptions::STOP_ON_RET;\n";
-				break;
-			case FlowControl::SYS:
-				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_SYS);\n";
-				else
-					ss << "	options |= DisOptions::STOP_ON_SYS;\n";
-				break;
-			case FlowControl::UNC_BRANCH:
-				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_UNC_BRANCH);\n";
-				else
-					ss << "	options |= DisOptions::STOP_ON_UNC_BRANCH;\n";
-				break;
+		if (flow != FlowControl::NONE) {
+			switch (flow) {
+				case FlowControl::CALL:
+					if (!FlowFlip)
+						ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CALL);\n";
+					else
+						ss << "	options |= DisOptions::STOP_ON_CALL;\n";
+					break;
+				case FlowControl::CMOV:
+					if (!FlowFlip)
+						ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CMOV);\n";
+					else
+						ss << "	options |= DisOptions::STOP_ON_CMOV;\n";
+					break;
+				case FlowControl::CND_BRANCH:
+					if (!FlowFlip)
+						ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);\n";
+					else
+						ss << "	options |= DisOptions::STOP_ON_CND_BRANCH;\n";
+					break;
+				case FlowControl::INT:
+					if (!FlowFlip)
+						ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_INT);\n";
+					else
+						ss << "	options |= DisOptions::STOP_ON_INT;\n";
+					break;
+				case FlowControl::RET:
+					if (!FlowFlip)
+						ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);\n";
+					else
+						ss << "	options |= DisOptions::STOP_ON_RET;\n";
+					break;
+				case FlowControl::SYS:
+					if (!FlowFlip)
+						ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_SYS);\n";
+					else
+						ss << "	options |= DisOptions::STOP_ON_SYS;\n";
+					break;
+				case FlowControl::UNC_BRANCH:
+					if (!FlowFlip)
+						ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_UNC_BRANCH);\n";
+					else
+						ss << "	options |= DisOptions::STOP_ON_UNC_BRANCH;\n";
+					break;
 
-			case FlowControl::NONE:
-				break;
+				case FlowControl::NONE:
+					break;
 			}
 		}
-		else
-		{
+		else {
 			// turn on all flow stop to check we don't stop on flow incorrectly.
 			ss << "	options |= DisOptions::STOP_ON_FLOW_ALL;\n";
 		}
@@ -1950,7 +1850,6 @@ namespace
 
 		return instId;
 	}
-
 
 	void TestBuilder::AddNasmOverRides(void)
 	{
@@ -1979,16 +1878,13 @@ namespace
 		nasmOverRides_.insert(std::make_pair("LOOPZ", NasmOverride("", "+0x2")));
 		nasmOverRides_.insert(std::make_pair("LOOP", NasmOverride("", "+0x2")));
 
-
 		nasmOverRides_.insert(std::make_pair("CALL", NasmOverride("", "+0x5", OperandType::REL_CI_FULL)));
 		nasmOverRides_.insert(std::make_pair("JMP", NasmOverride("", "+0x5", OperandType::REL_CI_FULL)));
-
 
 		nasmOverRides_.insert(std::make_pair("INT1", NasmOverride("db 0xf1", OperandType::NONE)));
 		nasmOverRides_.insert(std::make_pair("XLAT", NasmOverride("XLATb", OperandType::REG_EBXAL)));
 
-		if (codeType_ == CodeType::CODE_64BIT)
-		{
+		if (codeType_ == CodeType::CODE_64BIT) {
 			nasmOverRides_.insert(std::make_pair("JCXZ", NasmOverride("", "+0x3")));
 			nasmOverRides_.insert(std::make_pair(" JECXZ", NasmOverride("", "+0x3"))); // whitespace is important
 			nasmOverRides_.insert(std::make_pair(" JRCXZ", NasmOverride("", "+0x2"))); // whitespace is important
@@ -1999,8 +1895,7 @@ namespace
 			nasmOverRides_.insert(std::make_pair("LODS", NasmOverride("LODSQ", OperandType::ACC_FULL)));
 			nasmOverRides_.insert(std::make_pair("SCAS", NasmOverride("SCASQ", OperandType::ACC_FULL)));
 		}
-		else
-		{
+		else {
 			nasmOverRides_.insert(std::make_pair("JCXZ", NasmOverride("", "+0x3")));
 			nasmOverRides_.insert(std::make_pair(" JECXZ", NasmOverride("", "+0x2"))); // whitespace is important
 			nasmOverRides_.insert(std::make_pair(" JRCXZ", NasmOverride("", "+0x2"))); // whitespace is important
@@ -2048,8 +1943,7 @@ namespace
 		const std::string& operands)
 	{
 		const auto range = nasmOverRides_.equal_range(nasm);
-		for (auto it = range.first; it != range.second; ++it)
-		{
+		for (auto it = range.first; it != range.second; ++it) {
 			const NasmOverride& o = it->second;
 
 			if (o.requiredOpType != OperandType::NONE) {
@@ -2071,17 +1965,15 @@ namespace
 	bool TestBuilder::GenerateTestInstructions(const SourceInstruction& inst, TestData& dataOut)
 	{
 		dataOut.decodeFlags = 0;
-		dataOut.codeType = codeType_; //CodeType::CODE_32BIT;
+		dataOut.codeType = codeType_; // CodeType::CODE_32BIT;
 
 		// I will want to generate instructions for each mnemonic also.
-		for (const std::string& mnemonic : inst.mnemonics)
-		{
+		for (const std::string& mnemonic : inst.mnemonics) {
 			// some instructions have mnemonics that are only valid in certain modes.
 			// for example: CBW, CWDE, CDQE
 			// how to decide which mne's are valid in current mode :/
 			// for now hardcode as only a few.
-			if (inst.mnemonics.size() > 1)
-			{
+			if (inst.mnemonics.size() > 1) {
 				if (mnemonic == " CDQE" && codeType_ != CodeType::CODE_64BIT) {
 					continue;
 				}
@@ -2103,8 +1995,7 @@ namespace
 
 			// skip testing XCHG EAX, EAX
 			// it encodes to NOP.
-			if (mnemonic == "XCHG")
-			{
+			if (mnemonic == "XCHG") {
 				ops.erase(ops.begin());
 			}
 
@@ -2113,8 +2004,7 @@ namespace
 				X_UNUSED(x);
 			}
 
-			for (const auto& op : ops)
-			{
+			for (const auto& op : ops) {
 				TestInstruction newInst;
 
 				std::string nasm = ApplyNasmOverride(inst, mnemonic, op.operands);
@@ -2137,8 +2027,7 @@ namespace
 
 					result.operandResult = op;
 
-					if (codeType_ == CodeType::CODE_64BIT)
-					{
+					if (codeType_ == CodeType::CODE_64BIT) {
 						if (mnemonic == "JCXZ") {
 							result.InstId = "JECXZ";
 						}
@@ -2151,7 +2040,6 @@ namespace
 
 		return true;
 	}
-
 
 	bool TestBuilder::Assemble(const CodeType::Enum type, const std::string& byteSource, std::vector<uint8_t>& bytes)
 	{
@@ -2203,11 +2091,10 @@ namespace
 
 		cmd += " -o \"" + outFile + "\" \"" + path + "\"";
 
-		STARTUPINFOA info = { sizeof(info) };
+		STARTUPINFOA info = {sizeof(info)};
 		PROCESS_INFORMATION processInfo;
 
-		if (CreateProcessA(NULL, const_cast<char*>(cmd.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
-		{
+		if (CreateProcessA(NULL, const_cast<char*>(cmd.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo)) {
 			DWORD exitCode;
 			::WaitForSingleObject(processInfo.hProcess, INFINITE);
 			::GetExitCodeProcess(processInfo.hProcess, &exitCode);
@@ -2220,8 +2107,7 @@ namespace
 
 			// read the output.
 			FileUtil::ScopedFile file;
-			if (file.Open(outFile, "rb"))
-			{
+			if (file.Open(outFile, "rb")) {
 				size_t length = file.GetLength();
 
 				bytes.resize(length);
@@ -2236,10 +2122,10 @@ namespace
 		lastError::ToString(dsc);
 
 #else
-	// Not supported on other platforms currently
-	X_UNUSED(type);
-	X_UNUSED(path);
-	X_UNUSED(bytes);
+		// Not supported on other platforms currently
+		X_UNUSED(type);
+		X_UNUSED(path);
+		X_UNUSED(bytes);
 
 #endif // X_WIN32
 		X_ASSERT_UNREACABLE();
@@ -2255,19 +2141,16 @@ namespace
 	{
 		std::string name;
 
-		for (size_t i = 0; i < inst.mnemonics.size(); i++)
-		{
+		for (size_t i = 0; i < inst.mnemonics.size(); i++) {
 			name += FormatNameString(inst.mnemonics[i]);
 			name += "_";
 		}
 
 		// also add the operand types.
-		if (inst.HasOperands())
-		{
+		if (inst.HasOperands()) {
 			name += "O_";
 
-			for (size_t i = 0; i < 4; i++)
-			{
+			for (size_t i = 0; i < 4; i++) {
 				if (inst.operands[i] == OperandType::NONE) {
 					continue;
 				}
@@ -2278,12 +2161,10 @@ namespace
 				}
 			}
 		}
-		else
-		{
+		else {
 			// remove trailing '_'
 			name = name.substr(0, name.length() - 1);
 		}
-
 
 		// check for seg prefix.
 		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
@@ -2304,7 +2185,6 @@ namespace
 		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
 			name += "_GS";
 		}
-
 
 		TestNameMap::iterator it = testNames_.find(name);
 		if (it == testNames_.end()) {
@@ -2362,8 +2242,7 @@ namespace
 		ss << "\n";
 		ss << "// Failed Test names:\n";
 
-		for (const auto& testName : stats_.failedTests)
-		{
+		for (const auto& testName : stats_.failedTests) {
 			ss << "// " << testName << "\n";
 		}
 

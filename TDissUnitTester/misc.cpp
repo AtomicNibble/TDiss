@@ -1,6 +1,5 @@
 #include "pch.h"
 
-
 TEST(Misc, RegIndexString)
 {
 	EXPECT_STREQ(TDiss::RegIndex::ToString(TDiss::RegIndex::EAX), "EAX");
@@ -20,4 +19,3 @@ TEST(Misc, InstructionIDString)
 	EXPECT_STREQ(TDiss::InstructionID::ToString(TDiss::InstructionID::INVD), "INVD");
 	EXPECT_STREQ(TDiss::InstructionID::ToString(TDiss::InstructionID::INVALID), "INVALID");
 }
-

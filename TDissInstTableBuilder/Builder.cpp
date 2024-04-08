@@ -10,8 +10,7 @@ namespace TDiss
 		inline size_t AddUnique(std::vector<T>& vec, const T& item)
 		{
 			size_t i = 0;
-			for (i = 0; i < vec.size(); i++)
-			{
+			for (i = 0; i < vec.size(); i++) {
 				if (vec[i] == item) {
 					return i;
 				}
@@ -53,7 +52,6 @@ namespace TDiss
 		if (len == OpCodeLen::OL_2d) {
 			return OpCodeLen::OL_1d;
 		}
-
 
 		X_ASSERT_UNREACABLE();
 		return OpCodeLen::OL_1;
@@ -181,18 +179,14 @@ namespace TDiss
 		}
 	}
 
-
-
 	std::string TableNode::GetTagHierarchyStr(void) const
 	{
 		std::string s;
 
 		const std::vector<uint8_t> vec = GetTagHierarchy();
 
-		if (!vec.empty())
-		{
-			for (size_t i = 0; i < vec.size(); i++)
-			{
+		if (!vec.empty()) {
+			for (size_t i = 0; i < vec.size(); i++) {
 				uint32_t op = vec[i]; // wide to 32bit so not treated as char.
 
 				std::stringstream ss;
@@ -211,8 +205,7 @@ namespace TDiss
 	{
 		std::vector<uint8_t> v;
 
-		if (parentIdx != -1)
-		{
+		if (parentIdx != -1) {
 			X_ASSERT(parentIdx > 0 && parentIdx <= std::numeric_limits<uint8_t>::max());
 			v.push_back(static_cast<uint8_t>(parentIdx));
 
@@ -231,23 +224,18 @@ namespace TDiss
 
 	// ====================================
 
-
-
 	Builder::MnemoicInfo::MnemoicInfo(const std::string& mne, uint16_t idx) :
 		mnemonic(mne),
 		index(idx)
 	{
-
 	}
 
 	// ====================================
-
 
 	Builder::ExportedNode::ExportedNode(const std::string& str, uint16_t idx) :
 		tag(str),
 		index(idx)
 	{
-
 	}
 
 	// ====================================
@@ -260,7 +248,7 @@ namespace TDiss
 	};
 
 	std::array<std::vector<uint8_t>, 1> Builder::exportedTreeNodes = {
-		{{ 0xf, 0xf }},
+		{{0xf, 0xf}},
 	};
 
 	Builder::Builder() :
@@ -274,7 +262,6 @@ namespace TDiss
 
 	Builder::~Builder()
 	{
-
 	}
 
 	void Builder::AddInstructionToTree(const SourceInstruction& inst)
@@ -291,8 +278,7 @@ namespace TDiss
 		si.testedFlags = inst.testedFlags;
 		si.undefinedFlags = inst.undefinedFlags;
 
-		if ((inst.Flags & InstructionFlag::EXTENDED_MASK) == 0)
-		{
+		if ((inst.Flags & InstructionFlag::EXTENDED_MASK) == 0) {
 			X_ASSERT(inst.mnemonics.size() == 1); // none extended only allowed one mnem
 
 			InstInfo info;
@@ -305,13 +291,11 @@ namespace TDiss
 
 			val |= (NodeType::INFO << 13);
 
-			std::string fullTag = StrUtil::to_string_hex(tree_.size()) + " : " + inst.tag +
-				" (info:" + StrUtil::to_string(infoIdx) + ")";
+			std::string fullTag = StrUtil::to_string_hex(tree_.size()) + " : " + inst.tag + " (info:" + StrUtil::to_string(infoIdx) + ")";
 
 			tree_.push_back(std::make_pair(val, fullTag));
 		}
-		else
-		{
+		else {
 			InstInfoEx info;
 			info.opcodeId = AddMnemonic(inst.mnemonics[0]);
 			info.sharedIdx = static_cast<uint16_t>(AddUnique(sharedInfo_, si));
@@ -334,8 +318,7 @@ namespace TDiss
 
 			val |= (NodeType::INFOEX << 13);
 
-			std::string fullTag = StrUtil::to_string_hex(tree_.size()) + " : " + inst.tag +
-				" (infoEx:" + StrUtil::to_string(infoIdx) + ")";
+			std::string fullTag = StrUtil::to_string_hex(tree_.size()) + " : " + inst.tag + " (infoEx:" + StrUtil::to_string(infoIdx) + ")";
 
 			tree_.push_back(std::make_pair(val, fullTag));
 		}
@@ -367,19 +350,16 @@ namespace TDiss
 		BuildTable();
 
 		// BFS
-		// so we get table then add all it's tables 
+		// so we get table then add all it's tables
 		std::vector<TableNode*> Tables;
 		Tables.push_back(&root_);
 
 		TableNode* pCur = &root_;
 		size_t curIdx = Tables.size();
 
-		while (1)
-		{
-			for (size_t i = 0; i < pCur->Size(); i++)
-			{
-				if (pCur->isChildTable(i))
-				{
+		while (1) {
+			for (size_t i = 0; i < pCur->Size(); i++) {
+				if (pCur->isChildTable(i)) {
 					Tables.push_back(pCur->ChildAt(i));
 				}
 			}
@@ -406,22 +386,19 @@ namespace TDiss
 
 		AddMnemonic("INVALID"); // make inst id 0 invalid.
 
-		for (i = 0; i < Tables.size(); i++)
-		{
+		for (i = 0; i < Tables.size(); i++) {
 			TableNode& table = *Tables[i];
 
 			treeTableIndxes_.push(tree_.size());
 
-			for (size_t x = 0; x < table.Size(); x++)
-			{
+			for (size_t x = 0; x < table.Size(); x++) {
 				if (table.type == NodeType::DIVIDED) {
 					if (x == 8) {
 						x = 0xc0;
 					}
 				}
 
-				if (table.isChildValue(x))
-				{
+				if (table.isChildValue(x)) {
 					const SourceInstruction& inst = *table.ChildValue(x);
 					size_t j, num = 1;
 
@@ -432,15 +409,12 @@ namespace TDiss
 						// x += 7;
 					}
 
-					for (j = 0; j < num; j++)
-					{
-						if ((j > 0) && table.isChildValue(x))
-						{
+					for (j = 0; j < num; j++) {
+						if ((j > 0) && table.isChildValue(x)) {
 							const SourceInstruction& overide = *table.ChildValue(x);
 							AddInstructionToTree(overide);
 						}
-						else
-						{
+						else {
 							AddInstructionToTree(inst);
 						}
 
@@ -449,8 +423,7 @@ namespace TDiss
 
 					x--;
 				}
-				else if (table.isChildTable(x))
-				{
+				else if (table.isChildTable(x)) {
 					TableNode* pChild = table.ChildAt(x);
 
 					// top 3 bits for type 13 bits for tableIdx
@@ -459,21 +432,14 @@ namespace TDiss
 					const auto tagHStr = pChild->GetTagHierarchyStr();
 					const auto tagH = pChild->GetTagHierarchy();
 
-					for (const auto& etn : exportedTreeNodes)
-					{
-						if (etn == tagH)
-						{
+					for (const auto& etn : exportedTreeNodes) {
+						if (etn == tagH) {
 							exportedTreeNodes_.emplace_back("TableNode_" + tagHStr, val);
 						}
 					}
 
 					tree_.push_back(std::make_pair(val,
-						StrUtil::to_string_hex(tree_.size()) + " " +
-						NodeType::ToString(pChild->type) +
-						std::string(" ") +
-						StrUtil::to_string_hex(nextTableIdx) +
-						" path: " + tagHStr)
-					);
+						StrUtil::to_string_hex(tree_.size()) + " " + NodeType::ToString(pChild->type) + std::string(" ") + StrUtil::to_string_hex(nextTableIdx) + " path: " + tagHStr));
 
 					if (pChild->type == NodeType::DIVIDED) {
 						nextTableIdx += 72;
@@ -482,8 +448,7 @@ namespace TDiss
 						nextTableIdx += pChild->Size();
 					}
 				}
-				else
-				{
+				else {
 					tree_.push_back(std::make_pair(NodeType::NONE, NodeType::ToString(NodeType::NONE)));
 				}
 			}
@@ -497,8 +462,7 @@ namespace TDiss
 		size_t i;
 
 		FileUtil::ScopedFile f;
-		if (f.Open(outPath, "wb"))
-		{
+		if (f.Open(outPath, "wb")) {
 			f.WriteStr("// FILE IS GENERATED by TDissInstTableBuilder\n");
 			f.WriteStr("// TDiss instruction tables");
 			f.WriteStr("\n\n");
@@ -510,8 +474,7 @@ namespace TDiss
 			f.WriteStr("{\n\n");
 
 			// collisions
-			for (i = 0; i < collisions_.size(); i++)
-			{
+			for (i = 0; i < collisions_.size(); i++) {
 				const SourceInstruction& inst = collisions_[i];
 
 				uint32_t flag = (inst.Flags & 0xFFFFFFFF);
@@ -526,29 +489,24 @@ namespace TDiss
 				si.testedFlags = inst.testedFlags;
 				si.undefinedFlags = inst.undefinedFlags;
 
-				if ((inst.Flags & InstructionFlag::EXTENDED_MASK) == 0)
-				{
+				if ((inst.Flags & InstructionFlag::EXTENDED_MASK) == 0) {
 					X_ASSERT(inst.mnemonics.size() == 1); // none extended only allowed one mnem
 
 					InstInfo info;
 					info.opcodeId = AddMnemonic(inst.mnemonics[0]);
 					info.sharedIdx = static_cast<uint16_t>(AddUnique(sharedInfo_, si));
 
-
 					f.WriteFmt("\textern const InstInfo II_%s = { 0x%x, static_cast<InstructionID::Enum>(0x%x) };\n",
 						inst.mnemonics[0].c_str(), info.sharedIdx, info.opcodeId);
 				}
-				else
-				{
+				else {
 					X_ASSERT_NOT_IMPLEMENTED();
 				}
 			}
 			f.WriteStr("\n\n");
 
-
 			// exported nodes, fuck 3dnow right now.
-			for (const auto& en : exportedTreeNodes_)
-			{
+			for (const auto& en : exportedTreeNodes_) {
 				f.WriteFmt("\textern const InstNode %s = 0x%x;\n", en.tag.c_str(), en.index);
 			}
 
@@ -577,8 +535,7 @@ namespace TDiss
 				treeTableIndxes_.pop();
 			}
 
-			for (i = 0; i < tree_.size(); i++)
-			{
+			for (i = 0; i < tree_.size(); i++) {
 				if (i == nextTableIdx) {
 					f.WriteFmt("\t\t/* TABLE - 0x%x */\n", nextTableIdx);
 					if (!treeTableIndxes_.empty()) {
@@ -593,16 +550,14 @@ namespace TDiss
 
 			// flags
 			f.WriteFmt("\textern const uint32_t Flags[%i] = {\n", flags_.size());
-			for (i = 0; i < flags_.size(); i++)
-			{
+			for (i = 0; i < flags_.size(); i++) {
 				f.WriteFmt("\t\t0x%x,\n", flags_[i]);
 			}
 			f.WriteStr("\t};\n\n");
 
 			// instInfo
 			f.WriteFmt("\textern const InstInfo instInfo[%i] = {\n", instInfo_.size());
-			for (i = 0; i < instInfo_.size(); i++)
-			{
+			for (i = 0; i < instInfo_.size(); i++) {
 				const InstInfo& info = instInfo_[i];
 				f.WriteFmt("\t\t{0x%x, static_cast<InstructionID::Enum>(0x%x)}, /* idx: %i */\n",
 					info.sharedIdx, info.opcodeId, i);
@@ -611,16 +566,15 @@ namespace TDiss
 
 			// instInfoEx
 			f.WriteFmt("\textern const InstInfoEx instInfoEx[%i] = {\n", instInfoEx_.size());
-			for (i = 0; i < instInfoEx_.size(); i++)
-			{
+			for (i = 0; i < instInfoEx_.size(); i++) {
 				const InstInfoEx& info = instInfoEx_[i];
 				f.WriteFmt("\t\t{0x%x, "
-					"static_cast<InstructionID::Enum>(0x%x), "
-					"static_cast<InstructionID::Enum>(0x%x), "
-					"static_cast<InstructionID::Enum>(0x%x), "
-					"static_cast<OperandType::Enum>(0x%x), "
-					"static_cast<OperandType::Enum>(0x%x) "
-					"}, /* idx: %i */\n",
+						   "static_cast<InstructionID::Enum>(0x%x), "
+						   "static_cast<InstructionID::Enum>(0x%x), "
+						   "static_cast<InstructionID::Enum>(0x%x), "
+						   "static_cast<OperandType::Enum>(0x%x), "
+						   "static_cast<OperandType::Enum>(0x%x) "
+						   "}, /* idx: %i */\n",
 					info.sharedIdx, info.opcodeId,
 					info.opcodeId2, info.opcodeId3,
 					info.op3, info.op4, i);
@@ -629,11 +583,10 @@ namespace TDiss
 
 			// SharedInfo
 			f.WriteFmt("\textern const InstSharedInfo SharedInfo[%i] = {\n", sharedInfo_.size());
-			for (i = 0; i < sharedInfo_.size(); i++)
-			{
+			for (i = 0; i < sharedInfo_.size(); i++) {
 				const InstSharedInfo& info = sharedInfo_[i];
 				f.WriteFmt("\t\t{0x%x, static_cast<OperandType::Enum>(0x%x), static_cast<OperandType::Enum>(0x%x),"
-					"static_cast<InstructionSet::Enum>(0x%x), static_cast<FlowControl::Enum>(0x%x), %i, %i, %i}, /* idx: %i */\n",
+						   "static_cast<InstructionSet::Enum>(0x%x), static_cast<FlowControl::Enum>(0x%x), %i, %i, %i}, /* idx: %i */\n",
 					info.flagsIdx, info.s, info.d, info.instSet, info.flow, info.modifiedFlags, info.testedFlags, info.undefinedFlags, i);
 			}
 			f.WriteStr("\t};\n\n");
@@ -654,16 +607,14 @@ namespace TDiss
 		return lhs.index < rhs.index;
 	}
 
-
 	bool Builder::SaveMnemocis(const std::string& outHeader, const std::string& outSource)
 	{
 		FileUtil::ScopedFile fh, fs;
-		if (!fh.Open(outHeader, "wb") || !fs.Open(outSource, "wb"))
-		{
+		if (!fh.Open(outHeader, "wb") || !fs.Open(outSource, "wb")) {
 			return false;
 		}
 
-		// sort 
+		// sort
 		std::sort(mnemoics_.begin(), mnemoics_.end(), Mnemocis_sortName);
 
 		// header.
@@ -679,7 +630,6 @@ namespace TDiss
 		fh.WriteStr("#endif // OUT\n");
 		fh.WriteStr("\n");
 
-
 		fh.WriteStr("namespace TDiss\n");
 		fh.WriteStr("{\n");
 
@@ -689,8 +639,7 @@ namespace TDiss
 		fh.WriteStr("\t\tenum Enum : uint16_t\n");
 		fh.WriteStr("\t\t{\n");
 
-		for (const auto& mne : mnemoics_)
-		{
+		for (const auto& mne : mnemoics_) {
 			const std::string formated = FormatMnemonic(mne.mnemonic);
 			fh.WriteFmt("\t\t\t%s = %i,\n", formated.c_str(), mne.index);
 		}
@@ -715,8 +664,7 @@ namespace TDiss
 		fs.WriteStr("\tnamespace {\n\n");
 		fs.WriteStr("\t\tconst char* pNames[] = {\n");
 
-		for (const auto& mne : mnemoics_)
-		{
+		for (const auto& mne : mnemoics_) {
 			fs.WriteFmt("\t\t\t\"%s\", /* %i */\n", mne.mnemonic.c_str(), mne.index);
 		}
 		fs.WriteStr("\t\t};\n\n");
@@ -735,7 +683,6 @@ namespace TDiss
 		return true;
 	}
 
-
 	// -----------------------------------------------------
 
 	bool Builder::SaveTests(const std::string& outDir, size_t numTestFiles)
@@ -743,8 +690,7 @@ namespace TDiss
 		{
 			TestBuilder builder(CodeType::CODE_32BIT);
 
-			for (const auto& inst : instructions_)
-			{
+			for (const auto& inst : instructions_) {
 				builder.CreateTestForInst(inst);
 			}
 
@@ -755,8 +701,7 @@ namespace TDiss
 		{
 			TestBuilder builder(CodeType::CODE_64BIT);
 
-			for (const auto& inst : instructions_)
-			{
+			for (const auto& inst : instructions_) {
 				builder.CreateTestForInst(inst);
 			}
 
@@ -843,7 +788,6 @@ namespace TDiss
 			AddInstruction("0x0f 0x01 //f9", "RDTSCP", OperandType::NONE,
 				InstructionFlag::BITS32 | InstructionFlag::BITS64_FETCH);
 
-
 			AddInstruction("0x0f 0x02", "LAR", OperandType::REG_FULL, OperandType::RM_16,
 				InstructionFlag::MODRM_REQUIRED);
 			AddInstruction("0x0f 0x03", "LSL", OperandType::REG_FULL, OperandType::RM_16,
@@ -865,7 +809,6 @@ namespace TDiss
 			AddInstruction("0x0f 0x32", "RDMSR", OperandType::NONE, InstructionFlag::BITS32);
 			AddInstruction("0x0f 0x33", "RDPMC", OperandType::NONE, InstructionFlag::BITS32);
 
-
 			AddInstruction("0x0f 0x80", "JO", OperandType::REL_CI_FULL, InstructionFlag::BITS32, FlowControl::CND_BRANCH);
 			AddInstruction("0x0f 0x81", "JNO", OperandType::REL_CI_FULL, InstructionFlag::BITS32, FlowControl::CND_BRANCH);
 			AddInstruction("0x0f 0x82", "JB", OperandType::REL_CI_FULL, InstructionFlag::BITS32, FlowControl::CND_BRANCH);
@@ -882,7 +825,6 @@ namespace TDiss
 			AddInstruction("0x0f 0x8d", "JGE", OperandType::REL_CI_FULL, InstructionFlag::BITS32, FlowControl::CND_BRANCH);
 			AddInstruction("0x0f 0x8e", "JLE", OperandType::REL_CI_FULL, InstructionFlag::BITS32, FlowControl::CND_BRANCH);
 			AddInstruction("0x0f 0x8f", "JG", OperandType::REL_CI_FULL, InstructionFlag::BITS32, FlowControl::CND_BRANCH);
-
 
 			AddInstruction("0x0f 0x90", "SETO", OperandType::RM_8,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
@@ -917,7 +859,6 @@ namespace TDiss
 			AddInstruction("0x0f 0x9f", "SETG", OperandType::RM_8,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 
-
 			AddInstruction("0x0f 0xa0", "PUSH", OperandType::SEG,
 				InstructionFlag::PRE_FS | InstructionFlag::BITS32 | InstructionFlag::BITS64);
 			AddInstruction("0x0f 0xa1", "POP", OperandType::SEG,
@@ -947,12 +888,10 @@ namespace TDiss
 
 			// saves x87 FPU, MMX technology, XMM, and MXCSR register state to 512 byte block.
 			AddInstruction("0x0f 0xae /00", "FXSAVE, INVALID, FXSAVE64", OperandType::MEM,
-				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 |
-				InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
+				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
 			// reverse of above.
 			AddInstruction("0x0f 0xae /01", "FXRSTOR, INVALID, FXRSTOR64", OperandType::MEM,
-				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 |
-				InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
+				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
 
 			AddInstruction("0x0f 0xae /02", "LDMXCSR", OperandType::MEM,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
@@ -961,18 +900,15 @@ namespace TDiss
 
 			// LFENCE when MOD=11, else XRSTOR(x86) XRSTOR64(x64). operand only used when MOD!=11
 			AddInstruction("0x0f 0xae /05", "LFENCE, XRSTOR, XRSTOR64", OperandType::MEM_OPT,
-				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX |
-				InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2 | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
+				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2 | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
 
 			// MFENCE MOD=11, else XSAVEOPT or XSAVEOPT64 in 64.
 			AddInstruction("0x0f 0xae /06", "MFENCE, XSAVEOPT, XSAVEOPT64", OperandType::MEM_OPT,
-				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX |
-				InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2 | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
+				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2 | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
 
 			// SFENCE when MOD=11, else CLFLUSH. operand only used when MOD!=11
 			AddInstruction("0x0f 0xae /07", "SFENCE, CLFLUSH", OperandType::MEM_OPT,
-				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 |
-				InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
+				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
 
 			// ~~
 
@@ -997,7 +933,6 @@ namespace TDiss
 			AddInstruction("0x0f 0xb9", "UD2", OperandType::NONE,
 				InstructionFlag::BITS32);
 
-
 			AddInstruction("0x0f 0xba /04", "BT", OperandType::RM_FULL, OperandType::IMM_8,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 			AddInstruction("0x0f 0xba /05", "BTS", OperandType::RM_FULL, OperandType::IMM_8,
@@ -1013,12 +948,11 @@ namespace TDiss
 			AddInstruction("0x0f 0xbd", "BSR", OperandType::RM_FULL, OperandType::IMM_8,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 
-
 			AddInstruction("0x0f 0xbe", "MOVSX", OperandType::REG_FULL, OperandType::RM_8,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 			AddInstruction("0x0f 0xbf", "MOVSX", OperandType::REG_FULL, OperandType::RM_16,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32
-				| InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
+					| InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
 
 			AddInstruction("0x0f 0xc0", "XADD", OperandType::RM_8, OperandType::REG_8,
 				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::PRE_LOCK);
@@ -1027,8 +961,7 @@ namespace TDiss
 
 			// need ome new operand types to handle these.
 			AddInstruction("0x0f 0xc7 /01", "CMPXCHG8B, INVALID, CMPXCHG16B", OperandType::MEM_64_128,
-				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 |
-				InstructionFlag::PRE_LOCK | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
+				InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_LOCK | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
 
 			//	AddInstruction("0x0f 0xc8", "BSWAP", OperandType::RM_FULL, OperandType::REG_FULL,
 			//		InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::PRE_LOCK);
@@ -1068,11 +1001,6 @@ namespace TDiss
 
 		// not valid in x64
 
-
-
-
-
-
 		AddInstruction("0x1e", "PUSH", OperandType::SEG,
 			InstructionFlag::INVALID_64 | InstructionFlag::PRE_DS);
 		AddInstruction("0x1f", "POP", OperandType::SEG,
@@ -1099,7 +1027,6 @@ namespace TDiss
 		AddInstruction("0x27", "DAA", OperandType::EXPLICIT_REG,
 			InstructionFlag::INVALID_64);
 
-
 		AddInstruction("0x28", "SUB", OperandType::RM_8, OperandType::REG_8,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::PRE_LOCK);
 		AddInstruction("0x29", "SUB", OperandType::RM_FULL, OperandType::REG_FULL,
@@ -1118,7 +1045,6 @@ namespace TDiss
 
 		AddInstruction("0x2f", "DAS", OperandType::EXPLICIT_REG,
 			InstructionFlag::INVALID_64);
-
 
 		AddInstruction("0x30", "XOR", OperandType::RM_8, OperandType::REG_8,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::PRE_LOCK);
@@ -1188,12 +1114,10 @@ namespace TDiss
 				InstructionFlag::INVALID_64 | InstructionFlag::NATIVE);
 		}
 
-
 		AddInstruction("0x62", "BOUND", OperandType::REG_FULL,
 			// Two one - word operands in memory or two double - word operands in memory
 			OperandType::MEM,
 			InstructionFlag::INVALID_64 | InstructionFlag::MODRM_REQUIRED);
-
 
 		// got two for 0x63 :|
 
@@ -1228,7 +1152,6 @@ namespace TDiss
 			// Same as before but full size 16/32
 			AddInstruction("0x6f", "OUTSD", OperandType::REG_DX, OperandType::REG_ESI,
 				InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ | InstructionFlag::BITS16);
-
 		}
 
 		// jmp
@@ -1251,7 +1174,6 @@ namespace TDiss
 		AddInstruction("0x7d", "JGE", OperandType::REL_CI_8, InstructionFlag::BITS64, FlowControl::CND_BRANCH);
 		AddInstruction("0x7e", "JLE", OperandType::REL_CI_8, InstructionFlag::BITS64, FlowControl::CND_BRANCH);
 		AddInstruction("0x7f", "JG", OperandType::REL_CI_8, InstructionFlag::BITS64, FlowControl::CND_BRANCH);
-
 
 		// following ops have op extensions.
 		AddInstruction("0x80 /0", "ADD", OperandType::RM_8, OperandType::IMM_8,
@@ -1325,7 +1247,6 @@ namespace TDiss
 		AddInstruction("0x83 /7", "CMP", OperandType::RM_FULL, OperandType::IMM_S_8,
 			InstructionFlag::MODRM_REQUIRED);
 
-
 		AddInstruction("0x84", "TEST", OperandType::RM_8, OperandType::REG_8,
 			InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0x85", "TEST", OperandType::RM_FULL, OperandType::REG_FULL,
@@ -1372,14 +1293,12 @@ namespace TDiss
 				InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2);
 		}
 
-
 		AddInstruction("0x9a", "CALL FAR", OperandType::PTR16_FULL,
 			InstructionFlag::INVALID_64, FlowControl::CALL);
 
 		{
 			// skip FPU 0x9b
 		}
-
 
 		AddInstruction("0x9c", "PUSHF", OperandType::EXPLICIT_REG,
 			InstructionFlag::BITS64 | InstructionFlag::NATIVE);
@@ -1390,7 +1309,6 @@ namespace TDiss
 			InstructionFlag::NONE);
 		AddInstruction("0x9f", "LAHF", OperandType::EXPLICIT_REG,
 			InstructionFlag::NONE);
-
 
 		AddInstruction("0xa0", "MOV", OperandType::ACC_8, OperandType::MOFFS_8,
 			InstructionFlag::NONE);
@@ -1406,27 +1324,24 @@ namespace TDiss
 
 		// geek: Y
 		// Memory addressed by the ES:eDI or by RDI (only MOVS, CMPS, INS, STOS, and SCAS).
-		// In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. 
+		// In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported.
 		// In non-64-bit modes, only 32-bit (EDI) and 16-bit (DI) address sizes are supported. The implicit ES segment register cannot be overriden by a segment prefix.
 
 		// geek: X
-		// Memory addressed by the DS:eSI or by RSI (only MOVS, CMPS, OUTS, and LODS). 
-		// In 64-bit mode, only 64-bit (RSI) and 32-bit (ESI) address sizes are supported. 
+		// Memory addressed by the DS:eSI or by RSI (only MOVS, CMPS, OUTS, and LODS).
+		// In 64-bit mode, only 64-bit (RSI) and 32-bit (ESI) address sizes are supported.
 		// In non-64-bit modes, only 32-bit (ESI) and 16-bit (SI) address sizes are supported.
 
 		AddInstruction("0xa4", "MOVSB", OperandType::REG_EDI, OperandType::REG_ESI,
 			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ);
 		AddInstruction("0xa5", "MOVS", OperandType::REG_EDI, OperandType::REG_ESI,
-			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ |
-			InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
+			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ | InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
 
-		// cmps ds:si*, es:di 
+		// cmps ds:si*, es:di
 		AddInstruction("0xa6", "CMPSB", OperandType::REG_ESI, OperandType::REG_EDI,
 			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ);
 		AddInstruction("0xa7", "CMPS", OperandType::REG_ESI, OperandType::REG_EDI,
-			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ |
-			InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
-
+			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ | InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
 
 		AddInstruction("0xa8", "TEST", OperandType::ACC_8, OperandType::IMM_8,
 			InstructionFlag::NONE);
@@ -1437,22 +1352,19 @@ namespace TDiss
 		AddInstruction("0xaa", "STOSB", OperandType::REG_EDI, OperandType::ACC_8,
 			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ);
 		AddInstruction("0xab", "STOS", OperandType::REG_EDI, OperandType::ACC_FULL,
-			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ |
-			InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
+			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ | InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
 
 		// lods al, ds:si*
 		AddInstruction("0xac", "LODSB", OperandType::ACC_8, OperandType::REG_ESI,
 			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ);
 		AddInstruction("0xad", "LODS", OperandType::ACC_FULL, OperandType::REG_ESI,
-			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ |
-			InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
+			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ | InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
 
 		// scas es:di, al
 		AddInstruction("0xae", "SCASB", OperandType::REG_EDI, OperandType::ACC_8,
 			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ);
 		AddInstruction("0xaf", "SCAS", OperandType::REG_EDI, OperandType::ACC_FULL,
-			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ |
-			InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
+			InstructionFlag::PRE_REP | InstructionFlag::PRE_REPNZ | InstructionFlag::BITS16 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX);
 
 		{
 			// blocks
@@ -1464,7 +1376,6 @@ namespace TDiss
 			AddInstruction("0xb8", "MOV", OperandType::BLOCK_R_FULL, OperandType::IMM_FULL,
 				InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::REG_BLOCK);
 		}
-
 
 		AddInstruction("0xc0 /0", "ROL", OperandType::RM_8, OperandType::IMM_8,
 			InstructionFlag::MODRM_REQUIRED);
@@ -1499,7 +1410,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0xc1 /7", "SAR", OperandType::RM_FULL, OperandType::IMM_8,
 			InstructionFlag::MODRM_REQUIRED);
-
 
 		AddInstruction("0xc2", "RETN", OperandType::IMM_16, InstructionFlag::BITS64, FlowControl::RET);
 		AddInstruction("0xc3", "RETN", OperandType::EXPLICIT_REG, InstructionFlag::BITS64, FlowControl::RET);
@@ -1545,7 +1455,6 @@ namespace TDiss
 		// IRETQ	RFlags
 		AddInstruction("0xcf", "IRET", OperandType::EXPLICIT_REG,
 			InstructionFlag::NATIVE | InstructionFlag::BITS64 | InstructionFlag::PRE_REX, FlowControl::RET);
-
 
 		AddInstruction("0xd0 /0", "ROL", OperandType::RM_8, OperandType::CONST1,
 			InstructionFlag::MODRM_REQUIRED);
@@ -1615,17 +1524,16 @@ namespace TDiss
 		AddInstruction("0xd3 /7", "SAR", OperandType::RM_FULL, OperandType::REG_CL,
 			InstructionFlag::MODRM_REQUIRED);
 
-
 		// AAM AL, AH, imm8
 		AddInstruction("0xd4", "AAM", OperandType::IMM_8, InstructionFlag::INVALID_64);
 		// AAD AL, AH, imm8
 		AddInstruction("0xd5", "AAD", OperandType::IMM_8, InstructionFlag::INVALID_64);
 		AddInstruction("0xd6", "SALC", OperandType::EXPLICIT_REG, InstructionFlag::INVALID_64);
 
-		// Memory addressed by DS:eBX+AL, or by rBX+AL in 64-bit mode 
+		// Memory addressed by DS:eBX+AL, or by rBX+AL in 64-bit mode
 		AddInstruction("0xd7", "XLAT", OperandType::REG_EBXAL, InstructionFlag::PRE_DS);
 
-		// Load of floating point ops from here down. 
+		// Load of floating point ops from here down.
 		// 0xD8 -> DF
 
 		// 0xE0 first gen op after.
@@ -1639,8 +1547,7 @@ namespace TDiss
 		// the address prefix affects the register size: (e)CX
 		// in 64bits it's promoted: J(r/e)CXZ
 		AddInstruction("0xe3", "JCXZ, JECXZ, JRCXZ", OperandType::REL_CI_8,
-			InstructionFlag::PRE_ADDR_SIZE |
-			InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2, FlowControl::CND_BRANCH);
+			InstructionFlag::PRE_ADDR_SIZE | InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC2, FlowControl::CND_BRANCH);
 
 		AddInstruction("0xe4", "IN", OperandType::ACC_8, OperandType::IMM_8,
 			InstructionFlag::NONE);
@@ -1679,10 +1586,9 @@ namespace TDiss
 		AddInstruction("0xf4", "HLT", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
 		AddInstruction("0xf5", "CMC", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
 
-
 		AddInstruction("0xf6 /0", "TEST", OperandType::RM_8, OperandType::IMM_8,
 			InstructionFlag::MODRM_REQUIRED);
-		//		AddInstruction("0xf6 /1", "TEST", OperandType::RM_8, 
+		//		AddInstruction("0xf6 /1", "TEST", OperandType::RM_8,
 		//			InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0xf6 /2", "NOT", OperandType::RM_8,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::PRE_LOCK);
@@ -1714,14 +1620,12 @@ namespace TDiss
 		AddInstruction("0xf7 /7", "IDIV", OperandType::RM_FULL,
 			InstructionFlag::MODRM_REQUIRED);
 
-
 		AddInstruction("0xf8", "CLC", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
 		AddInstruction("0xf9", "STC", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
 		AddInstruction("0xfa", "CLI", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
 		AddInstruction("0xfb", "STI", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
 		AddInstruction("0xfc", "CLD", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
 		AddInstruction("0xfd", "STD", OperandType::EXPLICIT_REG, InstructionFlag::NONE);
-
 
 		AddInstruction("0xfe /0", "INC", OperandType::RM_8,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::PRE_LOCK);
@@ -1736,18 +1640,15 @@ namespace TDiss
 		AddInstruction("0xff /2", "CALL", OperandType::RM_FULL,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS64, FlowControl::CALL);
 		AddInstruction("0xff /3", "CALL FAR", OperandType::MEM_FULL_M16,
-			InstructionFlag::MODRM_REQUIRED |
-			InstructionFlag::BITS64 | InstructionFlag::PRE_REX, FlowControl::CALL);
+			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS64 | InstructionFlag::PRE_REX, FlowControl::CALL);
 
 		AddInstruction("0xff /4", "JMP", OperandType::RM_FULL,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS64, FlowControl::UNC_BRANCH);
 		AddInstruction("0xff /5", "JMP FAR", OperandType::MEM_FULL_M16,
-			InstructionFlag::MODRM_REQUIRED |
-			InstructionFlag::BITS64 | InstructionFlag::PRE_REX, FlowControl::UNC_BRANCH);
+			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS64 | InstructionFlag::PRE_REX, FlowControl::UNC_BRANCH);
 
 		AddInstruction("0xff /6", "PUSH", OperandType::RM_FULL,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS64);
-
 
 		// New instructions from AMD July 2007
 		AddInstruction("0xf3 0x0f 0xbd", "LZCNT", OperandType::REG_FULL, OperandType::RM_FULL,
@@ -1767,8 +1668,8 @@ namespace TDiss
 
 		// New instructions from Intel 2009:
 		// Intel 64 and IA - 32 Architecture Software Developer's Manual Volume 2B: Instruction Set Reference,
-		//	N-Z: The GETSEC instruction supports multiple leaf functions. Leaf functions are selected by the value in EAX at the time GETSEC is executed. 
-		//	The following leaf functions are available: CAPABILITIES, ENTERACCS, EXITAC, SENTER, SEXIT, PARAMETERS, 
+		//	N-Z: The GETSEC instruction supports multiple leaf functions. Leaf functions are selected by the value in EAX at the time GETSEC is executed.
+		//	The following leaf functions are available: CAPABILITIES, ENTERACCS, EXITAC, SENTER, SEXIT, PARAMETERS,
 		//	SMCTRL, WAKEUP. GETSEC instruction operands are specific to selected leaf function.
 		AddInstruction("0x0f 0x37", "GETSEC", OperandType::NONE, InstructionFlag::BITS32);
 	}
@@ -1861,7 +1762,6 @@ namespace TDiss
 		AddInstruction("0xdb //e4", "FSETPM", OperandType::NONE, InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0xdb //e8", "FUCOMI", OperandType::FPU_SSI, InstructionFlag::BITS32 | InstructionFlag::REG_BLOCK);
 
-
 		AddInstruction("0xdc //00", "FADD", OperandType::FPUM64, InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0xdc //01", "FMUL", OperandType::FPUM64, InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0xdc //02", "FCOM", OperandType::FPUM64, InstructionFlag::MODRM_REQUIRED);
@@ -1877,7 +1777,6 @@ namespace TDiss
 		AddInstruction("0xdc //e8", "FSUB", OperandType::FPU_SIS, InstructionFlag::REG_BLOCK);
 		AddInstruction("0xdc //f0", "FDIVR", OperandType::FPU_SIS, InstructionFlag::REG_BLOCK);
 		AddInstruction("0xdc //f8", "FDIV", OperandType::FPU_SIS, InstructionFlag::REG_BLOCK);
-
 
 		AddInstruction("0xdd //00", "FLD", OperandType::FPUM64, InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0xdd //02", "FST", OperandType::FPUM64, InstructionFlag::MODRM_REQUIRED);
@@ -1926,12 +1825,6 @@ namespace TDiss
 		AddInstruction("0xdf //e0", "FNSTSW", OperandType::ACC_16, InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0xdf //e8", "FUCOMIP", OperandType::FPU_SSI, InstructionFlag::BITS32 | InstructionFlag::REG_BLOCK);
 		AddInstruction("0xdf //f0", "FCOMIP", OperandType::FPU_SSI, InstructionFlag::BITS32 | InstructionFlag::REG_BLOCK);
-
-
-
-
-
-
 	}
 
 	void Builder::addP6()
@@ -1989,8 +1882,6 @@ namespace TDiss
 			InstructionFlag::REG_BLOCK | InstructionFlag::BITS32);
 		AddInstruction("0xdb //f0", "FCOMI", OperandType::FPU_SSI,
 			InstructionFlag::REG_BLOCK | InstructionFlag::BITS32);
-
-
 	}
 
 	void Builder::addMMX(void)
@@ -2024,7 +1915,7 @@ namespace TDiss
 
 		AddInstruction("0x0f 0x6e", "MOVD, MOVQ, MOVQ", OperandType::MM, OperandType::MM_32_64,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64
-			| InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
+				| InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
 		AddInstruction("0x0f 0x6f", "MOVQ", OperandType::MM, OperandType::MM_64,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 
@@ -2113,7 +2004,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x0f 0xfe", "PADDD", OperandType::MM, OperandType::MM_64,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
-
 	}
 
 	void Builder::addSSE1(void)
@@ -2125,8 +2015,7 @@ namespace TDiss
 		AddInstruction("0x0f 0x11", "MOVUPS", OperandType::XMM_128, OperandType::XMM,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x0f 0x12", "MOVHLPS, MOVLPS", OperandType::XMM, OperandType::XMM_64,
-			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 |
-			InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
+			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
 		AddInstruction("0x0f 0x13", "MOVLPS", OperandType::MEM_64, OperandType::XMM,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x0f 0x14", "UNPCKLPS", OperandType::XMM, OperandType::XMM_128,
@@ -2134,8 +2023,7 @@ namespace TDiss
 		AddInstruction("0x0f 0x15", "UNPCKHPS", OperandType::XMM, OperandType::XMM_128,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x0f 0x16", "MOVLHPS, MOVHPS", OperandType::XMM, OperandType::XMM_64,
-			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 |
-			InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
+			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::EX_MNEMONIC | InstructionFlag::EX_MNEMONIC_MODRM_BASED);
 		AddInstruction("0x0f 0x17", "MOVHPS", OperandType::MEM_64, OperandType::XMM,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 
@@ -2227,7 +2115,6 @@ namespace TDiss
 		AddInstruction("0x0f 0xf7", "MASKMOVQ", OperandType::MM, OperandType::MM_RM,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::MODRR_REQUIRED | InstructionFlag::BITS32);
 
-
 		AddInstruction("0xf3 0x0f 0x10", "MOVSS", OperandType::XMM, OperandType::XMM_32,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0xf3 0x0f 0x11", "MOVSS", OperandType::XMM_32, OperandType::XMM,
@@ -2260,8 +2147,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0xf3 0x0f 0xc2", "CMP, SS", OperandType::XMM, OperandType::XMM_32,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::EX_MNEMONIC);
-
-
 	}
 
 	void Builder::addSSE2(void)
@@ -2274,7 +2159,7 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x0f 0xc3", "MOVNTI", OperandType::MEM_32_64, OperandType::REG_32_64,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64
-			| InstructionFlag::PRE_REX);
+				| InstructionFlag::PRE_REX);
 
 		AddInstruction("0x0f 0xd4", "PADDQ", OperandType::XMM, OperandType::XMM_64,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
@@ -2291,7 +2176,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x66 0x0f 0x13", "MOVLPD", OperandType::MEM_64, OperandType::XMM,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
-
 
 		AddInstruction("0x66 0x0f 0x14", "UNPCKLPD", OperandType::XMM, OperandType::XMM_128,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
@@ -2377,8 +2261,7 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 
 		AddInstruction("0x66 0x0f 0x6e", "MOVD, INVALID, MOVQ", OperandType::XMM, OperandType::RM_32_64,
-			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 |
-			InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
+			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
 
 		AddInstruction("0x66 0x0f 0x6f", "MOVDQA", OperandType::XMM, OperandType::XMM_128,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
@@ -2413,14 +2296,11 @@ namespace TDiss
 		AddInstruction("0x66 0x0f 0x76", "PCMPEQD", OperandType::XMM, OperandType::XMM_128,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 
-
 		AddInstruction("0x66 0x0f 0x7e", "MOVD, INVALID, MOVQ", OperandType::RM_32_64, OperandType::XMM,
-			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 |
-			InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
+			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::BITS64 | InstructionFlag::PRE_REX | InstructionFlag::EX_MNEMONIC2);
 
 		AddInstruction("0x66 0x0f 0x7f", "MOVDQA", OperandType::XMM_128, OperandType::XMM,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
-
 
 		// some more...
 		AddInstruction("0x66 0x0f 0xc2", "CMP, PD", OperandType::XMM_128, OperandType::XMM,
@@ -2462,7 +2342,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x66 0x0f 0xdf", "PANDN", OperandType::XMM, OperandType::XMM_128,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
-
 
 		AddInstruction("0x66 0x0f 0xe0", "PAVGB", OperandType::XMM, OperandType::XMM_128,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
@@ -2579,7 +2458,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::MODRR_REQUIRED);
 		AddInstruction("0xf3 0x0f 0xe6", "CVTDQ2PD", OperandType::XMM, OperandType::XMM_64,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
-
 	}
 
 	void Builder::addSSE3(void)
@@ -2684,8 +2562,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x66 0x0f 0x3a 0x0f", "PALIGNR", OperandType::XMM, OperandType::XMM_128, OperandType::IMM_8,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
-
-
 	}
 
 	void Builder::addSSE4_1(void)
@@ -2739,7 +2615,6 @@ namespace TDiss
 		AddInstruction("0x66 0x0f 0x38 0x40", "PMULLD", OperandType::XMM, OperandType::XMM_128,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 
-
 		AddInstruction("0x66 0x0f 0x3a 0x09", "ROUNDPD", OperandType::XMM, OperandType::XMM_128, OperandType::IMM_8,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x66 0x0f 0x3a 0x08", "ROUNDPS", OperandType::XMM, OperandType::XMM_128, OperandType::IMM_8,
@@ -2748,7 +2623,6 @@ namespace TDiss
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
 		AddInstruction("0x66 0x0f 0x3a 0x0a", "ROUNDSS", OperandType::XMM, OperandType::XMM_32, OperandType::IMM_8,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32);
-
 	}
 
 	void Builder::addSSE4_2(void)
@@ -2825,7 +2699,6 @@ namespace TDiss
 		AddInstruction("0x0f 0x0f 0xb6", "PFRCPIT2", OperandType::MM, OperandType::MM_64, InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::NOW3D_FETCH);
 		AddInstruction("0x0f 0x0f 0xb7", "PMULHRW", OperandType::MM, OperandType::MM_64, InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::NOW3D_FETCH);
 		AddInstruction("0x0f 0x0f 0xbf", "PAVGUSB", OperandType::MM, OperandType::MM_64, InstructionFlag::MODRM_REQUIRED | InstructionFlag::BITS32 | InstructionFlag::NOW3D_FETCH);
-
 	}
 
 	void Builder::add3DNOWEXT(void)
@@ -2847,25 +2720,21 @@ namespace TDiss
 	void Builder::addVMX(void)
 	{
 		SetCurrentInstructionSet(InstructionSet::VMX);
-
 	}
 
 	void Builder::addSVM(void)
 	{
 		SetCurrentInstructionSet(InstructionSet::SVM);
-
 	}
 
 	void Builder::addAVX(void)
 	{
 		SetCurrentInstructionSet(InstructionSet::AVX);
-
 	}
 
 	void Builder::addFMA(void)
 	{
 		SetCurrentInstructionSet(InstructionSet::FMA);
-
 	}
 
 	void Builder::addCollisions()
@@ -2877,14 +2746,12 @@ namespace TDiss
 		AddInstruction("0x63", "ARPL", OperandType::RM_16, OperandType::REG_16,
 			InstructionFlag::MODRM_REQUIRED);
 		AddInstruction("0x63", "MOVSXD", OperandType::REG_32_64, OperandType::RM_32,
-			InstructionFlag::MODRM_REQUIRED | InstructionFlag::PRE_REX |
-			InstructionFlag::BITS64 | InstructionFlag::COLLISION);
+			InstructionFlag::MODRM_REQUIRED | InstructionFlag::PRE_REX | InstructionFlag::BITS64 | InstructionFlag::COLLISION);
 
 		SetCurrentInstructionSet(InstructionSet::NOW3D);
 
 		AddInstruction("0x0f 0x0f", "NOW3D", OperandType::MM, OperandType::MM_64,
 			InstructionFlag::MODRM_REQUIRED | InstructionFlag::NOW3D_FETCH | InstructionFlag::COLLISION);
-
 	}
 
 	void Builder::addInstructionFlags(void)
@@ -2898,93 +2765,88 @@ namespace TDiss
 		};
 
 		InstFlags flags[] = {
-			{ "AAA", PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::AUX, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN },
-			{ "AAA", PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::AUX, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY },
-			{ "AAS",  PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::AUX, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY },
-			{ "AAD",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX | PackedCpuFlag::CARRY },
-			{ "AAM",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX | PackedCpuFlag::CARRY },
-			{ "ADC",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0 },
-			{ "ADD",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "AND",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX },
-			{ "ARPL",  PackedCpuFlag::ZERO, 0, 0 },
-			{ "BSF",  PackedCpuFlag::ZERO, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY },
-			{ "BSR",  PackedCpuFlag::ZERO, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY },
-			{ "BT",  PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY },
-			{ "BTS",  PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY },
-			{ "BTR",  PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY },
-			{ "BTC",  PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY },
-			{ "CLC",  PackedCpuFlag::CARRY, 0, 0 },
-			{ "CLD",  PackedCpuFlag::DIRECTION, 0, 0 },
-			{ "CLI",  PackedCpuFlag::INTERRUPT, 0, 0 },
-			{ "CMC",  PackedCpuFlag::CARRY, 0, 0 },
-			{ "CMP",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "CMPXCHG",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "CMPXCHG8B",  PackedCpuFlag::ZERO, 0, 0 },
-			{ "CMPXCHG16B",  PackedCpuFlag::ZERO, 0, 0 }, // Same inst as previous.
-			{ "COMSID", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "COMISS",  PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "DAA",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW },
-			{ "DAS",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW },
-			{ "DEC",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY, 0, 0 },
-			{ "DIV",  0, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY },
-			{ "FCOMI",  PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "FCOMIP",  PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "FUCOMI",  PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "FUCOMIP",  PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "IDIV",  0, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY },
-			{ "IMUL",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY },
-			{ "INC",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY, 0, 0 },
-			{ "UCOMSID",  PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "UCOMISS",  PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "IRET",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY | PackedCpuFlag::INTERRUPT | PackedCpuFlag::DIRECTION, 0, 0 },
-			{ "LAR",  PackedCpuFlag::ZERO, 0, 0 },
-			{ "LOOPZ",  0, PackedCpuFlag::ZERO, 0 },
-			{ "LOOPNZ",  0, PackedCpuFlag::ZERO, 0 },
-			{ "LSL",  PackedCpuFlag::ZERO, 0, 0 },
-			{ "LZCNT",  PackedCpuFlag::ZERO | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::AUX | PackedCpuFlag::PARITY },
-			{ "MUL",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY },
-			{ "NEG",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "OR",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, PackedCpuFlag::AUX, 0 },
-			{ "POPCNT",  PackedCpuFlag::ZERO, 0, 0 },
-			{ "POPF",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY | PackedCpuFlag::INTERRUPT | PackedCpuFlag::DIRECTION, 0, 0 },
-			{ "RSM",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY | PackedCpuFlag::INTERRUPT | PackedCpuFlag::DIRECTION, 0, 0 },
-			{ "SAHF",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "SBB",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0 },
-			{ "STC",  PackedCpuFlag::CARRY, 0, 0 },
-			{ "STD",  PackedCpuFlag::DIRECTION, 0, 0 },
-			{ "STI",  PackedCpuFlag::INTERRUPT, 0, 0 },
-			{ "SUB",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "TEST",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::AUX },
-			{ "VERR",  PackedCpuFlag::ZERO, 0, 0 },
-			{ "VERW",  PackedCpuFlag::ZERO, 0, 0 },
-			{ "XADD",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0 },
-			{ "XOR",  PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::AUX },
-			{ "MOVS",  0, PackedCpuFlag::DIRECTION, 0 },
-			{ "LODS",  0, PackedCpuFlag::DIRECTION, 0 },
-			{ "STOS",  0, PackedCpuFlag::DIRECTION, 0 },
-			{ "CMPS",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::DIRECTION, 0 },
-			{ "SCAS",  PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::DIRECTION, 0 },
-			{ "INS",  0, PackedCpuFlag::DIRECTION, 0 },
-			{ "OUTS",  0, PackedCpuFlag::DIRECTION, 0 }
-		};
+			{"AAA", PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::AUX, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN},
+			{"AAA", PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::AUX, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY},
+			{"AAS", PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::AUX, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY},
+			{"AAD", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX | PackedCpuFlag::CARRY},
+			{"AAM", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX | PackedCpuFlag::CARRY},
+			{"ADC", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0},
+			{"ADD", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"AND", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX},
+			{"ARPL", PackedCpuFlag::ZERO, 0, 0},
+			{"BSF", PackedCpuFlag::ZERO, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY},
+			{"BSR", PackedCpuFlag::ZERO, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY},
+			{"BT", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY},
+			{"BTS", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY},
+			{"BTR", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY},
+			{"BTC", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY},
+			{"CLC", PackedCpuFlag::CARRY, 0, 0},
+			{"CLD", PackedCpuFlag::DIRECTION, 0, 0},
+			{"CLI", PackedCpuFlag::INTERRUPT, 0, 0},
+			{"CMC", PackedCpuFlag::CARRY, 0, 0},
+			{"CMP", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"CMPXCHG", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"CMPXCHG8B", PackedCpuFlag::ZERO, 0, 0},
+			{"CMPXCHG16B", PackedCpuFlag::ZERO, 0, 0}, // Same inst as previous.
+			{"COMSID", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"COMISS", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"DAA", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW},
+			{"DAS", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::AUX | PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW},
+			{"DEC", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY, 0, 0},
+			{"DIV", 0, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY},
+			{"FCOMI", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"FCOMIP", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"FUCOMI", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"FUCOMIP", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"IDIV", 0, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY},
+			{"IMUL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY},
+			{"INC", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY, 0, 0},
+			{"UCOMSID", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"UCOMISS", PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"IRET", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY | PackedCpuFlag::INTERRUPT | PackedCpuFlag::DIRECTION, 0, 0},
+			{"LAR", PackedCpuFlag::ZERO, 0, 0},
+			{"LOOPZ", 0, PackedCpuFlag::ZERO, 0},
+			{"LOOPNZ", 0, PackedCpuFlag::ZERO, 0},
+			{"LSL", PackedCpuFlag::ZERO, 0, 0},
+			{"LZCNT", PackedCpuFlag::ZERO | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::AUX | PackedCpuFlag::PARITY},
+			{"MUL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY},
+			{"NEG", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"OR", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, PackedCpuFlag::AUX, 0},
+			{"POPCNT", PackedCpuFlag::ZERO, 0, 0},
+			{"POPF", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY | PackedCpuFlag::INTERRUPT | PackedCpuFlag::DIRECTION, 0, 0},
+			{"RSM", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY | PackedCpuFlag::INTERRUPT | PackedCpuFlag::DIRECTION, 0, 0},
+			{"SAHF", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"SBB", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0},
+			{"STC", PackedCpuFlag::CARRY, 0, 0},
+			{"STD", PackedCpuFlag::DIRECTION, 0, 0},
+			{"STI", PackedCpuFlag::INTERRUPT, 0, 0},
+			{"SUB", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"TEST", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::AUX},
+			{"VERR", PackedCpuFlag::ZERO, 0, 0},
+			{"VERW", PackedCpuFlag::ZERO, 0, 0},
+			{"XADD", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, 0},
+			{"XOR", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY, 0, PackedCpuFlag::AUX},
+			{"MOVS", 0, PackedCpuFlag::DIRECTION, 0},
+			{"LODS", 0, PackedCpuFlag::DIRECTION, 0},
+			{"STOS", 0, PackedCpuFlag::DIRECTION, 0},
+			{"CMPS", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::DIRECTION, 0},
+			{"SCAS", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::AUX | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, PackedCpuFlag::DIRECTION, 0},
+			{"INS", 0, PackedCpuFlag::DIRECTION, 0},
+			{"OUTS", 0, PackedCpuFlag::DIRECTION, 0}};
 
 		auto assignFlags = [](SourceInstruction& inst, const InstFlags& flags) {
 			inst.modifiedFlags = flags.mod;
 			inst.testedFlags = flags.tested;
 			inst.undefinedFlags = flags.undefined;
-			};
+		};
 
-		for (size_t i = 0; i < instructions_.size(); i++)
-		{
+		for (size_t i = 0; i < instructions_.size(); i++) {
 			SourceInstruction& inst = instructions_[i];
 
-			for (const auto& mnem : inst.mnemonics)
-			{
+			for (const auto& mnem : inst.mnemonics) {
 				const size_t num = sizeof(flags) / sizeof(flags[0]);
-				for (size_t j = 0; j < num; j++)
-				{
-					if (mnem == flags[j].pMnem)
-					{
+				for (size_t j = 0; j < num; j++) {
+					if (mnem == flags[j].pMnem) {
 						assignFlags(inst, flags[j]);
 						break;
 					}
@@ -2993,56 +2855,50 @@ namespace TDiss
 		}
 
 		InstFlags shiftFlagsCosnt1[] = {
-			{ "RCL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0 },
-			{ "RCR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0 },
+			{"RCL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0},
+			{"RCR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, 0},
 
-			{ "ROL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, 0 },
-			{ "ROR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, 0 },
+			{"ROL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, 0},
+			{"ROR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::CARRY, 0, 0},
 
-			{ "SAL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX },
-			{ "SAR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX },
-			{ "SHL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX },
-			{ "SHR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX },
+			{"SAL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX},
+			{"SAR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX},
+			{"SHL", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX},
+			{"SHR", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX},
 
-			{ "SHLD", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX },
-			{ "SHRD", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX },
+			{"SHLD", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX},
+			{"SHRD", PackedCpuFlag::OVERFLOW | PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::AUX},
 		};
 
 		InstFlags shiftFlags[] = {
-			{ "RCL", PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW },
-			{ "RCR", PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW },
+			{"RCL", PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW},
+			{"RCR", PackedCpuFlag::CARRY, PackedCpuFlag::CARRY, PackedCpuFlag::OVERFLOW},
 
-			{ "ROL", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW },
-			{ "ROR", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW },
+			{"ROL", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW},
+			{"ROR", PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW},
 
-			{ "SAL", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX },
-			{ "SAR", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX  },
-			{ "SHL", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX  },
-			{ "SHR", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX  },
+			{"SAL", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX},
+			{"SAR", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX},
+			{"SHL", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX},
+			{"SHR", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX},
 
-			{ "SHLD", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX  },
-			{ "SHRD", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX  },
+			{"SHLD", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX},
+			{"SHRD", PackedCpuFlag::SIGN | PackedCpuFlag::ZERO | PackedCpuFlag::PARITY | PackedCpuFlag::CARRY, 0, PackedCpuFlag::OVERFLOW | PackedCpuFlag::AUX},
 		};
 
 		static_assert(sizeof(shiftFlagsCosnt1) == sizeof(shiftFlags), "Must map 1:1");
 
-		for (size_t i = 0; i < instructions_.size(); i++)
-		{
+		for (size_t i = 0; i < instructions_.size(); i++) {
 			SourceInstruction& inst = instructions_[i];
 
-			for (const auto& mnem : inst.mnemonics)
-			{
+			for (const auto& mnem : inst.mnemonics) {
 				const size_t num = sizeof(shiftFlagsCosnt1) / sizeof(shiftFlagsCosnt1[0]);
-				for (size_t j = 0; j < num; j++)
-				{
-					if (mnem == shiftFlagsCosnt1[j].pMnem)
-					{
-						if (inst.operands[0] == OperandType::CONST1)
-						{
+				for (size_t j = 0; j < num; j++) {
+					if (mnem == shiftFlagsCosnt1[j].pMnem) {
+						if (inst.operands[0] == OperandType::CONST1) {
 							assignFlags(inst, shiftFlagsCosnt1[j]);
 						}
-						else
-						{
+						else {
 							assignFlags(inst, shiftFlags[j]);
 						}
 						break;
@@ -3051,9 +2907,7 @@ namespace TDiss
 			}
 		}
 
-
 		auto flagsForCondition = [](const char* pConditionStr) -> uint8_t {
-
 			if (StrUtil::IsEqual(pConditionStr, "O")) {
 				return PackedCpuFlag::OVERFLOW;
 			}
@@ -3109,7 +2963,6 @@ namespace TDiss
 				return PackedCpuFlag::SIGN | PackedCpuFlag::OVERFLOW | PackedCpuFlag::ZERO;
 			}
 
-
 			if (StrUtil::IsEqual(pConditionStr, "U")) {
 				return PackedCpuFlag::PARITY;
 			}
@@ -3131,28 +2984,23 @@ namespace TDiss
 
 			X_ASSERT_UNREACABLE();
 			return 0;
-			};
+		};
 
 		// look for anything with prefix: SET, CMOD, FCMOV and parse the condition type from name
-		for (size_t i = 0; i < instructions_.size(); i++)
-		{
+		for (size_t i = 0; i < instructions_.size(); i++) {
 			SourceInstruction& inst = instructions_[i];
 
-			for (const auto& mnem : inst.mnemonics)
-			{
+			for (const auto& mnem : inst.mnemonics) {
 				// only if the string is found at the start process it.
-				if (mnem.find("SET") == 0)
-				{
+				if (mnem.find("SET") == 0) {
 					inst.testedFlags = flagsForCondition(mnem.c_str() + 3);
 					break;
 				}
-				else if (mnem.find("CMOD") == 0)
-				{
+				else if (mnem.find("CMOD") == 0) {
 					inst.testedFlags = flagsForCondition(mnem.c_str() + 4);
 					break;
 				}
-				else if (mnem.find("FCMOV") == 0)
-				{
+				else if (mnem.find("FCMOV") == 0) {
 					inst.testedFlags = flagsForCondition(mnem.c_str() + 5);
 					break;
 				}
@@ -3160,27 +3008,21 @@ namespace TDiss
 		}
 
 		// all the jmp instructions.
-		for (size_t i = 0; i < instructions_.size(); i++)
-		{
+		for (size_t i = 0; i < instructions_.size(); i++) {
 			SourceInstruction& inst = instructions_[i];
 
-			for (const auto& mnem : inst.mnemonics)
-			{
+			for (const auto& mnem : inst.mnemonics) {
 				// only if the string is found at the start process it.
-				if (mnem.length() > 1 && mnem[0] == 'J')
-				{
+				if (mnem.length() > 1 && mnem[0] == 'J') {
 					// exclude any that are prefixed with: JM, JC, JE, JR
 
-					if (mnem[1] != 'M' && mnem[1] != 'C' && mnem[1] != 'E' && mnem[1] != 'R')
-					{
+					if (mnem[1] != 'M' && mnem[1] != 'C' && mnem[1] != 'E' && mnem[1] != 'R') {
 						inst.testedFlags = flagsForCondition(mnem.c_str() + 1);
 						break;
 					}
 				}
 			}
 		}
-
-
 	}
 
 	void Builder::SetCurrentInstructionSet(InstructionSet::Enum instructionSet)
@@ -3195,7 +3037,6 @@ namespace TDiss
 	{
 		AddInstruction(OpCodes, Mnemonic, op1, OperandType::NONE,
 			OperandType::NONE, OperandType::NONE, flags, flow);
-
 	}
 
 	void Builder::AddInstruction(const char* OpCodes, const char* Mnemonic,
@@ -3234,15 +3075,13 @@ namespace TDiss
 		std::vector<std::string> tokens;
 		StrUtil::tokenize(tokens, opCodes, std::string(" "));
 
-
 		if (tokens.empty()) {
 			X_ASSERT_UNREACABLE();
 			return;
 		}
 
 		size_t i = 0;
-		for (i = 0; i < tokens.size() - 1; i++)
-		{
+		for (i = 0; i < tokens.size() - 1; i++) {
 			const std::string& opStr = tokens[i];
 			uint8_t op = StrUtil::fromString<uint8_t>(opStr);
 			inst.ops[i] = op;
@@ -3251,7 +3090,7 @@ namespace TDiss
 		{
 			const std::string& opLast = tokens.back();
 
-			if (StrUtil::Find<std::string>(opLast, "//") != std::string::npos) // divided inst	
+			if (StrUtil::Find<std::string>(opLast, "//") != std::string::npos) // divided inst
 			{
 				modRMInc = true;
 				if (tokens.size() == 1) {
@@ -3291,8 +3130,7 @@ namespace TDiss
 
 				inst.ops[i] = StrUtil::fromString<uint8_t>(opLast.c_str() + 1);
 			}
-			else
-			{
+			else {
 				if (tokens.size() == 1) {
 					inst.opLen = OpCodeLen::OL_1;
 				}
@@ -3341,8 +3179,7 @@ namespace TDiss
 		inst.operands[3] = op4;
 
 		// turn EXPLICIT_REG in to NONE so runtime only has to check if OP is not NONE before trying to decode.
-		for (i = 0; i < 4; i++)
-		{
+		for (i = 0; i < 4; i++) {
 			if (inst.operands[i] == OperandType::EXPLICIT_REG) {
 				inst.operands[i] = OperandType::NONE;
 			}
@@ -3372,8 +3209,7 @@ namespace TDiss
 		// that is a error :(
 		size_t i = 0;
 
-		for (i = 0; i < instructions_.size(); i++)
-		{
+		for (i = 0; i < instructions_.size(); i++) {
 			SourceInstruction& inst = instructions_[i];
 
 			SourceInstruction::OpCodes* pOps = inst.ops;
@@ -3395,8 +3231,7 @@ namespace TDiss
 		std::string trimmed = StrUtil::trim(mnem);
 
 		// find it
-		for (const auto& m : mnemoics_)
-		{
+		for (const auto& m : mnemoics_) {
 			if (m.mnemonic == trimmed) {
 				return m.index;
 			}
@@ -3423,19 +3258,15 @@ namespace TDiss
 		inst.tag += StrUtil::to_string_hex<uint32_t>(op);
 
 		// end of the line?
-		if (opLen == OpCodeLen::OL_1)
-		{
-			if (inst.prefixed)
-			{
+		if (opLen == OpCodeLen::OL_1) {
+			if (inst.prefixed) {
 				// if nothing here just create a prefixed table.
-				if (!node.HasChildAt(op))
-				{
+				if (!node.HasChildAt(op)) {
 					node.children[op] = new TableNode(NodeType::PREFIXED, &node);
 				}
 
 				// if we have a table here and it's prefixed, add to table.
-				if (node.isChildTable(op) && node.ChildAt(op)->type == NodeType::PREFIXED)
-				{
+				if (node.isChildTable(op) && node.ChildAt(op)->type == NodeType::PREFIXED) {
 					TableNode* pTable = node.ChildAt(op);
 
 					// check for col.
@@ -3448,8 +3279,7 @@ namespace TDiss
 
 					pTable->children[inst.entry] = pNode;
 				}
-				else if (node.isChildValue(op))
-				{
+				else if (node.isChildValue(op)) {
 					TableNode* pOld = node.ChildAt(op);
 
 					// collision?
@@ -3470,8 +3300,7 @@ namespace TDiss
 					// override with new table.
 					node.children[op] = pTable;
 				}
-				else
-				{
+				else {
 					// table here already that's not prefixed :(
 					X_ASSERT_UNREACABLE();
 				}
@@ -3480,8 +3309,7 @@ namespace TDiss
 			}
 
 			// collision.
-			if (node.HasChildAt(op))
-			{
+			if (node.HasChildAt(op)) {
 				X_ASSERT_UNREACABLE();
 			}
 
@@ -3492,8 +3320,7 @@ namespace TDiss
 		}
 
 		// we need to make a table if we don't already have one.
-		if (!node.isChildTable(op))
-		{
+		if (!node.isChildTable(op)) {
 			NodeType::Enum type = NodeType::FULL;
 			if (opLen == OpCodeLen::OL_13) {
 				type = NodeType::GROUP;
@@ -3506,8 +3333,7 @@ namespace TDiss
 			pChild->parentIdx = op;
 			node.children[op] = pChild;
 		}
-		else if (node.isChildValue(op))
-		{
+		else if (node.isChildValue(op)) {
 			// must be a table, not a value
 			X_ASSERT_UNREACABLE();
 		}
