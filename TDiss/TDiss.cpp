@@ -7,11 +7,8 @@
 
 namespace TDiss
 {
-	DisResult::Enum Diss::disassemble(CodeStream& strm, Instruction* pDecodeInst, size_t maxInstructions, size_t* usedInstructionsCount, IDissLogger* pLogger)
+	DisResult::Enum Diss::disassemble(CodeStream& strm, const AddInstructionFunc& instructionOutFunc, IDissLogger* pLogger)
 	{
-		if (!usedInstructionsCount || !pDecodeInst) {
-			return DisResult::INVALID_PARAM;
-		}
 		if (!strm.begin()) {
 			return DisResult::INVALID_PARAM;
 		}
@@ -23,18 +20,18 @@ namespace TDiss
 			strm.setOptions(bitUtil::SetBitFlag(strm.options(), DisOptions::ADDRESS_MASK_32));
 		}
 
-		Diss inst(pLogger, strm, maxInstructions);
+		Diss inst(pLogger, strm, instructionOutFunc);
 
-		return inst.disassemble_int(pDecodeInst, usedInstructionsCount);
+		return inst.disassemble_int();
 	}
 
 	// --------------------------------------------------------
 
-	Diss::Diss(IDissLogger* pLogger, CodeStream& strm, size_t maxInstructions) :
+	Diss::Diss(IDissLogger* pLogger, CodeStream& strm, const AddInstructionFunc& instructionOutFunc) :
 		pLogger_(pLogger),
 		strm_(strm),
 		addMask_(strm_.IsAddMask32() ? std::numeric_limits<uint32_t>::max() : std::numeric_limits<OffsetT>::max()),
-		maxInstructions_(maxInstructions)
+		instructionOutFunc_(instructionOutFunc)
 	{
 	}
 
@@ -64,12 +61,8 @@ namespace TDiss
 		}
 	}
 
-	DisResult::Enum Diss::disassemble_int(Instruction* pDecodeInst, size_t* usedInstructionsCount)
+	DisResult::Enum Diss::disassemble_int(void)
 	{
-		X_ASSERT_NOT_NULL(usedInstructionsCount);
-		*usedInstructionsCount = 0;
-
-		size_t currentInstOut = 0; // Keep the count in a local
 		OffsetT instVAStart;
 
 		const bool canStopOnFlow = strm_.stopOnFlowEnabled();
@@ -109,15 +102,8 @@ namespace TDiss
 				}
 			}
 
-			// check we have output space.
-			if (currentInstOut >= maxInstructions_) {
-				*usedInstructionsCount = currentInstOut;
-				TDISS_LOG1("Instruction output buffer is full");
-				return DisResult::OUTDATAFULL;
-			}
-
-			// now need to decode the instruction.
-			Instruction& curInst = pDecodeInst[currentInstOut];
+			// decode the instruction.
+			Instruction curInst;
 
 			InstrDecodeResult::Enum res = decodeInst(ps, &curInst);
 
@@ -129,7 +115,10 @@ namespace TDiss
 
 				TDISS_LOG2("Decoded instruction: %s size: 0x%x", InstructionID::ToString(curInst.opcode), static_cast<int32_t>(curInst.size));
 
-				currentInstOut++;
+				if (!instructionOutFunc_(curInst)) {
+					TDISS_LOG1("Instruction output buffer is full");
+					return DisResult::OUTDATAFULL;
+				}
 			}
 			else if ((res == InstrDecodeResult::UNKNOWN_INST
 						 || res == InstrDecodeResult::OPERAND_DECODE_FAIL
@@ -139,18 +128,14 @@ namespace TDiss
 				if (numPrefix > 0) {
 					// we don't seek the stream for these.
 					const uint8_t* pStart = ps.pStart_;
+					// blank instruction for each invalid byte
 					for (size_t i = 0; i < numPrefix; i++, instVAStart++) {
-						Instruction& curInstSub = pDecodeInst[currentInstOut];
-						curInstSub = Instruction();
+						Instruction curInstSub;
 						curInstSub.size = 1;
 						curInstSub.imm.uint8 = pStart[i];
 						curInstSub.add = (instVAStart & addMask_);
 
-						// blank instruction for each invalid byte
-						currentInstOut++;
-
-						if (currentInstOut >= maxInstructions_) {
-							*usedInstructionsCount = currentInstOut;
+						if (!instructionOutFunc_(curInstSub)) {
 							TDISS_LOG1("Instruction output buffer is full");
 							return DisResult::OUTDATAFULL;
 						}
@@ -161,37 +146,35 @@ namespace TDiss
 				}
 
 				// these need to be read out the stream.
-				Instruction& curInstSub = pDecodeInst[currentInstOut++];
-				curInstSub = Instruction();
+				Instruction curInstSub;
 				curInstSub.size = 1;
 				curInstSub.imm.uint8 = strm_.get<uint8_t>();
 				curInstSub.add = (instVAStart & addMask_);
 
+				if (!instructionOutFunc_(curInstSub)) {
+					TDISS_LOG1("Instruction output buffer is full");
+					return DisResult::OUTDATAFULL;
+				}
+
 				strm_.SeekBytes(1);
 			}
 			else if (res == InstrDecodeResult::STREAM_END && bitUtil::IsBitFlagSet(strm_.options(), DisOptions::SKIP_INVALID)) {
-				curInst = Instruction();
-
 				TDISS_ERR("Reached end of stream mid decode");
-				*usedInstructionsCount = currentInstOut;
 				return DisResult::OK;
 			}
 			else {
 				TDISS_ERR("Invalid / unknown instruction");
-				*usedInstructionsCount = currentInstOut;
 				return DisResult::DATAERR;
 			}
 
 			// stop on flow?
 			if (canStopOnFlow) {
 				if (StopForFlow(curInst)) {
-					*usedInstructionsCount = currentInstOut;
 					return DisResult::OK;
 				}
 			}
 		}
 
-		*usedInstructionsCount = currentInstOut;
 		return DisResult::OK;
 	}
 
