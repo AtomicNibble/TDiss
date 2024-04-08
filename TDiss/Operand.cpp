@@ -77,7 +77,7 @@ namespace TDiss
 				{
 					uint8_t grpOffset = 0;
 
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) {
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
 						grpOffset = RegIndex::EX_GPR_OFFSET;
@@ -112,7 +112,7 @@ namespace TDiss
 					*pIndex = RegIndex::REG_32_BASE;
 				}
 
-				if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) {
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					*pIndex += RegIndex::EX_GPR_OFFSET;
 				}
@@ -178,7 +178,7 @@ namespace TDiss
 					{
 					case CodeType::CODE_16BIT:
 						ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-						if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 						{
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 							rm += RegIndex::EX_GPR_OFFSET;
@@ -189,7 +189,7 @@ namespace TDiss
 						break;
 					case CodeType::CODE_32BIT:
 						ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-						if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 						{
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 							rm += RegIndex::EX_GPR_OFFSET;
@@ -203,11 +203,11 @@ namespace TDiss
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						}
 
-						if (bitUtil::IsFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+						if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						}
 
-						if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 						{
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 							rm += RegIndex::EX_GPR_OFFSET;
@@ -223,15 +223,15 @@ namespace TDiss
 
 					break;
 				case OperandType::RM_32_64:
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) {
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) {
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						rm += RegIndex::EX_GPR_OFFSET;
 					}
 
 					// promoted instruction.
 					if (info->codeType() == CodeType::CODE_64BIT) {
-						if (bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-							!bitUtil::IsFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+						if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
+							!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
 							size = 64;
 							rm += RegIndex::REG_64_BASE;
 							break; // don't fall down
@@ -239,7 +239,7 @@ namespace TDiss
 					}
 
 					// REX.W promoted
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::W)) {
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::W)) {
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						size = 64;
 						rm += RegIndex::REG_64_BASE;
@@ -251,7 +251,7 @@ namespace TDiss
 
 					break;
 				case OperandType::RM_32:
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 					{
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						rm += RegIndex::EX_GPR_OFFSET;
@@ -261,7 +261,7 @@ namespace TDiss
 					size = 32;
 					break;
 				case OperandType::RM_16:
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 					{
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						rm += RegIndex::EX_GPR_OFFSET;
@@ -273,7 +273,7 @@ namespace TDiss
 					if (ps.ExtType == PrefixExtType::REX)
 					{
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
-						if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 						{
 							rm += RegIndex::EX_GPR_OFFSET;
 						}
@@ -302,7 +302,7 @@ namespace TDiss
 				case OperandType::XMM_32:
 				case OperandType::XMM_64:
 				case OperandType::XMM_128:
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 					{
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						rm += RegIndex::EX_GPR_OFFSET;
@@ -431,7 +431,7 @@ namespace TDiss
 					{
 						op.type = OperandTypeAbs::SMEM;
 
-						if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+						if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 						{
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 							rm += RegIndex::EX_GPR_OFFSET;
@@ -687,7 +687,7 @@ namespace TDiss
 					opSize = OpSize::BITS_64;
 
 					// only mark rex if it took rex to get here.
-					if (!bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64)) {
+					if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					}
 				}
@@ -697,8 +697,8 @@ namespace TDiss
 				if (effOp == CodeType::CODE_64BIT) {
 					opSize = OpSize::BITS_64;
 
-					if (bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-						bitUtil::IsFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
+					if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
+						bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)) {
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					}
 				}
@@ -787,7 +787,7 @@ namespace TDiss
 
 #if X_DEBUG
 			// check the instruction flags have alleast one seg reg set.
-			if (!bitUtil::IsFlagSet(instructionFlag, InstructionFlag::SEGMENTS)) {
+			if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::SEGMENTS)) {
 				X_ASSERT_UNREACABLE();
 			}
 #endif // !X_DEBUG
@@ -868,8 +868,8 @@ namespace TDiss
 				}
 			}
 			else if (effOp == CodeType::CODE_64BIT &&
-				(bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-					bitUtil::IsFlagSet(instructionFlag, InstructionFlag::PRE_REX)))
+				(bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
+					bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX)))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
@@ -893,8 +893,8 @@ namespace TDiss
 		case OperandType::IMM_S_8: // sign extended 8 bits.
 			op.Set32(OperandTypeAbs::IMM);
 
-			if (bitUtil::IsFlagSet(instructionFlag, InstructionFlag::PRE_OP_SIZE) &&
-				bitUtil::IsFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE))
+			if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_OP_SIZE) &&
+				bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
@@ -992,7 +992,7 @@ namespace TDiss
 			else // 64
 			{
 				// must be none auto promoted instruction in order to need a rex prefix.
-				if (!bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64)) {
+				if (!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64)) {
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				}
 
@@ -1006,7 +1006,7 @@ namespace TDiss
 			if (ps.ExtType != PrefixExtType::NONE)
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
-				if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 				{
 					reg += RegIndex::EX_GPR_OFFSET;
 				}
@@ -1030,7 +1030,7 @@ namespace TDiss
 			op.Set16(OperandTypeAbs::REG, reg);
 			break;
 		case OperandType::REG_32:
-			if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				reg += RegIndex::EX_GPR_OFFSET;
@@ -1039,21 +1039,21 @@ namespace TDiss
 			break;
 
 		case OperandType::REG_32_64:
-			if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				reg += RegIndex::EX_GPR_OFFSET;
 			}
 
 			if (info->codeType() == CodeType::CODE_64BIT &&
-				bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-				!bitUtil::IsFlagSet(instructionFlag, InstructionFlag::PRE_REX))
+				bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
+				!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX))
 			{
 				op.Set64(OperandTypeAbs::REG, reg);
 				break;
 			}
 
-			if (bitUtil::IsFlagSet(vrex, RexPrefixMask::W))
+			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::W))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				op.Set64(OperandTypeAbs::REG, reg);
@@ -1069,7 +1069,7 @@ namespace TDiss
 			{
 			case CodeType::CODE_16BIT:
 				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
-				if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					reg += RegIndex::EX_GPR_OFFSET;
@@ -1078,7 +1078,7 @@ namespace TDiss
 				op.Set16(OperandTypeAbs::REG, reg);
 				break;
 			case CodeType::CODE_32BIT:
-				if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					reg += RegIndex::EX_GPR_OFFSET;
@@ -1093,7 +1093,7 @@ namespace TDiss
 			case CodeType::CODE_64BIT:
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
-				if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 				{
 					reg += RegIndex::EX_GPR_OFFSET;
 				}
@@ -1110,7 +1110,7 @@ namespace TDiss
 		case OperandType::BLOCK_R_8:
 			reg = (*(info->current() - 1) & 7);
 
-			if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 
@@ -1144,7 +1144,7 @@ namespace TDiss
 			case CodeType::CODE_16BIT:
 				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
-				if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					reg += RegIndex::EX_GPR_OFFSET;
@@ -1153,7 +1153,7 @@ namespace TDiss
 				op.Set16(OperandTypeAbs::REG, reg);
 				break;
 			case CodeType::CODE_32BIT:
-				if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+				if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					reg += RegIndex::EX_GPR_OFFSET;
@@ -1167,10 +1167,10 @@ namespace TDiss
 				break;
 			case CodeType::CODE_64BIT:
 				// auto promoted can drop REX prefix.
-				if (bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64) &&
-					!bitUtil::IsFlagSet(instructionFlag, InstructionFlag::PRE_REX))
+				if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64) &&
+					!bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::PRE_REX))
 				{
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
 					{
 						ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						reg += RegIndex::EX_GPR_OFFSET;
@@ -1179,7 +1179,7 @@ namespace TDiss
 				else
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
-					if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
+					if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B)) // extended GPR's?
 					{
 						reg += RegIndex::EX_GPR_OFFSET;
 					}
@@ -1196,7 +1196,7 @@ namespace TDiss
 
 			ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
 
-			if (bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS16))
+			if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS16))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
@@ -1204,7 +1204,7 @@ namespace TDiss
 				{
 					op.size = 8;
 				}
-				else if (effOp == CodeType::CODE_64BIT && bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64))
+				else if (effOp == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64))
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					op.size = 64;
@@ -1242,7 +1242,7 @@ namespace TDiss
 
 			ps.addUsedPrefix(InstructionFlag::PRE_ADDR_SIZE);
 
-			if (bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS16))
+			if (bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS16))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
@@ -1250,7 +1250,7 @@ namespace TDiss
 				{
 					op.size = 8;
 				}
-				else if (effOp == CodeType::CODE_64BIT && bitUtil::IsFlagSet(instructionFlag, InstructionFlag::BITS64))
+				else if (effOp == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(instructionFlag, InstructionFlag::BITS64))
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 					op.size = 64;
@@ -1330,7 +1330,7 @@ namespace TDiss
 		}
 		case OperandType::XMM:
 		{
-			if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				reg += RegIndex::EX_GPR_OFFSET;
@@ -1341,7 +1341,7 @@ namespace TDiss
 		}
 		case OperandType::XMM_RM:
 		{
-			if (bitUtil::IsFlagSet(vrex, RexPrefixMask::B))
+			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::B))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				rm += RegIndex::EX_GPR_OFFSET;
@@ -1356,13 +1356,13 @@ namespace TDiss
 		// reg sets.
 		case OperandType::CREG:
 		{
-			if (bitUtil::IsFlagSet(vrex, RexPrefixMask::R))
+			if (bitUtil::IsBitFlagSet(vrex, RexPrefixMask::R))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				reg += RegIndex::EX_GPR_OFFSET;
 			}
 			else if (info->codeType() == CodeType::CODE_64BIT &&
-				bitUtil::IsFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_LOCK))
+				bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_LOCK))
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_LOCK);
 				reg += RegIndex::EX_GPR_OFFSET;

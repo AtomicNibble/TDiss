@@ -1326,7 +1326,7 @@ namespace TDiss
 					);
 				}
 
-				if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS16))
+				if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS16))
 				{
 					if (codeType_ == CodeType::CODE_32BIT)
 					{
@@ -1346,7 +1346,7 @@ namespace TDiss
 					o.size = 8;
 				}
 
-				if (codeType_ == CodeType::CODE_64BIT && bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS64))
+				if (codeType_ == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64))
 				{
 					o.size = 64;
 				}
@@ -1410,8 +1410,8 @@ namespace TDiss
 		// auto promoted.
 		if (codeType_ == CodeType::CODE_64BIT)
 		{
-			if (opType == OperandType::IMM_FULL && bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS64) &&
-				bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_REX))
+			if (opType == OperandType::IMM_FULL && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64) &&
+				bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_REX))
 			{
 				ImmVal imm;
 				imm.uint64 = 0xabafeebbabafeebb;
@@ -1431,22 +1431,22 @@ namespace TDiss
 			return;
 		}
 
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
 			arr.emplace_back("ES", OperandTypeAbs::REG, 16, RegIndex::ES);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
 			arr.emplace_back("CS", OperandTypeAbs::REG, 16, RegIndex::CS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
 			arr.emplace_back("SS", OperandTypeAbs::REG, 16, RegIndex::SS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
 			arr.emplace_back("DS", OperandTypeAbs::REG, 16, RegIndex::DS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
 			arr.emplace_back("FS", OperandTypeAbs::REG, 16, RegIndex::FS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
 			arr.emplace_back("GS", OperandTypeAbs::REG, 16, RegIndex::GS);
 		}
 	}
@@ -1635,13 +1635,13 @@ namespace
 	void TestBuilder::CreateTestForInst(const SourceInstruction& inst)
 	{
 		// skip 64bit fetch in none x64 mode.
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS64_FETCH)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64_FETCH)) {
 			if (codeType_ != CodeType::CODE_64BIT) {
 				return;
 			}
 		}
 
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::INVALID_64)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::INVALID_64)) {
 			if (codeType_ == CodeType::CODE_64BIT) {
 				return;
 			}
@@ -2298,22 +2298,22 @@ namespace
 
 
 		// check for seg prefix.
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
 			name += "_CS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
 			name += "_SS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
 			name += "_DS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
 			name += "_ES";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
 			name += "_FS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
 			name += "_GS";
 		}
 

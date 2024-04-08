@@ -22,9 +22,7 @@
 #define X_ALIGN_AS(alignment)						__declspec(align(alignment))
 #define X_ALIGNED_SYMBOL(symbol, alignment)			__declspec(align(alignment)) symbol
 #define X_ALIGN_OF(type)							__alignof(type)
-#define X_INLINE									inline
-#define X_FORCE_INLINE								__forceinline
-#define X_NO_INLINE									__declspec(noinline)
+
 #define X_HINT(hint)								__assume(hint)
 #define X_NO_SWITCH_DEFAULT							X_HINT(0)
 
@@ -46,3 +44,23 @@
 
 #define X_NODISCARD									[[nodiscard]]
 #define X_FALLTHROUGH								[[fallthrough]]
+
+
+#if X_WIN32
+
+#define X_INLINE									inline
+#define X_FORCE_INLINE								__forceinline
+#define X_NO_INLINE									__declspec(noinline)
+
+#define X_INTRINSIC(func)                           X_PRAGMA(intrinsic(func))
+
+#else
+
+#define X_INLINE									inline
+#define X_FORCE_INLINE								inline
+#define X_NO_INLINE									__attribute__((noinline))
+
+#define X_INTRINSIC(func)
+
+
+#endif // X_WIN32

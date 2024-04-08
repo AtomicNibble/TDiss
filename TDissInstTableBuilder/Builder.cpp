@@ -136,10 +136,10 @@ namespace TDiss
 			}
 		}
 
-		if (bitUtil::IsFlagSet(Flags, InstructionFlag::USE_OP3)) {
+		if (bitUtil::IsBitFlagSet(Flags, InstructionFlag::USE_OP3)) {
 			num++;
 		}
-		if (bitUtil::IsFlagSet(Flags, InstructionFlag::USE_OP4)) {
+		if (bitUtil::IsBitFlagSet(Flags, InstructionFlag::USE_OP4)) {
 			num++;
 		}
 
@@ -3355,7 +3355,7 @@ namespace TDiss
 			inst.Flags |= InstructionFlag::USE_OP4;
 		}
 
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::COLLISION)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::COLLISION)) {
 			collisions_.push_back(inst);
 			return;
 		}

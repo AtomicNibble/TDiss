@@ -18,7 +18,7 @@ namespace TDiss
 
     X_INLINE bool CodeStream::IsAddMask32(void) const
     {
-        return bitUtil::IsFlagSet(options_, DisOptions::ADDRESS_MASK_32);
+        return bitUtil::IsBitFlagSet(options_, DisOptions::ADDRESS_MASK_32);
     }
 
     X_INLINE bool CodeStream::is64BitDecode(void) const
@@ -33,7 +33,7 @@ namespace TDiss
 
     X_INLINE bool CodeStream::stopOnFlowEnabled(void) const
     {
-        return bitUtil::IsFlagSet(options_, DisOptions::STOP_ON_FLOW);
+        return bitUtil::IsBitFlagSet(options_, DisOptions::STOP_ON_FLOW);
     }
 
     X_INLINE CodeType::Enum CodeStream::codeType(void) const
