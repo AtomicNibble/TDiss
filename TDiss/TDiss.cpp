@@ -33,8 +33,8 @@ namespace TDiss
 	Diss::Diss(IDissLogger* pLogger, CodeStream& strm, size_t maxInstructions) :
 		pLogger_(pLogger),
 		strm_(strm),
-		maxInstructions_(maxInstructions),
-		addMask_(strm_.IsAddMask32() ? std::numeric_limits<uint32_t>::max() : std::numeric_limits<OffsetT>::max())
+		addMask_(strm_.IsAddMask32() ? std::numeric_limits<uint32_t>::max() : std::numeric_limits<OffsetT>::max()),
+		maxInstructions_(maxInstructions)
 	{
 	}
 
