@@ -1929,6 +1929,9 @@ namespace
 				else
 					ss << "	options |= DisOptions::STOP_ON_UNC_BRANCH;\n";
 				break;
+
+			case FlowControl::NONE:
+				break;
 			}
 		}
 		else
