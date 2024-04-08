@@ -1836,31 +1836,31 @@ namespace
 		ImmVal value = opRes.instInfo.imm;
 
 		if (type == OperandBuilder::ImmType::NONE) {
-			ss << "		EXPECT_EQ(0x0, inst.imm.uint64);";
+			ss << "		EXPECT_EQ(0x0_ui64, inst.imm.uint64";
 		}
 		else if (type == OperandBuilder::ImmType::S8) {
-			ss << "		EXPECT_EQ(0x" << static_cast<unsigned>(value.sint8) << ", inst.imm.sint8);";
+			ss << "		EXPECT_EQ(0x" << static_cast<unsigned>(value.sint8) << "_i8, inst.imm.sint8);";
 		}
 		else if (type == OperandBuilder::ImmType::U8) {
-			ss << "		EXPECT_EQ(0x" << static_cast<signed>(value.uint8) << "u, inst.imm.uint8);";
+			ss << "		EXPECT_EQ(0x" << static_cast<signed>(value.uint8) << "_ui8, inst.imm.uint8);";
 		}
 		else if (type == OperandBuilder::ImmType::S16) {
-			ss << "		EXPECT_EQ(0x" << value.sint16 << ", inst.imm.sint16);";
+			ss << "		EXPECT_EQ(0x" << value.sint16 << "_i16, inst.imm.sint16);";
 		}
 		else if (type == OperandBuilder::ImmType::U16) {
-			ss << "		EXPECT_EQ(0x" << value.uint16 << "u, inst.imm.uint16);";
+			ss << "		EXPECT_EQ(0x" << value.uint16 << "_ui16, inst.imm.uint16);";
 		}
 		else if (type == OperandBuilder::ImmType::S32) {
-			ss << "		EXPECT_EQ(0x" << value.sint32 << ", inst.imm.sint8);";
+			ss << "		EXPECT_EQ(0x" << value.sint32 << "_i32, inst.imm.sint32);";
 		}
 		else if (type == OperandBuilder::ImmType::U32) {
-			ss << "		EXPECT_EQ(0x" << value.uint32 << "u, inst.imm.uint32);";
+			ss << "		EXPECT_EQ(0x" << value.uint32 << "_ui32, inst.imm.uint32);";
 		}
 		else if (type == OperandBuilder::ImmType::S64) {
-			ss << "		EXPECT_EQ(0x" << value.sint64 << ", inst.imm.sint8);";
+			ss << "		EXPECT_EQ(0x" << value.sint64 << "_i64, inst.imm.sint64);";
 		}
 		else if (type == OperandBuilder::ImmType::U64) {
-			ss << "		EXPECT_EQ(0x" << value.uint64 << "u, inst.imm.uint64);";
+			ss << "		EXPECT_EQ(0x" << value.uint64 << "_ui64, inst.imm.uint64);";
 		}
 		else if (type == OperandBuilder::ImmType::PTR) {
 			ss << "		EXPECT_EQ(0x" << value.ptr.seg << "u, inst.imm.ptr.seg);\n";

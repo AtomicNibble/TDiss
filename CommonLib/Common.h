@@ -62,6 +62,7 @@
 #include "Util/StringUtil.h"
 #include "Util/FileUtil.h"
 #include "Util/BitUtil.h"
+#include "Util/UserLiterals.h"
 
 // logging
 #include "Logging/Logger.h"
