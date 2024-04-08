@@ -15,7 +15,7 @@ Initially built to power runtime hooking and analysis (checking for hooks)
 
 ## Projects
 
-The disassembler is contained within the TDiss folder, everything else is either a meta tool, tests or benchmarks.
+The disassembler is contained within the [TDiss](TDiss) folder, everything else is either a meta tool, tests or benchmarks.
 
 ## Example
 
