@@ -225,6 +225,15 @@ namespace bitUtil
             }
 
             template<typename T>
+            static inline constexpr bool IsAnyBitFlagSet(T value, typename internal::FlagType::bytetype<sizeof(T)>::type flag)
+            {
+                static_assert(sizeof(T) == 4, "sizeof(T) is not 4 bytes.");
+                static_assert(sizeof(flag) == 4, "sizeof(flag) is not 4 bytes.");
+
+                return (static_cast<uint32_t>(value) & flag) != 0;
+            }
+
+            template<typename T>
             static inline constexpr T ClearBitFlag(T value, typename internal::FlagType::bytetype<sizeof(T)>::type flag)
             {
                 static_assert(sizeof(T) == 4, "sizeof(T) is not 4 bytes.");
@@ -411,6 +420,12 @@ namespace bitUtil
     inline constexpr bool IsBitFlagSet(T value, typename internal::FlagType::bytetype<sizeof(T)>::type flag)
     {
         return internal::Implementation<sizeof(T)>::IsBitFlagSet(value, flag);
+    }
+
+    template<typename T>
+    inline constexpr bool IsAnyBitFlagSet(T value, typename internal::FlagType::bytetype<sizeof(T)>::type flag)
+    {
+        return internal::Implementation<sizeof(T)>::IsAnyBitFlagSet(value, flag);
     }
 
     template<typename T>

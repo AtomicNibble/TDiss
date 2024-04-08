@@ -33,7 +33,7 @@ namespace TDiss
 
     X_INLINE bool CodeStream::stopOnFlowEnabled(void) const
     {
-        return bitUtil::IsBitFlagSet(options_, DisOptions::STOP_ON_FLOW);
+        return bitUtil::IsAnyBitFlagSet(options_, DisOptions::STOP_ON_FLOW);
     }
 
     X_INLINE CodeType::Enum CodeStream::codeType(void) const
