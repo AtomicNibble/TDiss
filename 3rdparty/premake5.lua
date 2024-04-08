@@ -61,12 +61,11 @@ workspace "thirdparty"
     objdir ("../temp/obj/3rdparty/%{cfg.shortname}")
 
     editandcontinue "Off"
-
+    staticruntime "off"
 
 project "gtest"
     location "../temp/projects/3rdparty/gtest"
     kind "StaticLib"
-    staticruntime "off"
 
     files {
         "source/gtest/googletest/src/**.cc",
@@ -88,7 +87,6 @@ project "gtest"
 project "benchmark"
     location "../temp/projects/3rdparty/benchmark"
     kind "StaticLib"
-    staticruntime "off"
 
     files {
         "source/googlebench/src/**.cc",
