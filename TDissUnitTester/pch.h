@@ -8,5 +8,5 @@
 #include <TDissLib.h>
 
 
-extern ConsoleLogger gConsoleLog;
+// extern ConsoleLogger gConsoleLog;
 

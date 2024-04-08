@@ -1326,7 +1326,7 @@ namespace TDiss
 					);
 				}
 
-				if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS16))
+				if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS16))
 				{
 					if (codeType_ == CodeType::CODE_32BIT)
 					{
@@ -1346,7 +1346,7 @@ namespace TDiss
 					o.size = 8;
 				}
 
-				if (codeType_ == CodeType::CODE_64BIT && bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS64))
+				if (codeType_ == CodeType::CODE_64BIT && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64))
 				{
 					o.size = 64;
 				}
@@ -1410,8 +1410,8 @@ namespace TDiss
 		// auto promoted.
 		if (codeType_ == CodeType::CODE_64BIT)
 		{
-			if (opType == OperandType::IMM_FULL && bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS64) &&
-				bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_REX))
+			if (opType == OperandType::IMM_FULL && bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64) &&
+				bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_REX))
 			{
 				ImmVal imm;
 				imm.uint64 = 0xabafeebbabafeebb;
@@ -1431,22 +1431,22 @@ namespace TDiss
 			return;
 		}
 
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
 			arr.emplace_back("ES", OperandTypeAbs::REG, 16, RegIndex::ES);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
 			arr.emplace_back("CS", OperandTypeAbs::REG, 16, RegIndex::CS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
 			arr.emplace_back("SS", OperandTypeAbs::REG, 16, RegIndex::SS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
 			arr.emplace_back("DS", OperandTypeAbs::REG, 16, RegIndex::DS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
 			arr.emplace_back("FS", OperandTypeAbs::REG, 16, RegIndex::FS);
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
 			arr.emplace_back("GS", OperandTypeAbs::REG, 16, RegIndex::GS);
 		}
 	}
@@ -1464,28 +1464,24 @@ namespace TDiss
 	// ----------------------------------------------
 
 	TestBuilder::NasmOverride::NasmOverride() :
-		requiredOpType(OperandType::NONE)
+		NasmOverride("", "", OperandType::NONE)
 	{
 	}
 
-
-	TestBuilder::NasmOverride::NasmOverride(std::string nasm_, OperandType::Enum reqOpType) :
-		nasm(nasm_),
-		requiredOpType(reqOpType)
+	TestBuilder::NasmOverride::NasmOverride(std::string nasm, OperandType::Enum reqOpType) :
+		NasmOverride(nasm, "", reqOpType)
 	{
 	}
 
-	TestBuilder::NasmOverride::NasmOverride(std::string nasm_, std::string operandAppend_) :
-		nasm(nasm_),
-		operandAppend(operandAppend_),
-		requiredOpType(OperandType::NONE)
+	TestBuilder::NasmOverride::NasmOverride(std::string nasm, std::string operandAppend) :
+		NasmOverride(nasm, operandAppend, OperandType::NONE)
 	{
 	}
 
 	TestBuilder::NasmOverride::NasmOverride(std::string nasm_, std::string operandAppend_, OperandType::Enum reqOpType) :
+		requiredOpType(reqOpType),
 		nasm(nasm_),
-		operandAppend(operandAppend_),
-		requiredOpType(reqOpType)
+		operandAppend(operandAppend_)
 	{
 	}
 
@@ -1532,7 +1528,7 @@ namespace TDiss
 		AddNasmOverRides();
 	}
 
-	bool TestBuilder::SaveTests(const std::wstring& outDir, size_t numTestFiles)
+	bool TestBuilder::SaveTests(const std::string& outDir, size_t numTestFiles)
 	{
 		size_t numTestPerFile = (tests_.size() / numTestFiles);
 		size_t curTest = 0;
@@ -1556,15 +1552,15 @@ namespace TDiss
 			}
 
 
-			std::wstring testName = L"tdis_test";
+			std::string testName = "tdis_test";
 			if (codeType_ == CodeType::CODE_64BIT) {
-				testName += L"x64_";
+				testName += "x64_";
 			}
 
-			const std::wstring testFileName = StrUtil::EnsureSlash(outDir) + testName + StrUtil::to_stringW(i) + L".cpp";
+			const std::string testFileName = StrUtil::EnsureSlash(outDir) + testName + StrUtil::to_string(i) + ".cpp";
 
-			FileUtil::ScopedFileWin32 f;
-			if (!f.Open(testFileName, GENERIC_WRITE, CREATE_ALWAYS)) {
+			FileUtil::ScopedFile f;
+			if (!f.Open(testFileName, "wb")) {
 				return false;
 			}
 
@@ -1635,13 +1631,13 @@ namespace
 	void TestBuilder::CreateTestForInst(const SourceInstruction& inst)
 	{
 		// skip 64bit fetch in none x64 mode.
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::BITS64_FETCH)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::BITS64_FETCH)) {
 			if (codeType_ != CodeType::CODE_64BIT) {
 				return;
 			}
 		}
 
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::INVALID_64)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::INVALID_64)) {
 			if (codeType_ == CodeType::CODE_64BIT) {
 				return;
 			}
@@ -1836,31 +1832,31 @@ namespace
 		ImmVal value = opRes.instInfo.imm;
 
 		if (type == OperandBuilder::ImmType::NONE) {
-			ss << "		EXPECT_EQ(0x0, inst.imm.uint64);";
+			ss << "		EXPECT_EQ(0x0_ui64, inst.imm.uint64";
 		}
 		else if (type == OperandBuilder::ImmType::S8) {
-			ss << "		EXPECT_EQ(0x" << static_cast<unsigned>(value.sint8) << ", inst.imm.sint8);";
+			ss << "		EXPECT_EQ(0x" << static_cast<unsigned>(value.sint8) << "_i8, inst.imm.sint8);";
 		}
 		else if (type == OperandBuilder::ImmType::U8) {
-			ss << "		EXPECT_EQ(0x" << static_cast<signed>(value.uint8) << "u, inst.imm.uint8);";
+			ss << "		EXPECT_EQ(0x" << static_cast<signed>(value.uint8) << "_ui8, inst.imm.uint8);";
 		}
 		else if (type == OperandBuilder::ImmType::S16) {
-			ss << "		EXPECT_EQ(0x" << value.sint16 << ", inst.imm.sint16);";
+			ss << "		EXPECT_EQ(0x" << value.sint16 << "_i16, inst.imm.sint16);";
 		}
 		else if (type == OperandBuilder::ImmType::U16) {
-			ss << "		EXPECT_EQ(0x" << value.uint16 << "u, inst.imm.uint16);";
+			ss << "		EXPECT_EQ(0x" << value.uint16 << "_ui16, inst.imm.uint16);";
 		}
 		else if (type == OperandBuilder::ImmType::S32) {
-			ss << "		EXPECT_EQ(0x" << value.sint32 << ", inst.imm.sint8);";
+			ss << "		EXPECT_EQ(0x" << value.sint32 << "_i32, inst.imm.sint32);";
 		}
 		else if (type == OperandBuilder::ImmType::U32) {
-			ss << "		EXPECT_EQ(0x" << value.uint32 << "u, inst.imm.uint32);";
+			ss << "		EXPECT_EQ(0x" << value.uint32 << "_ui32, inst.imm.uint32);";
 		}
 		else if (type == OperandBuilder::ImmType::S64) {
-			ss << "		EXPECT_EQ(0x" << value.sint64 << ", inst.imm.sint8);";
+			ss << "		EXPECT_EQ(0x" << value.sint64 << "_i64, inst.imm.sint64);";
 		}
 		else if (type == OperandBuilder::ImmType::U64) {
-			ss << "		EXPECT_EQ(0x" << value.uint64 << "u, inst.imm.uint64);";
+			ss << "		EXPECT_EQ(0x" << value.uint64 << "_ui64, inst.imm.uint64);";
 		}
 		else if (type == OperandBuilder::ImmType::PTR) {
 			ss << "		EXPECT_EQ(0x" << value.ptr.seg << "u, inst.imm.ptr.seg);\n";
@@ -1893,52 +1889,55 @@ namespace
 			{
 			case FlowControl::CALL:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CALL);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CALL);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_CALL;\n";
 				break;
 			case FlowControl::CMOV:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CMOV);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CMOV);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_CMOV;\n";
 				break;
 			case FlowControl::CND_BRANCH:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_CND_BRANCH);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_CND_BRANCH);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_CND_BRANCH;\n";
 				break;
 			case FlowControl::INT:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_INT);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_INT);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_INT;\n";
 				break;
 			case FlowControl::RET:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_RET);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_RET);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_RET;\n";
 				break;
 			case FlowControl::SYS:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_SYS);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_SYS);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_SYS;\n";
 				break;
 			case FlowControl::UNC_BRANCH:
 				if (!FlowFlip)
-					ss << "	options |= (DisOptions::STOP_ON_FLOW & ~DisOptions::STOP_ON_UNC_BRANCH);\n";
+					ss << "	options |= (DisOptions::STOP_ON_FLOW_ALL & ~DisOptions::STOP_ON_UNC_BRANCH);\n";
 				else
 					ss << "	options |= DisOptions::STOP_ON_UNC_BRANCH;\n";
+				break;
+
+			case FlowControl::NONE:
 				break;
 			}
 		}
 		else
 		{
 			// turn on all flow stop to check we don't stop on flow incorrectly.
-			ss << "	options |= DisOptions::STOP_ON_FLOW;\n";
+			ss << "	options |= DisOptions::STOP_ON_FLOW_ALL;\n";
 		}
 	}
 
@@ -2114,7 +2113,7 @@ namespace
 				X_UNUSED(x);
 			}
 
-			for (const auto op : ops)
+			for (const auto& op : ops)
 			{
 				TestInstruction newInst;
 
@@ -2158,8 +2157,8 @@ namespace
 	{
 		bytes.clear();
 
-		FileUtil::ScopedFileWin32 file;
-		if (!file.Open(tempPath_, GENERIC_WRITE, CREATE_ALWAYS)) {
+		FileUtil::ScopedFile file;
+		if (!file.Open(tempPath_, "wb")) {
 			return false;
 		}
 
@@ -2176,39 +2175,38 @@ namespace
 			X_ASSERT_UNREACABLE();
 		}
 
-		if (!file.Write(byteSource.data(), byteSource.length())) {
+		if (file.Write(byteSource.data(), byteSource.length()) != byteSource.length()) {
 			return false;
 		}
 
 		return AssembleFile(type, tempPath_, bytes);
 	}
 
-	bool TestBuilder::AssembleFile(const CodeType::Enum type, const std::wstring& path, std::vector<uint8_t>& bytes)
+	bool TestBuilder::AssembleFile(const CodeType::Enum type, const std::string& path, std::vector<uint8_t>& bytes)
 	{
+#if X_WIN32
 		// run yasm.
-		const std::wstring yasmBinPath = L"..\\..\\3rdparty\\bin\\yasm-1.3.0-win64.exe";
+		const std::string yasmBinPath = "..\\..\\3rdparty\\bin\\yasm-1.3.0-win64.exe";
 
-		X_ASSERT(FileUtil::FileExsists(yasmBinPath));
-
-		std::wstring outFile = path + L".out";
-		std::wstring cmd = yasmBinPath + std::wstring(L" ");
+		std::string outFile = path + ".out";
+		std::string cmd = yasmBinPath + std::string(" ");
 
 		if (type == CodeType::CODE_16BIT) {
-			cmd += L"-m x86";
+			cmd += "-m x86";
 		}
 		else if (type == CodeType::CODE_32BIT) {
-			cmd += L"-m x86";
+			cmd += "-m x86";
 		}
 		else if (type == CodeType::CODE_64BIT) {
-			cmd += L"-m amd64";
+			cmd += "-m amd64";
 		}
 
-		cmd += L" -o \"" + outFile + L"\" \"" + path + L"\"";
+		cmd += " -o \"" + outFile + "\" \"" + path + "\"";
 
-		STARTUPINFOW info = { sizeof(info) };
+		STARTUPINFOA info = { sizeof(info) };
 		PROCESS_INFORMATION processInfo;
 
-		if (CreateProcessW(NULL, const_cast<wchar_t*>(cmd.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
+		if (CreateProcessA(NULL, const_cast<char*>(cmd.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
 		{
 			DWORD exitCode;
 			::WaitForSingleObject(processInfo.hProcess, INFINITE);
@@ -2221,8 +2219,8 @@ namespace
 			}
 
 			// read the output.
-			FileUtil::ScopedFileWin32 file;
-			if (file.Open(outFile, GENERIC_READ, OPEN_EXISTING))
+			FileUtil::ScopedFile file;
+			if (file.Open(outFile, "rb"))
 			{
 				size_t length = file.GetLength();
 
@@ -2237,30 +2235,20 @@ namespace
 		lastError::Description dsc;
 		lastError::ToString(dsc);
 
+#else
+	// Not supported on other platforms currently
+	X_UNUSED(type);
+	X_UNUSED(path);
+	X_UNUSED(bytes);
+
+#endif // X_WIN32
 		X_ASSERT_UNREACABLE();
 		return false;
 	}
 
-	std::wstring TestBuilder::GetTempFileName(void)
+	std::string TestBuilder::GetTempFileName(void)
 	{
-		WCHAR tempDir[MAX_PATH];
-		WCHAR tempFileName[MAX_PATH] = { 0 };
-
-		DWORD dwRetVal = GetTempPathW(MAX_PATH, tempDir);
-		if (dwRetVal > MAX_PATH || (dwRetVal == 0))
-		{
-			// failed :(
-			return L"yasm_temp.asm";
-		}
-
-		//  Generates a temporary file name. 
-		dwRetVal = GetTempFileNameW(tempDir, L"yasm_temp", 0, tempFileName);
-		if (dwRetVal == 0)
-		{
-			return L"yasm_temp.asm";
-		}
-
-		return std::wstring(tempFileName);
+		return FileUtil::GetTempFileName();
 	}
 
 	std::string TestBuilder::MakeTestName(const SourceInstruction& inst)
@@ -2298,22 +2286,22 @@ namespace
 
 
 		// check for seg prefix.
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_CS)) {
 			name += "_CS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_SS)) {
 			name += "_SS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_DS)) {
 			name += "_DS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_ES)) {
 			name += "_ES";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_FS)) {
 			name += "_FS";
 		}
-		if (bitUtil::IsFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
+		if (bitUtil::IsBitFlagSet(inst.Flags, InstructionFlag::PRE_GS)) {
 			name += "_GS";
 		}
 

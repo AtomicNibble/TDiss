@@ -21,7 +21,7 @@ void zero_this(T* obj)
 
 inline void zero_str_buf(char* str)
 {
-	memset(str, 0, strlen(str));
+	memset(str, 0, std::strlen(str));
 }
 
 template<typename T>
@@ -158,9 +158,4 @@ const char* AsBits(const T& val, BitsString& str)
 
 	str[i] = '\0';
 	return str;
-}
-
-constexpr std::size_t operator"" _sz(unsigned long long sz)
-{
-	return static_cast<std::size_t>(sz);
 }

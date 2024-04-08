@@ -20,7 +20,7 @@ namespace TDiss
 		}
 
 		if (strm.codeType() == CodeType::CODE_32BIT) {
-			strm.setOptions(bitUtil::SetFlag(strm.options(), DisOptions::ADDRESS_MASK_32));
+			strm.setOptions(bitUtil::SetBitFlag(strm.options(), DisOptions::ADDRESS_MASK_32));
 		}
 
 		Diss inst(pLogger, strm, maxInstructions);
@@ -33,40 +33,36 @@ namespace TDiss
 	Diss::Diss(IDissLogger* pLogger, CodeStream& strm, size_t maxInstructions) :
 		pLogger_(pLogger),
 		strm_(strm),
-		maxInstructions_(maxInstructions),
-		addMask_(strm_.IsAddMask32() ? std::numeric_limits<uint32_t>::max() : std::numeric_limits<OffsetT>::max())
+		addMask_(strm_.IsAddMask32() ? std::numeric_limits<uint32_t>::max() : std::numeric_limits<OffsetT>::max()),
+		maxInstructions_(maxInstructions)
 	{
 	}
 
 	bool Diss::StopForFlow(const Instruction& inst) const
 	{
-		if (inst.flow != FlowControl::NONE)
-		{
-			uint32_t disOptions = strm_.options();
+		const uint32_t disOptions = strm_.options();
 
-			if (bitUtil::IsFlagSet(disOptions, DisOptions::STOP_ON_CALL) && inst.flow == FlowControl::CALL) {
-				return true;
-			}
-			if (bitUtil::IsFlagSet(disOptions, DisOptions::STOP_ON_CMOV) && inst.flow == FlowControl::CMOV) {
-				return true;
-			}
-			if (bitUtil::IsFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH) && inst.flow == FlowControl::CND_BRANCH) {
-				return true;
-			}
-			if (bitUtil::IsFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH) && inst.flow == FlowControl::UNC_BRANCH) {
-				return true;
-			}
-			if (bitUtil::IsFlagSet(disOptions, DisOptions::STOP_ON_INT) && inst.flow == FlowControl::INT) {
-				return true;
-			}
-			if (bitUtil::IsFlagSet(disOptions, DisOptions::STOP_ON_RET) && inst.flow == FlowControl::RET) {
-				return true;
-			}
-			if (bitUtil::IsFlagSet(disOptions, DisOptions::STOP_ON_SYS) && inst.flow == FlowControl::SYS) {
-				return true;
-			}
+		switch (inst.flow)
+		{
+		case FlowControl::NONE:
+			return false;
+		case FlowControl::CALL:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CALL);
+		case FlowControl::RET:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_RET);
+		case FlowControl::SYS:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_SYS);
+		case FlowControl::UNC_BRANCH:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_UNC_BRANCH);
+		case FlowControl::CND_BRANCH:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CND_BRANCH);
+		case FlowControl::CMOV:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_CMOV);
+		case FlowControl::INT:
+			return bitUtil::IsBitFlagSet(disOptions, DisOptions::STOP_ON_INT);
+		default:
+			return false;
 		}
-		return false;
 	}
 
 	DisResult::Enum Diss::disassemble_int(Instruction* pDecodeInst, size_t* usedInstructionsCount)
@@ -95,13 +91,13 @@ namespace TDiss
 			if (strm_.is64BitDecode())
 			{
 				// REX
-				if (bitUtil::IsFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REX))
+				if (bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REX))
 				{
 					// check the res was preceding byte before instruction.
 					if (ps.pRex_ != (strm_.current() - 1))
 					{
 						// not valid :(
-						ps.decodedPrefixFlags = bitUtil::ClearBit(ps.decodedPrefixFlags, InstructionFlag::PRE_REX);
+						ps.decodedPrefixFlags = bitUtil::ClearBitFlag(ps.decodedPrefixFlags, InstructionFlag::PRE_REX);
 						ps.ExtType = PrefixExtType::NONE;
 						// ignore the prefix.
 						ps.ignorePrefix(PrefixGroup::REX);
@@ -145,7 +141,7 @@ namespace TDiss
 			else if ((res == InstrDecodeResult::UNKNOWN_INST
 				|| res == InstrDecodeResult::OPERAND_DECODE_FAIL
 				|| res == InstrDecodeResult::INVALID)
-				&& bitUtil::IsFlagSet(strm_.options(), DisOptions::SKIP_INVALID))
+				&& bitUtil::IsBitFlagSet(strm_.options(), DisOptions::SKIP_INVALID))
 			{
 				const size_t numPrefix = ps.prefixSize();
 				if (numPrefix > 0)
@@ -183,7 +179,7 @@ namespace TDiss
 
 				strm_.SeekBytes(1);
 			}
-			else if (res == InstrDecodeResult::STREAM_END && bitUtil::IsFlagSet(strm_.options(), DisOptions::SKIP_INVALID))
+			else if (res == InstrDecodeResult::STREAM_END && bitUtil::IsBitFlagSet(strm_.options(), DisOptions::SKIP_INVALID))
 			{
 				curInst = Instruction();
 

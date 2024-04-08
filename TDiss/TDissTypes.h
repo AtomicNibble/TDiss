@@ -82,8 +82,9 @@ namespace TDiss
         X_INLINE const uint8_t* begin(void) const;
         X_INLINE const uint8_t* end(void) const;
 
-        X_INLINE intptr_t length(void) const;
-        X_INLINE intptr_t bytesLeft(void) const;
+        X_INLINE size_t length(void) const;
+        X_INLINE size_t offset(void) const;
+        X_INLINE size_t bytesLeft(void) const;
 
         X_INLINE uint64_t baseVA(void) const;
         X_INLINE uint64_t currentVA(void) const;

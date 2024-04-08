@@ -6,76 +6,17 @@
 
 namespace StrUtil
 {
-	const char* Convert(const wchar_t* input, char* output, unsigned outputLength)
-	{
-		// catch null input's here to make it more easy to support Win32 functions that allow nullpointer strings
-		if (input == nullptr) {
-			if (outputLength > 0)
-				output[0] = '\0';
-			return output;
-		}
-
-		size_t convertedChars = 0;
-		wcstombs_s(&convertedChars, output, outputLength, input, _TRUNCATE);
-		return output;
-	}
-
-	const char* Convert(const wchar_t* input, unsigned inputLength, char* output, unsigned outputLength)
-	{
-		if (input == nullptr) {
-			if (outputLength > 0)
-				output[0] = '\0';
-			return output;
-		}
-
-		size_t convertedChars = 0;
-		wcstombs_s(&convertedChars, output, outputLength, input, inputLength);
-		return output;
-	}
-
-	const wchar_t* Convert(const char* input, wchar_t* output, unsigned outputLength)
-	{
-		if (input == nullptr) {
-			if (outputLength > 0)
-				output[0] = '\0';
-			return output;
-		}
-
-		outputLength /= sizeof(wchar_t);
-
-		size_t convertedChars = 0;
-		mbstowcs_s(&convertedChars, output, outputLength, input, _TRUNCATE);
-		return output;
-	}
-
-	const wchar_t* Convert(const char* input, unsigned inputLength,
-		wchar_t* output, unsigned outputLength)
-	{
-		if (input == nullptr) {
-			if (outputLength > 0)
-				output[0] = '\0';
-			return output;
-		}
-
-		outputLength /= sizeof(wchar_t);
-
-		size_t convertedChars = 0;
-		mbstowcs_s(&convertedChars, output, outputLength, input, inputLength);
-		return output;
-	}
 
 	bool IsEqual(const char* startInclusiveS1, const char* startInclusiveS2)
 	{
 		// defer to one below.
-		return IsEqual(startInclusiveS1, startInclusiveS1 + strlen(startInclusiveS1),
-			startInclusiveS2);
+		return IsEqual(startInclusiveS1, startInclusiveS1 + std::strlen(startInclusiveS1), startInclusiveS2);
 	}
 
 	bool IsEqual(const char* startInclusiveS1, const char* endExclusiveS1,
 		const char* startInclusiveS2)
 	{
-		return IsEqual(startInclusiveS1, endExclusiveS1, startInclusiveS2,
-			startInclusiveS2 + strlen(startInclusiveS2));
+		return IsEqual(startInclusiveS1, endExclusiveS1, startInclusiveS2, startInclusiveS2 + std::strlen(startInclusiveS2));
 	}
 
 	bool IsEqual(const char* startInclusiveS1, const char* endExclusiveS1,
@@ -90,34 +31,6 @@ namespace StrUtil
 
 		return false;
 	}
-
-	bool IsEqual(const wchar_t* startInclusiveS1, const wchar_t* startInclusiveS2)
-	{
-		// defer to one below.
-		return IsEqual(startInclusiveS1, startInclusiveS1 + wcslen(startInclusiveS1),
-			startInclusiveS2);
-	}
-
-	bool IsEqual(const wchar_t* startInclusiveS1, const wchar_t* endExclusiveS1,
-		const wchar_t* startInclusiveS2)
-	{
-		return IsEqual(startInclusiveS1, endExclusiveS1, startInclusiveS2,
-			startInclusiveS2 + wcslen(startInclusiveS2));
-	}
-
-	bool IsEqual(const wchar_t* startInclusiveS1, const wchar_t* endExclusiveS1,
-		const wchar_t* startInclusiveS2, const wchar_t* endExclusiveS2)
-	{
-		const size_t len1 = endExclusiveS1 - startInclusiveS1;
-		const size_t len2 = endExclusiveS2 - startInclusiveS2;
-
-		if (len1 == len2) {
-			return memcmp(startInclusiveS1, startInclusiveS2, len1 * 2) == 0;
-		}
-
-		return false;
-	}
-
 
 	bool IsEqualCaseInsen(const std::string& str1, const std::string& str2)
 	{
@@ -147,8 +60,9 @@ namespace StrUtil
 
 	bool IsEqualCaseInsen(const char* str1, const char* str2)
 	{
-		while (*str1 && (::tolower(*str1) == ::tolower(*str2)))
+		while (*str1 && (::tolower(*str1) == ::tolower(*str2))) {
 			str1++, str2++;
+		}
 
 		// are they both null ?
 		return (*(const uint8_t*)str1 - *(const uint8_t*)str2) == 0;

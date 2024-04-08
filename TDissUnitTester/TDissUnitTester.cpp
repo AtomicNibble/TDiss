@@ -1,20 +1,19 @@
 #include "pch.h"
-#include "TDissUnitTester.h"
 
-ConsoleLogger gConsoleLog;
+// ConsoleLogger gConsoleLog;
 
 int main(int argc, char* argv[])
 {
 	int res;
 
-	bool ci = false;
+	// bool ci = false;
 	{
 	//	std::wstring cmd(lpCmdLine);
 	//	if (cmd.find(L"-ci") != std::wstring::npos) {
 	//		ci = true;
 	//	}
 	}
-
+#if 0
 	if (ci)
 	{
 		gLogger.SetNoPause(true);
@@ -24,13 +23,14 @@ int main(int argc, char* argv[])
 		gLogger.AddLogger(&gConsoleLog);
 		gConsoleLog.RedirectSTD();
 	}
+#endif
 
 	::testing::InitGoogleTest(&argc, argv);
-	::testing::GTEST_FLAG(filter) = "Misc*";
+	::testing::GTEST_FLAG(filter) = "*JMP_O_RM_FULL_1_stopOnFlow*";
 
 	res = RUN_ALL_TESTS();
 
-	gLogger.ShutDown();
+//	gLogger.ShutDown();
 
 	return res;
 }

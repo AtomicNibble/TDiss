@@ -1,19 +1,27 @@
 #pragma once
 
+#if X_WIN32
+
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 #define WIN32_EXTRA_LEAN
 #define VC_EXTRALEAN
 
 #include <Windows.h>
+#include <tchar.h>
 
-#if X_WIN32
 #include <conio.h>
 #include <Shlobj.h>
 #include <direct.h>
+
 #endif // X_WIN32
 
 
+#include <assert.h>
+#include <inttypes.h>
+#include <stdio.h>
+
+#include <memory>
 #include <iostream>
 #include <ostream>
 #include <sstream> 
@@ -21,47 +29,41 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
-
-#include <assert.h>
-#include <tchar.h>
-
 #include <vector>
 #include <array>
 #include <queue>
 #include <map>
 #include <unordered_map>
-
 #include <algorithm>
 #include <numeric>
+#include <limits>
+#include <cstring>
+#include <cstdarg>
 
-#include <inttypes.h>
-
-#ifdef MSVC
+#ifdef X_WIN32
 #define PRIdS "Id"
-#else
+#else // X_WIN32
 #define PRIdS "zd"
-#endif
+#endif // X_WIN32
 
 // Local
 
 #include "Types.h"
-#include "Util\Macros.h"
+#include "Util/Macros.h"
 
 #include "Debugging/Assert.h"
 
-#include "Casts\safe_static_cast.h"
-#include "Casts\union_cast.h"
+#include "Casts/safe_static_cast.h"
+#include "Casts/union_cast.h"
 
 // misc
-#include "Util\Util.h"
-#include "Util\LastError.h"
-#include "Util\StringUtil.h"
-#include "Util\FileUtil.h"
-#include "Util\BitUtil.h"
+#include "Util/Util.h"
+#include "Util/LastError.h"
+#include "Util/StringUtil.h"
+#include "Util/FileUtil.h"
+#include "Util/BitUtil.h"
+#include "Util/UserLiterals.h"
 
-// logging
-#include "Logging\Logger.h"
-#include "Logging\LoggerTypes.h"
 
 
 

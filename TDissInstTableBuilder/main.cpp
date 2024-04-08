@@ -21,11 +21,10 @@ int main(int argc, char* argv[])
 
 	StrUtil::EnsureSlash(outputDir);
 
-	const std::wstring outputDirWide = StrUtil::stringToWstring(outputDir);
-	const std::wstring file = outputDirWide + L"tables.cpp";
-	const std::wstring mneHeader = outputDirWide + L"mnemonics.h";
-	const std::wstring mneSource = outputDirWide + L"mnemonics.cpp";
-	const std::wstring testSource = outputDirWide;
+	const std::string file = outputDir + "tables.cpp";
+	const std::string mneHeader = outputDir + "mnemonics.h";
+	const std::string mneSource = outputDir + "mnemonics.cpp";
+	const std::string testSource = outputDir;
 
 	TDiss::Builder builder;
 	if (!builder.Build()) {

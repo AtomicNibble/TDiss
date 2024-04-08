@@ -1,15 +1,16 @@
 workspace "thirdparty"
     configurations { "Debug", "Release", "Ship" }
-    platforms {  "Win32", "Win64" }
+    platforms {  "x86", "x64" }
 
     language "C++"
 
-    filter { "platforms:Win32" }
-        system "Windows"
+    filter "system:Unix"
+        system "linux"
+
+    filter { "platforms:x86*" }
         architecture "x86"
 
-    filter { "platforms:Win64" }
-        system "Windows"
+    filter { "platforms:x64*" }
         architecture "x86_64"
 
     debugformat "c7"
@@ -104,12 +105,15 @@ project "benchmark"
         "source/googlebench/include",
     }
 
-
     defines {
-        "_WINDOWS",
         "HAVE_STD_REGEX",
         "HAVE_STEADY_CLOCK",
         "BENCHMARK_STATIC_DEFINE",
     }
 
     warnings "Extra"
+
+    filter "system:Windows"
+        defines {
+            "_WINDOWS",
+        }

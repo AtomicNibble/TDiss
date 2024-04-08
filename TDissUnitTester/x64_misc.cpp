@@ -148,7 +148,7 @@ TEST(x64_misc, fxsave)
 		0x48, 0x0F, 0xAE, 0x04, 0x45, 0x56, 0x04, 0x00, 0x00 // FXSAVE64 [rax*2+ 0x456]
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -249,7 +249,7 @@ TEST(x64_misc, fxrstor)
 		0x48, 0x0F, 0xAE, 0x0C, 0x45, 0x56, 0x04, 0x00, 0x00 // FXRSTOR64 [rax*2+ 0x456]
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -347,7 +347,7 @@ TEST(x64_misc, ldmxcsr)
 		0x0F, 0xAE, 0x14, 0x45, 0x56, 0x04, 0x00, 0x00  // ldmxcsr [rax*2+0x456]
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -406,7 +406,7 @@ TEST(x64_misc, stmxcsr)
 		0x0F, 0xAE, 0x1C, 0x45, 0x56, 0x04, 0x00, 0x00  // STMXCSR [rax*2+0x456]
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -464,7 +464,7 @@ TEST(x64_misc, lfence)
 		0x0F, 0xAE, 0xE8  // lfence 
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -507,7 +507,7 @@ TEST(x64_misc, xrstor)
 		0x48, 0x0F, 0xAE, 0x2C, 0x45, 0x56, 0x04, 0x00, 0x00 // xrstor64 [rax*2+ 0x456]
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -604,7 +604,7 @@ TEST(x64_misc, mfence)
 		0x0F, 0xAE, 0xF0   // mfence 
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -647,7 +647,7 @@ TEST(x64_misc, xsaveopt)
 		0x48, 0x0F, 0xAE, 0x34, 0x45, 0x56, 0x04, 0x00, 0x00 // XSAVEOPT64 [rax*2+ 0x456]
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -745,7 +745,7 @@ TEST(x64_misc, sfence)
 		0x0F, 0xAE, 0xF8   // sfence 
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 
@@ -783,7 +783,7 @@ TEST(x64_misc, clflush)
 		0x0F, 0xAE, 0x3C, 0x45, 0x56, 0x04, 0x00, 0x00	 // CLFLUSH [rax*2+ 0x456]
 	};
 
-	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW, CodeType::CODE_64BIT);
+	CodeStream strm(0, pOps, sizeof(pOps), DisOptions::STOP_ON_FLOW_ALL, CodeType::CODE_64BIT);
 
 	DisResult::Enum result = Diss::disassemble(strm, instructions, 0x8, &instructionCount);
 

@@ -59,20 +59,20 @@ namespace TDiss
 			CodeType::CODE_16BIT,
 		};
 
-		if (bitUtil::IsFlagSet(prefixes, InstructionFlag::PRE_OP_SIZE)) {
+		if (bitUtil::IsBitFlagSet(prefixes, InstructionFlag::PRE_OP_SIZE)) {
 			return OpSizeTable[strm_.codeType()];
 		}
 
 		if (strm_.codeType() == CodeType::CODE_64BIT)
 		{
-			if (bitUtil::IsFlagSet(instructionFlags, InstructionFlag::BITS64) &&
-				!bitUtil::IsFlagSet(instructionFlags, InstructionFlag::PRE_REX))
+			if (bitUtil::IsBitFlagSet(instructionFlags, InstructionFlag::BITS64) &&
+				!bitUtil::IsBitFlagSet(instructionFlags, InstructionFlag::PRE_REX))
 			{
 				return CodeType::CODE_64BIT;
 			}
 			// need to check if rex has operand width.
-			else if (bitUtil::IsFlagSet(prefixes, InstructionFlag::PRE_REX) &&
-				bitUtil::IsFlagSet(rex, RexPrefixMask::W))
+			else if (bitUtil::IsBitFlagSet(prefixes, InstructionFlag::PRE_REX) &&
+				bitUtil::IsBitFlagSet(rex, RexPrefixMask::W))
 			{
 				return CodeType::CODE_64BIT;
 			}
@@ -91,7 +91,7 @@ namespace TDiss
 			CodeType::CODE_32BIT,
 		};
 
-		if (bitUtil::IsFlagSet(prefixes, InstructionFlag::PRE_ADDR_SIZE)) {
+		if (bitUtil::IsBitFlagSet(prefixes, InstructionFlag::PRE_ADDR_SIZE)) {
 			return AddSizeTable[strm_.codeType()];
 		}
 
@@ -127,8 +127,8 @@ namespace TDiss
 		}
 		else
 		{
-			bool preRep = bitUtil::IsFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REP);
-			bool preRepNz = bitUtil::IsFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
+			bool preRep = bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REP);
+			bool preRepNz = bitUtil::IsBitFlagSet(ps.decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
 
 			if (preRep && preRepNz) {
 				return nullptr;
@@ -155,7 +155,7 @@ namespace TDiss
 			const InstSharedInfo& sharedInfo = SharedInfo[pInstInfo->sharedIdx];
 			uint32_t flags = Flags[sharedInfo.flagsIdx];
 
-			if (!bitUtil::IsFlagSet(flags, InstructionFlag::PRE_OP_SIZE)) {
+			if (!bitUtil::IsBitFlagSet(flags, InstructionFlag::PRE_OP_SIZE)) {
 				return nullptr;
 			}
 		}
@@ -211,11 +211,11 @@ namespace TDiss
 
 			case 0x90: //check if it's nop instead of XCHG
 
-				if (bitUtil::IsFlagSet(ps.vrex, RexPrefixMask::W)) {
+				if (bitUtil::IsBitFlagSet(ps.vrex, RexPrefixMask::W)) {
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 				}
 
-				if (strm_.codeType() != CodeType::CODE_64BIT || !bitUtil::IsFlagSet(ps.vrex, RexPrefixMask::B)) {
+				if (strm_.codeType() != CodeType::CODE_64BIT || !bitUtil::IsBitFlagSet(ps.vrex, RexPrefixMask::B)) {
 					return &II_NOP;
 				}
 
@@ -351,7 +351,7 @@ namespace TDiss
 					const InstSharedInfo& sharedInfo = SharedInfo[pInfo->sharedIdx];
 					const uint32_t flags = Flags[sharedInfo.flagsIdx];
 
-					if (bitUtil::IsFlagSet(flags, InstructionFlag::NOT_DIVIDED)) {
+					if (bitUtil::IsBitFlagSet(flags, InstructionFlag::NOT_DIVIDED)) {
 						return pInfo;
 					}
 				}
@@ -438,7 +438,7 @@ namespace TDiss
 
 		// not valid in x64
 		if (strm_.codeType() == CodeType::CODE_64BIT &&
-			bitUtil::IsFlagSet(flags, InstructionFlag::INVALID_64))
+			bitUtil::IsBitFlagSet(flags, InstructionFlag::INVALID_64))
 		{
 			strm_.setToMarker();
 
@@ -451,7 +451,7 @@ namespace TDiss
 		}
 		// only valid in x64
 		if (strm_.codeType() != CodeType::CODE_64BIT &&
-			bitUtil::IsFlagSet(flags, InstructionFlag::BITS64_FETCH))
+			bitUtil::IsBitFlagSet(flags, InstructionFlag::BITS64_FETCH))
 		{
 			strm_.setToMarker();
 
@@ -464,9 +464,9 @@ namespace TDiss
 		}
 
 		// got ModRm?
-		if (bitUtil::IsFlagSet(flags, InstructionFlag::MODRM_REQUIRED))
+		if (bitUtil::IsBitFlagSet(flags, InstructionFlag::MODRM_REQUIRED))
 		{
-			if (!bitUtil::IsFlagSet(flags, InstructionFlag::MODRM_INCLUDED)) {
+			if (!bitUtil::IsBitFlagSet(flags, InstructionFlag::MODRM_INCLUDED)) {
 				if (strm_.isEof()) {
 					TDISS_ERR("Failed to read required modR/m byte. code stream is empty");
 					return InstrDecodeResult::STREAM_END;
@@ -528,7 +528,7 @@ namespace TDiss
 				return InstrDecodeResult::OPERAND_DECODE_FAIL;
 			}
 		}
-		if (bitUtil::IsFlagSet(flags, InstructionFlag::USE_OP3))
+		if (bitUtil::IsBitFlagSet(flags, InstructionFlag::USE_OP3))
 		{
 			const InstInfoEx* pExtInto = static_cast<const InstInfoEx*>(pInstInfo);
 
@@ -551,7 +551,7 @@ namespace TDiss
 				return InstrDecodeResult::OPERAND_DECODE_FAIL;
 			}
 		}
-		if (bitUtil::IsFlagSet(flags, InstructionFlag::USE_OP4))
+		if (bitUtil::IsBitFlagSet(flags, InstructionFlag::USE_OP4))
 		{
 			const InstInfoEx* pExtInto = static_cast<const InstInfoEx*>(pInstInfo);
 
@@ -576,7 +576,7 @@ namespace TDiss
 		}
 
 
-		if (bitUtil::IsFlagSet(flags, InstructionFlag::NOW3D_FETCH)) {
+		if (bitUtil::IsBitFlagSet(flags, InstructionFlag::NOW3D_FETCH)) {
 			pInstInfo = instLookup3DNow();
 			if (pInstInfo == nullptr) {
 				return InstrDecodeResult::INVALID;
@@ -589,9 +589,9 @@ namespace TDiss
 
 		pInst->opcode = pInstInfo->opcodeId;
 
-		const bool ExMnem = bitUtil::IsFlagSet(flags, InstructionFlag::EX_MNEMONIC);
-		const bool ExMnem2 = bitUtil::IsFlagSet(flags, InstructionFlag::EX_MNEMONIC2);
-		const bool preAddSize = bitUtil::IsFlagSet(flags, InstructionFlag::PRE_ADDR_SIZE);
+		const bool ExMnem = bitUtil::IsBitFlagSet(flags, InstructionFlag::EX_MNEMONIC);
+		const bool ExMnem2 = bitUtil::IsBitFlagSet(flags, InstructionFlag::EX_MNEMONIC2);
+		const bool preAddSize = bitUtil::IsBitFlagSet(flags, InstructionFlag::PRE_ADDR_SIZE);
 
 		if (ExMnem && preAddSize)
 		{
@@ -618,7 +618,7 @@ namespace TDiss
 			{
 				ps.addUsedPrefix(InstructionFlag::PRE_OP_SIZE);
 
-				if (bitUtil::IsFlagSet(flags, InstructionFlag::EX_MNEMONIC_MODRM_BASED)) {
+				if (bitUtil::IsBitFlagSet(flags, InstructionFlag::EX_MNEMONIC_MODRM_BASED)) {
 					if (modRm < 0xc0) {
 						pInst->opcode = static_cast<const InstInfoEx*>(pInstInfo)->opcodeId2;
 					}
@@ -635,11 +635,11 @@ namespace TDiss
 		{
 			if (ExMnem || ExMnem2)
 			{
-				if (bitUtil::IsFlagSet(flags, InstructionFlag::EX_MNEMONIC_MODRM_BASED) && modRm >= 0xc0) {
+				if (bitUtil::IsBitFlagSet(flags, InstructionFlag::EX_MNEMONIC_MODRM_BASED) && modRm >= 0xc0) {
 					return InstrDecodeResult::INVALID;
 				}
 
-				if (ExMnem2 && bitUtil::IsFlagSet(ps.vrex, RexPrefixMask::W))
+				if (ExMnem2 && bitUtil::IsBitFlagSet(ps.vrex, RexPrefixMask::W))
 				{
 					ps.addUsedPrefix(InstructionFlag::PRE_REX);
 

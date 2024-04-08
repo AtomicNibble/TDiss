@@ -82,6 +82,10 @@ namespace TDiss
 
 	struct PrefixState
 	{
+	private:
+		static const uint16_t INVALID_PREFIX_INDEX;
+
+	public:
 		PrefixState(IDissLogger* pLogger);
 		~PrefixState() = default;
 
@@ -124,7 +128,7 @@ namespace TDiss
 		uint32_t vrex;
 
 		// offsets to prefix byte based on group / index.
-		int32_t pfIndexOff[PrefixGroup::INDEX_NUM];
+		uint16_t pfIndexOff[PrefixGroup::INDEX_NUM];
 	};
 
 

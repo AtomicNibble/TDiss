@@ -1,17 +1,24 @@
 
 workspace "TDiss"
     configurations { "Debug", "Release", "Ship" }
-    platforms {  "Win32", "Win64", "Win32DLL", "Win64DLL" }
+    platforms {  "x86", "x64", "x86DLL", "x64DLL" }
 
     language "C++"
 
-    filter { "platforms:Win32*" }
-        system "Windows"
-        architecture "x86"
+    filter "system:Unix"
+        system "linux"
 
-    filter { "platforms:Win64*" }
-        system "Windows"
+    filter { "platforms:x86*" }
+        architecture "x86"
+        defines {
+            "X_64=0",
+        }
+
+    filter { "platforms:x64*" }
         architecture "x86_64"
+        defines {
+            "X_64=1",
+        }
 
     filter { "configurations:Debug" }
         symbols "FastLink"
@@ -76,6 +83,9 @@ workspace "TDiss"
             "X_WIN32=0",
         }
 
+        -- disable for now
+        flags { 'NoPCH' }
+
     filter { }
 
     flags {
@@ -134,11 +144,11 @@ project "TDiss"
         ["Docs"] = "**.md"
     }
 
-    filter {}
-        links { "CommonLib" }
+    links { "CommonLib" }
 
     includedirs {
         "CommonLib",
+        "TDiss",
     }
 
     pchheader "TDiss/pch.h"
@@ -244,6 +254,11 @@ project "TDissBench"
     filter { "platforms:not *DLL" }
         defines { "TDISS_STATIC" }
 
+    filter "system:Windows"
+        links {
+            "Shlwapi",
+        }
+
     filter {}
 
     files {
@@ -259,9 +274,7 @@ project "TDissBench"
         ["Docs"] = "**.md"
     }
 
-
     links {
-        "Shlwapi",
         "benchmark",
         "TDiss",
         "CommonLib",
@@ -303,8 +316,6 @@ project "CommonLib"
     includedirs {
         "CommonLib"
     }
-
-    filter {}
 
     pchheader "CommonLib/Common.h"
     pchsource "CommonLib/Common.cpp"

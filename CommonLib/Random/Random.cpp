@@ -1,7 +1,7 @@
 #include "Common.h"
 #include "Random.h"
 
-#ifdef X_WIN32
+#if X_WIN32
 #include <wincrypt.h>
 #else // X_WIN32
 #include <unistd.h>
@@ -19,7 +19,7 @@ namespace util
             return randomBytes;
         }
 
-#ifdef X_WIN32
+#if X_WIN32
         // Windows
         HCRYPTPROV hProvider;
         if (!CryptAcquireContext(&hProvider, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)) {

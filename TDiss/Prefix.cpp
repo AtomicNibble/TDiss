@@ -31,6 +31,8 @@ namespace TDiss
 
 	*/
 
+	const uint16_t PrefixState::INVALID_PREFIX_INDEX = std::numeric_limits<uint16_t>::max();
+
 	bool PrefixState::isValidPrefix(CodeStream& strm)
 	{
 		if (strm.isEof()) {
@@ -163,7 +165,7 @@ namespace TDiss
 		vexV = 0;
 		vrex = 0;
 
-		memset(pfIndexOff, -1, sizeof(pfIndexOff));
+		memset(pfIndexOff, INVALID_PREFIX_INDEX, sizeof(pfIndexOff));
 	}
 
 	void PrefixState::decode(CodeStream& strm)
@@ -211,7 +213,7 @@ namespace TDiss
 			{
 				if (ct == CodeType::CODE_64BIT)
 				{
-					decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_REX);
+					decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REX);
 					addUsedPrefix(byteIdx, PrefixGroup::REX);
 					vrex = op & 0xf; // keep only the BXRW flags.
 					pRex_ = strm.current();
@@ -225,55 +227,55 @@ namespace TDiss
 
 			// seg
 			case Prefix::CS:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_CS);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_CS);
 				addUsedPrefix(byteIdx, PrefixGroup::SEG);
 				break;
 			case Prefix::SS:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_SS);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_SS);
 				addUsedPrefix(byteIdx, PrefixGroup::SEG);
 				break;
 			case Prefix::DS:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_DS);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_DS);
 				addUsedPrefix(byteIdx, PrefixGroup::SEG);
 				break;
 			case Prefix::ES:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_ES);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_ES);
 				addUsedPrefix(byteIdx, PrefixGroup::SEG);
 				break;
 			case Prefix::FS:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_FS);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_FS);
 				addUsedPrefix(byteIdx, PrefixGroup::SEG);
 				break;
 			case Prefix::GS:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_GS);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_GS);
 				addUsedPrefix(byteIdx, PrefixGroup::SEG);
 				break;
 
 				// lock
 			case Prefix::LOCK:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_LOCK);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_LOCK);
 				addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
 				break;
 
 				// rep
 			case Prefix::REP:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_REP);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REP);
 				addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
 				break;
 			case Prefix::REPNZ:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_REPNZ);
 				addUsedPrefix(byteIdx, PrefixGroup::LOCK_REP);
 				break;
 
 				// Op size
 			case Prefix::OP_SIZE:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_OP_SIZE);
 				addUsedPrefix(byteIdx, PrefixGroup::OP_SIZE);
 				break;
 
 				// Add size
 			case Prefix::ADD_SIZE:
-				decodedPrefixFlags = bitUtil::SetFlag(decodedPrefixFlags, InstructionFlag::PRE_ADDR_SIZE);
+				decodedPrefixFlags = bitUtil::SetBitFlag(decodedPrefixFlags, InstructionFlag::PRE_ADDR_SIZE);
 				addUsedPrefix(byteIdx, PrefixGroup::ADD_SIZE);
 				break;
 
@@ -312,7 +314,7 @@ namespace TDiss
 				size_t curIs = (strm.current() - pStart_);
 				if (curIs <= (MAX_INSTRUCTION_SIZE - 3))
 				{
-					if (!bitUtil::IsFlagSet(decodedPrefixFlags, InstructionFlag::PRE_VEX))
+					if (!bitUtil::IsBitFlagSet(decodedPrefixFlags, InstructionFlag::PRE_VEX))
 					{
 						if (ct == CodeType::CODE_64BIT || *(strm.current() + 1) == 0xc0) // DIVIDED_MODRM
 						{
@@ -330,24 +332,24 @@ namespace TDiss
 	{
 		ignorePrefix(group);
 
-		pfIndexOff[group] = static_cast<int32_t>(idx);
+		pfIndexOff[group] = safe_static_cast<uint16_t>(idx);
 	}
 
 	void PrefixState::addUsedPrefix(InstructionFlag::Enum pre)
 	{
-		usedPrefixFlags = bitUtil::SetFlag(usedPrefixFlags, pre & 0xFFFFFFFF);
+		usedPrefixFlags = bitUtil::SetBitFlag(usedPrefixFlags, pre & 0xFFFFFFFF);
 	}
 
 	void PrefixState::ignorePrefix(PrefixGroup::Enum group)
 	{
-		if (pfIndexOff[group] != -1) {
-			unusedPrefixMask = bitUtil::SetBit(unusedPrefixMask, pfIndexOff[group]);
+		if (pfIndexOff[group] != INVALID_PREFIX_INDEX) {
+			unusedPrefixMask = bitUtil::SetBitFlag(unusedPrefixMask, pfIndexOff[group]);
 		}
 	}
 
 	void PrefixState::removeDecodedPrefix(InstructionFlag::Enum pre)
 	{
-		decodedPrefixFlags = bitUtil::ClearFlag(decodedPrefixFlags, pre & 0xFFFFFFFF);
+		decodedPrefixFlags = bitUtil::ClearBitFlag(decodedPrefixFlags, pre & 0xFFFFFFFF);
 	}
 
 	void PrefixState::useSegment(InstructionFlag::Enum segPrefix, CodeType::Enum ct, Instruction* pInst)
