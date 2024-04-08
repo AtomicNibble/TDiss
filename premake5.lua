@@ -1,14 +1,17 @@
 
 workspace "TDiss"
     configurations { "Debug", "Release", "Ship" }
-    platforms {  "Win32", "Win64", "Win32DLL", "Win64DLL" }
+    platforms {  "x86", "x64", "x86DLL", "x64DLL" }
 
     language "C++"
 
-    filter { "platforms:Win32*" }
+    filter "system:Unix"
+        system "linux"
+
+    filter { "platforms:x86*" }
         architecture "x86"
 
-    filter { "platforms:Win64*" }
+    filter { "platforms:x64*" }
         architecture "x86_64"
 
     filter { "configurations:Debug" }
@@ -74,6 +77,9 @@ workspace "TDiss"
             "X_WIN32=0",
         }
 
+        -- disable for now
+        flags { 'NoPCH' }
+
     filter { }
 
     flags {
@@ -132,11 +138,11 @@ project "TDiss"
         ["Docs"] = "**.md"
     }
 
-    filter {}
-        links { "CommonLib" }
+    links { "CommonLib" }
 
     includedirs {
         "CommonLib",
+        "TDiss",
     }
 
     pchheader "TDiss/pch.h"
@@ -304,8 +310,6 @@ project "CommonLib"
     includedirs {
         "CommonLib"
     }
-
-    filter {}
 
     pchheader "CommonLib/Common.h"
     pchsource "CommonLib/Common.cpp"
