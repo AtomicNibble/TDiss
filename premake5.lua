@@ -89,7 +89,6 @@ workspace "TDiss"
     filter { }
 
     flags {
-        -- "FatalLinkWarnings", -- need to disable this for the malloc overrides shiz.
         "FatalCompileWarnings",
         "MultiProcessorCompile",
     }
