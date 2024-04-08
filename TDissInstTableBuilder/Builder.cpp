@@ -264,8 +264,8 @@ namespace TDiss
 	};
 
 	Builder::Builder() :
-		root_(NodeType::FULL, nullptr),
-		curInstructionSet_(InstructionSet::NONE)
+		curInstructionSet_(InstructionSet::NONE),
+		root_(NodeType::FULL, nullptr)
 	{
 		// we always going to have loads so reserve.
 		instructions_.reserve(0x400);
