@@ -242,6 +242,11 @@ project "TDissBench"
     filter { "platforms:not *DLL" }
         defines { "TDISS_STATIC" }
 
+    filter "system:Windows"
+        links {
+            "Shlwapi",
+        }
+
     filter {}
 
     files {
@@ -257,9 +262,7 @@ project "TDissBench"
         ["Docs"] = "**.md"
     }
 
-
     links {
-        "Shlwapi",
         "benchmark",
         "TDiss",
         "CommonLib",
