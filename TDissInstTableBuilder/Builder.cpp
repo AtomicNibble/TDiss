@@ -454,7 +454,7 @@ namespace TDiss
 					TableNode* pChild = table.ChildAt(x);
 
 					// top 3 bits for type 13 bits for tableIdx
-					uint16_t val = static_cast<uint16_t>((pChild->type << 13) & 0x1FFF | (nextTableIdx & 0x1FFF));
+					uint16_t val = static_cast<uint16_t>(((pChild->type << 13) & 0x1FFF) | (nextTableIdx & 0x1FFF));
 
 					const auto tagHStr = pChild->GetTagHierarchyStr();
 					const auto tagH = pChild->GetTagHierarchy();
