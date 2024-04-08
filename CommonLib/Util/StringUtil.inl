@@ -13,7 +13,7 @@ namespace StrUtil
 		auto it = std::search(
 			haystack.begin() + Off, haystack.end(),
 			needle.begin(), needle.end(),
-			[](T::traits_type::char_type ch1, T::traits_type::char_type ch2) {
+			[](typename T::traits_type::char_type ch1, typename T::traits_type::char_type ch2) {
 				return ::toupper(ch1) == ::toupper(ch2);
 			}
 		);
@@ -148,7 +148,7 @@ namespace StrUtil
 			return str;
 		}
 
-		T::size_type pos = str.find(Ext);
+		typename T::size_type pos = str.find(Ext);
 		return T(str.begin(), str.begin() + pos);
 	}
 
@@ -203,20 +203,6 @@ namespace StrUtil
 	}
 
 	template<typename T>
-	std::string BytesToHuman(T num)
-	{
-		if (num < 1) {
-			return std::string("0.00 B");
-		}
-		char tmp[128] = "";
-		const char* si_prefix[] = { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
-		const int base = 1024;
-		int c = std::min((int)(log((double)num) / log((double)base)), (int)sizeof(si_prefix) - 1);
-		sprintf_s(tmp, "%1.2f %s", num / pow((double)base, c), si_prefix[c]);
-		return std::string(tmp);
-	}
-
-	template<typename T>
 	T ToLower(const T& str)
 	{
 		T temp(str);
@@ -225,14 +211,14 @@ namespace StrUtil
 	}
 
 	template<>
-	inline unsigned __int8 fromString(const std::string& str) {
+	inline uint8_t fromString(const std::string& str) {
 		if (str.find("0x") == 0) {
 			return static_cast<uint8_t>(std::stoi(str, 0, 0));
 		}
 		return static_cast<uint8_t>(std::stoi(str));
 	}
 	template<>
-	inline unsigned __int16 fromString(const std::string& str) {
+	inline uint16_t fromString(const std::string& str) {
 		if (str.find("0x") == 0) {
 			return static_cast<uint16_t>(std::stoi(str, 0, 0));
 		}
@@ -279,7 +265,7 @@ namespace StrUtil
 	void tokenize(std::vector<TStr>& tokensOut,
 		const TStr& str, const TStr& delimiter)
 	{
-		TStr::size_type start = 0, end = 0;
+		typename TStr::size_type start = 0, end = 0;
 
 		tokensOut.clear();
 
@@ -287,7 +273,7 @@ namespace StrUtil
 		{
 			end = str.find(delimiter, start);
 
-			TStr::size_type subEnd = (end == TStr::npos) ? TStr::npos : end - start;
+			typename TStr::size_type subEnd = (end == TStr::npos) ? TStr::npos : end - start;
 			tokensOut.push_back(str.substr(start, subEnd));
 
 			start = ((end > (TStr::npos - delimiter.size()))

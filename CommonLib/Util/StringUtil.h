@@ -53,13 +53,6 @@ namespace StrUtil
 	T EnsureSlash(const T& str);
 
 	template<typename T>
-	std::string BytesToHuman(T num);
-
-	std::string FileTimeToStringA(FILETIME ft);
-	std::wstring FileTimeToStringW(FILETIME ft);
-
-
-	template<typename T>
 	T ToLower(const T& str);
 	void ToLower(std::string& str);
 	void ToLower(std::wstring& str);
