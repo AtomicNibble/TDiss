@@ -199,7 +199,7 @@ namespace TDiss
 						rm += RegIndex::REG_32_BASE;
 						break;
 					case CodeType::CODE_64BIT:
-						if (effOp == OperandType::REG_FULL_M16) {
+						if (opType == OperandType::REG_FULL_M16) {
 							ps.addUsedPrefix(InstructionFlag::PRE_REX);
 						}
 
