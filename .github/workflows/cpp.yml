@@ -113,7 +113,7 @@ jobs:
         premake5 vs2022
     - name: Build
       run: |
-        "msbuild /m TDiss.sln /t:build /p:Configuration=${{ matrix.config.configuration }};Platform=${{ matrix.config.platform }}"
+        msbuild /m TDiss.sln /t:build /p:Configuration=${{ matrix.config.configuration }} /p:Platform=${{ matrix.config.platform }}
     - name: Test
       run: |
         .\build\${{ matrix.config.output }}\TDissUnitTester.exe --gtest_output=xml:test_results_${{ matrix.config.output }}.xml
