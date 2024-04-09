@@ -4,6 +4,7 @@ Initially built to power runtime hooking and analysis (checking for hooks)
 
 ## Features
 
+- Supports [X86](https://en.wikipedia.org/wiki/X86) / [x86-64](https://en.wikipedia.org/wiki/X86-64)
 - Support for most extensions (MMX,SSE1,SSE2,SSE3,SSE4.1,SSE4.1,3DNOW)
 - Zero allocations
 - Thread safe (no internal state)
@@ -12,7 +13,7 @@ Initially built to power runtime hooking and analysis (checking for hooks)
 - Can be built as 32bit or 64bit (both support decoding 32bit or 64bit instructions)
 - Can handle / skip invalid bytes
 - Large set of tests
-- Tested with MSVC (Windows), GCC
+- Tested with MSVC (Windows), GCC, Clang
 
 ## Projects
 
