@@ -27,6 +27,12 @@ jobs:
     - uses: abel0b/setup-premake@v2.4
       with:
         version: "5.0.0-beta2"
+    - name: Install Clang and LLVM tools
+      if: ${{ matrix.toolset == 'clang' }}
+      uses: egor-tensin/setup-clang@v1
+      with:
+        version: 14
+        platform: x64
 
     # Determine the current submodule commit hash for cache key
     - name: Get GoogleBench Submodule Commit
