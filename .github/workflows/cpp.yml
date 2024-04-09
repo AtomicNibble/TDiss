@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         config: [release_x64, release_x86, release_x64dll, release_x86dll, ship_x64, ship_x86, ship_x64dll, ship_x86dll]
+        toolset: [gcc, clang]
     runs-on: ubuntu-22.04
     steps:
     - name: support 32bit
@@ -43,17 +44,17 @@ jobs:
       uses: actions/cache@v4
       with:
         path: 3rdparty/lib
-        key: ${{ runner.os }}-third-party-libs-${{ hashFiles('3rdparty/build.sh') }}-${{ hashFiles('3rdparty/premake5.lua') }}-${{ env.submodule_gbench_commit }}-${{ env.submodule_gtest_commit }}
+        key: ${{ runner.os }}-third-party-libs-${{ matrix.toolset }}-${{ hashFiles('3rdparty/build.sh') }}-${{ hashFiles('3rdparty/premake5.lua') }}-${{ env.submodule_gbench_commit }}-${{ env.submodule_gtest_commit }}
 
     - name: Build 3rdparty
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
         cd 3rdparty
-        premake5 gmake2
+        premake5 gmake2 --cc=${{ matrix.toolset }}
         ./build.sh
     - name: Generate build files
       run: |
-        premake5 gmake2
+        premake5 gmake2 --cc=${{ matrix.toolset }}
     - name: Build
       run: |
         make -j$(nproc) config=${{ matrix.config }}
