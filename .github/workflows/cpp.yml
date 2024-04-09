@@ -8,9 +8,10 @@ on:
 
 jobs:
   build:
-
+    strategy:
+      matrix:
+        config: [release_x64, release_x86]
     runs-on: ubuntu-22.04
-
     steps:
     - name: support 32bit
       run: |
@@ -33,12 +34,12 @@ jobs:
         premake5 gmake2
     - name: Build
       run: |
-        make -j$(nproc) config=release_x64
+        make -j$(nproc) config=${{ matrix.config }}
     - name: Test
       run: |
-        ./build/release_x64/TDissUnitTester --gtest_output=xml:test_results.xml
+        ./build/${{ matrix.config }}/TDissUnitTester --gtest_output=xml:test_results_${{ matrix.config }}.xml
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-        name: test-results
-        path: test_results.xml
+        name: test-results-${{ matrix.config }}
+        path: test_results_${{ matrix.config }}.xml
