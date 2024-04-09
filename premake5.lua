@@ -35,7 +35,6 @@ workspace "TDiss"
         symbols "On"
         optimize "Speed"
         flags {
-        --    "LinkTimeOptimization",
             "FatalLinkWarnings",
         }
         defines {
@@ -51,8 +50,6 @@ workspace "TDiss"
         symbols "On"
         optimize "Speed"
         flags {
-            "LinkTimeOptimization", -- This is setting /LTCG:incremental
-            -- "NoIncrementalLink", -- this has no effect
             "FatalLinkWarnings",
         }
         defines {
