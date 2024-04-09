@@ -28,7 +28,6 @@ workspace "thirdparty"
         functionlevellinking "On"
         optimize "Speed"
         flags {
-        --  "LinkTimeOptimization",
             "FatalLinkWarnings",
         }
         defines {
@@ -39,7 +38,6 @@ workspace "thirdparty"
         functionlevellinking "On"
         optimize "Speed"
         flags {
-            "LinkTimeOptimization",
             "FatalLinkWarnings",
         }
         defines {
