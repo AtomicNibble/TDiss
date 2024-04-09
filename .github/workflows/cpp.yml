@@ -46,7 +46,7 @@ jobs:
         key: ${{ runner.os }}-third-party-libs-${{ hashFiles('3rdparty/build.sh') }}-${{ hashFiles('3rdparty/premake5.lua') }}-${{ steps.submodule_gbench_commit.outputs.commit }}-${{ steps.submodule_gtest_commit.outputs.commit }}
 
     - name: Build 3rdparty
-      if: steps.cache-primes.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         cd 3rdparty
         premake5 gmake2
