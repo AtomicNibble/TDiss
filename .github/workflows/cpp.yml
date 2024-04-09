@@ -67,6 +67,12 @@ jobs:
         path: test_results_${{ matrix.config }}.xml
 
   windows:
+    strategy:
+      matrix:
+        config:
+          - name: release_x64
+            platform: x64
+            configuration: Release
     runs-on: windows-2022
     steps:
     - uses: actions/checkout@v4
@@ -107,12 +113,12 @@ jobs:
         premake5 vs2022
     - name: Build
       run: |
-        "msbuild /m TDiss.sln /t:build /p:Configuration=Release;Platform=x64"
+        "msbuild /m TDiss.sln /t:build /p:Configuration=${{ matrix.config.configuration }};Platform=${{ matrix.config.platform }}"
     - name: Test
       run: |
-        ./build/${{ matrix.config }}/TDissUnitTester.exe --gtest_output=xml:test_results_${{ matrix.config }}.xml
+        ./build/${{ matrix.config.name }}/TDissUnitTester.exe --gtest_output=xml:test_results_${{ matrix.config.name }}.xml
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-        name: test-results-${{ matrix.config }}
-        path: test_results_${{ matrix.config }}.xml
+        name: test-results-${{ matrix.config.name }}
+        path: test_results_${{ matrix.config.name }}.xml
