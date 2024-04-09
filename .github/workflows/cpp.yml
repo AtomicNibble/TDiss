@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  linux:
     strategy:
       matrix:
         config: [release_x64, release_x86, release_x64dll, release_x86dll, ship_x64, ship_x86, ship_x64dll, ship_x86dll]
@@ -60,6 +60,55 @@ jobs:
     - name: Test
       run: |
         ./build/${{ matrix.config }}/TDissUnitTester --gtest_output=xml:test_results_${{ matrix.config }}.xml
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-${{ matrix.config }}
+        path: test_results_${{ matrix.config }}.xml
+
+  windows:
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+    - uses: abel0b/setup-premake@v2.4
+      with:
+        version: "5.0.0-beta2"
+
+    # Determine the current submodule commit hash for cache key
+    - name: Get GoogleBench Submodule Commit
+      run: |
+        cd 3rdparty/source/googlebench
+        echo "submodule_gbench_commit=$(git rev-parse HEAD)" >> $GITHUB_ENV
+    - name: Get GoogleTest Submodule Commit
+      run: |
+        cd 3rdparty/source/gtest
+        echo "submodule_gtest_commit=$(git rev-parse HEAD)" >> $GITHUB_ENV
+
+    # Cache third-party libraries
+    - name: Cache Third-Party Libraries
+      id: cache
+      uses: actions/cache@v4
+      with:
+        path: 3rdparty/lib
+        key: ${{ runner.os }}-third-party-libs-${{ hashFiles('3rdparty/build.bat') }}-${{ hashFiles('3rdparty/premake5.lua') }}-${{ env.submodule_gbench_commit }}-${{ env.submodule_gtest_commit }}
+
+    - name: Build 3rdparty
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        cd 3rdparty
+        premake5 vs2022
+        ./build.bat
+    - name: Generate build files
+      run: |
+        premake5 vs2022
+    - name: Build
+      run: |
+        msbuild /m TDiss.sln /t:build /p:Configuration=Release;Platform=x64
+    - name: Test
+      run: |
+        ./build/${{ matrix.config }}/TDissUnitTester.exe --gtest_output=xml:test_results_${{ matrix.config }}.xml
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
