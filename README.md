@@ -8,10 +8,11 @@ Initially built to power runtime hooking and analysis (checking for hooks)
 - Zero allocations
 - Thread safe (no internal state)
 - Fast (around ~50MB/s)
-- No dependancies other than stdlib (could be removed)
+- No dependencies other than stdlib (could be removed)
 - Can be built as 32bit or 64bit (both support decoding 32bit or 64bit instructions)
 - Can handle / skip invalid bytes
 - Large set of tests
+- Tested with MSVC (Windows), GCC
 
 ## Projects
 
@@ -41,6 +42,13 @@ const Instruction& inst0 = instructions[0x0];
 // inst0.size == 0x9;
 // inst0.displacement == 0x456;
 // ...
+```
+
+A more idiomatic c++ overload is also provided.
+
+```cpp
+std::vector<Instruction> instructions;
+DisResult::Enum result = Diss::disassemble(strm, instructions);
 ```
 
 ## Building
