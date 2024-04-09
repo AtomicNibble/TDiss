@@ -106,7 +106,6 @@ namespace TDiss
 		prefixed = false;
 		prefix = 0;
 		entry = 0;
-		_pad = 0;
 
 		modifiedFlags = 0;
 		testedFlags = 0;

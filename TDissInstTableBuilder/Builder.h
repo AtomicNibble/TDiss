@@ -50,7 +50,6 @@ namespace TDiss
 		bool prefixed;
 		uint8_t prefix;
 		uint8_t entry;
-		uint8_t _pad;
 
 		uint8_t modifiedFlags;
 		uint8_t testedFlags;
@@ -227,7 +226,6 @@ namespace TDiss
 
 	private:
 		bool full_;
-		bool _pad[3];
 		const CodeType::Enum codeType_;
 		OperandDataArr operandTable_[OperandType::NUM_ENUM];
 	};
