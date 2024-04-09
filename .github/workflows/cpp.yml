@@ -73,6 +73,28 @@ jobs:
           - output: release_x64
             platform: x64
             configuration: Release
+          - output: release_x64dll
+            platform: x64DLL
+            configuration: Release
+          - output: release_x86
+            platform: Win32
+            configuration: Release
+          - output: release_x86dll
+            platform: x86DLL
+            configuration: Release
+          - output: ship_x64
+            platform: x64
+            configuration: Ship
+          - output: ship_x64dll
+            platform: x64DLL
+            configuration: Ship
+          - output: ship_x86
+            platform: Win32
+            configuration: Ship
+          - output: ship_x86dll
+            platform: x86DLL
+            configuration: Ship
+
     runs-on: windows-2022
     steps:
     - uses: actions/checkout@v4
