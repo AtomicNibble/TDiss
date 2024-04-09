@@ -12,8 +12,8 @@ jobs:
   linux:
     strategy:
       matrix:
-        config: [release_x64, release_x86, release_x64dll, release_x86dll, ship_x64, ship_x86, ship_x64dll, ship_x86dll]
         toolset: [gcc, clang]
+        config: [release_x64, release_x86, release_x64dll, release_x86dll, ship_x64, ship_x86, ship_x64dll, ship_x86dll]
     runs-on: ubuntu-22.04
     steps:
     - name: support 32bit
@@ -75,7 +75,7 @@ jobs:
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ runner.os }}-test-results-${{ matrix.config }}
+        name: ${{ runner.os }}-test-results-${{ matrix.toolset }}-${{ matrix.config }}
         path: test_results_${{ matrix.config }}.xml
 
   windows:
