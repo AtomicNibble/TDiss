@@ -27,15 +27,13 @@ jobs:
 
     # Determine the current submodule commit hash for cache key
     - name: Get GoogleBench Submodule Commit
-      id: submodule_gbench_commit
       run: |
         cd 3rdparty/source/googlebench
-        echo "::set-output name=commit::$(git rev-parse HEAD)"
+        echo "submodule_gbench_commit=$(git rev-parse HEAD)" >> $GITHUB_ENV
     - name: Get GoogleTest Submodule Commit
-      id: submodule_gtest_commit
       run: |
         cd 3rdparty/source/gtest
-        echo "::set-output name=commit::$(git rev-parse HEAD)"
+        echo "submodule_gtest_commit=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
     # Cache third-party libraries
     - name: Cache Third-Party Libraries
@@ -43,7 +41,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: 3rdparty/lib
-        key: ${{ runner.os }}-third-party-libs-${{ hashFiles('3rdparty/build.sh') }}-${{ hashFiles('3rdparty/premake5.lua') }}-${{ steps.submodule_gbench_commit.outputs.commit }}-${{ steps.submodule_gtest_commit.outputs.commit }}
+        key: ${{ runner.os }}-third-party-libs-${{ hashFiles('3rdparty/build.sh') }}-${{ hashFiles('3rdparty/premake5.lua') }}-${{ env.submodule_gbench_commit }}-${{ env.submodule_gtest_commit }}
 
     - name: Build 3rdparty
       if: steps.cache.outputs.cache-hit != 'true'
