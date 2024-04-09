@@ -63,7 +63,7 @@ jobs:
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-        name: test-results-${{ matrix.config }}
+        name: ${{ runner.os }}-test-results-${{ matrix.config }}
         path: test_results_${{ matrix.config }}.xml
 
   windows:
@@ -120,5 +120,5 @@ jobs:
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-        name: test-results-${{ matrix.config.output }}
+        name: ${{ runner.os }}-test-results-${{ matrix.config.output }}
         path: test_results_${{ matrix.config.output }}.xml
