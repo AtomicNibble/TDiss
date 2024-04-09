@@ -116,7 +116,7 @@ jobs:
         "msbuild /m TDiss.sln /t:build /p:Configuration=${{ matrix.config.configuration }};Platform=${{ matrix.config.platform }}"
     - name: Test
       run: |
-        ./build/${{ matrix.config.name }}/TDissUnitTester.exe --gtest_output=xml:test_results_${{ matrix.config.name }}.xml
+        build\${{ matrix.config.name }}\TDissUnitTester.exe --gtest_output=xml:test_results_${{ matrix.config.name }}.xml
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
