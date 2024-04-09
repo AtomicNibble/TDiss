@@ -3,6 +3,8 @@ name: C/C++ CI
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '**.md' # Don't bother building for readme changes etc.
   pull_request:
     branches: [ "main" ]
 
